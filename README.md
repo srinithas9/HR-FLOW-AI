@@ -1,136 +1,301 @@
-# AI-Powered HR Operations & Action Intelligence Platform
+# HR Flow – AI-Powered HR Operations & Action Intelligence Platform
 
-An enterprise-grade operational management and action intelligence platform designed for an Indian technology organization. The platform orchestrates employee lifecycle activities, monitors SLAs and deadlines, forecasts task delays using machine learning, and provides a database-grounded GenAI assistant with human-in-the-loop approvals.
+HR Flow is an AI-powered HR operations platform designed to simplify employee lifecycle management, task tracking, follow-ups and HR operations.
 
----
-
-## 1. System Architecture & Scope
-
-- **Architecture Style**: Modular Monolith.
-- **Scope**:
-  - Exactly 7 Functional Modules.
-  - Exactly 4 User Roles (`HR_ADMIN`, `HR_OPERATIONS`, `PEOPLE_MANAGER`, `EMPLOYEE`).
-  - Exactly 6 Lifecycle Areas (Onboarding, Probation, Confirmation, Performance Review, Role Transition, Offboarding).
-  - Exactly 23 PostgreSQL Tables.
-  - One ML Model: Task Delay Risk Prediction.
-  - One GenAI HR Operations Assistant.
+It brings together Machine Learning and Generative AI to help HR teams monitor activities, identify potential task delays, retrieve HR information and make better operational decisions through a centralized dashboard.
 
 ---
 
-## 2. Technology Stack
+## Project Overview
 
-- **Frontend**: React, TypeScript, Vite, Tailwind CSS, shadcn/ui, Lucide React, Framer Motion, Recharts, Axios.
-- **Backend**: Python 3.12+, FastAPI, SQLAlchemy 2.x, Pydantic 2.x, Alembic, psycopg v3.
-- **Database**: PostgreSQL 17 on `localhost:5432` (`hr_operations_db`).
-- **Machine Learning**: Scikit-learn, Pandas, NumPy.
+HR departments manage multiple activities throughout an employee's journey, including onboarding, documentation, probation, confirmation, performance reviews and offboarding.
+
+Managing these activities manually through spreadsheets and emails can make it difficult to track deadlines, monitor pending tasks and identify operational delays.
+
+HR Flow addresses these challenges through a centralized platform that combines employee management, workflow tracking, predictive intelligence and an AI-powered HR assistant.
+
+## Key Features
+
+### 1. Dashboard
+- Provides an overview of employee and HR operational statistics.
+- Displays pending activities and important items requiring attention.
+- Provides visibility into employee lifecycle progress.
+
+### 2. Employee Directory
+- Centralized employee information.
+- Employee search and filtering.
+- Individual employee profiles and related HR information.
+
+### 3. Employee Lifecycle Management
+Manages six major stages of the employee journey:
+
+- Onboarding
+- Documentation
+- Probation
+- Confirmation
+- Performance Reviews
+- Offboarding
+
+### 4. Task Management
+- Create and assign HR operational tasks.
+- Track task status, priority and deadlines.
+- Manage task dependencies.
+- Monitor pending, blocked and overdue activities.
+
+### 5. Follow-ups and Escalations
+- Track pending responses from employees, managers and external parties.
+- Manage follow-up schedules.
+- Escalate overdue tasks through defined responsibility levels.
+
+### 6. ML Intelligence
+Uses Machine Learning to estimate the probability of HR tasks becoming delayed.
+
+- Identifies potentially high-risk tasks.
+- Analyses workload and historical delay patterns.
+- Classifies tasks into low, medium and high-risk categories.
+
+### 7. AI HR Copilot
+An AI-powered conversational assistant that helps users retrieve HR-related information using natural-language questions.
+
+- Answers HR operational queries.
+- Retrieves employee and task information.
+- Provides follow-up and escalation details.
+- Generates operational summaries.
+- Uses backend tools to retrieve relevant system records.
+
+### 8. HR Analytics
+Provides operational insights such as:
+- SLA compliance.
+- Average task resolution time.
+- Department workload.
+- Operational bottlenecks.
+- Employee-related statistics.
 
 ---
 
-## 3. Directory Layout
+## Technology Stack
 
+| Category | Technologies |
+|---|---|
+| Frontend | React, TypeScript, Vite |
+| UI Styling | Tailwind CSS |
+| Backend | Python, FastAPI |
+| Database | PostgreSQL |
+| ORM | SQLAlchemy |
+| Machine Learning | Scikit-learn, Pandas, NumPy |
+| Model Storage | Joblib |
+| Generative AI | Google Gemini 2.5 Flash |
+| API Communication | REST APIs |
+| Authentication | JWT, bcrypt |
+
+---
+
+## Machine Learning Implementation
+
+**Objective:** Predict the probability of HR tasks becoming delayed.
+
+**Algorithm:** Random Forest Classifier
+
+**Probability Calibration:** Sigmoid (Platt) Calibration
+
+The model uses eight operational features:
+
+1. Days remaining before the deadline.
+2. Task category.
+3. Task priority.
+4. Current task status.
+5. Reminder count.
+6. Owner's historical delay rate.
+7. Owner's current workload.
+8. Task dependency status.
+
+### Model Evaluation Results
+
+The model was evaluated using a separate test dataset.
+
+| Evaluation Metric | Test Result |
+|---|---:|
+| ROC-AUC | 0.5378 |
+| PR-AUC | 0.1933 |
+| Brier Score | 0.1442 |
+
+The model currently provides an experimental task-risk assessment to support HR prioritization. Its predictive performance requires further improvement and validation using real-world operational data.
+
+**Risk Categories:**
+
+- Low Risk: Below 12%.
+- Medium Risk: 12% to below 22%.
+- High Risk: 22% or above.
+
+---
+
+## Generative AI Implementation
+
+HR Flow includes an AI HR Copilot powered by **Google Gemini 2.5 Flash**.
+
+The Copilot uses an OpenAI-compatible API integration and backend tools to retrieve relevant information from the HR system.
+
+### How It Works
+
+1. The user submits a question in natural language.
+2. Gemini processes the query and identifies the required information.
+3. The appropriate backend tool retrieves relevant HR records.
+4. The LLM generates a response using the retrieved information.
+5. Relevant record identifiers are included to support factual responses.
+
+The application also includes an internal fallback mechanism for handling supported HR queries when the external LLM service is unavailable.
+
+---
+
+## System Architecture
+
+HR Flow follows a **Modular Monolithic Architecture**.
+
+```text
+                    HR
+                     |
+                     v
+              FRONTEND
+             HR Flow Dashboard
+                     |
+                     v
+                 BACKEND
+              HR Operations
+                     |
+          +----------+----------+
+          |                     |
+          v                     v
+       DATABASE          AI & ML COMPONENTS
+      PostgreSQL          |              |
+                          v              v
+                    Machine Learning  Generative AI
+                    Random Forest     Gemini 2.5 Flash
+                    Delay Prediction  HR Copilot
+          |
+          v
+     HR Operational Data
 ```
-hr-operations-platform/
-├── frontend/                     # Frontend web application foundation
-│   └── src/
-│       ├── components/
-│       ├── pages/
-│       ├── layouts/
-│       ├── hooks/
-│       ├── services/
-│       ├── types/
-│       └── utils/
-│
-├── backend/                      # FastAPI modular monolith service
-│   ├── app/
-│   │   ├── api/                  # Endpoints (Health, Auth, Lifecycle, Tasks, etc.)
-│   │   ├── core/                 # Config, settings, security
-│   │   ├── db/                   # Engine, session factory, base
-│   │   ├── models/               # 23 SQLAlchemy 2.x ORM models
-│   │   ├── schemas/              # Pydantic v2 schemas
-│   │   ├── services/             # Business services
-│   │   └── utils/                # Helper functions
-│   ├── alembic/                  # Database migration revisions
-│   ├── tests/                    # Backend unit & integration test suites
-│   ├── requirements.txt          # Python dependencies
-│   ├── alembic.ini               # Alembic configuration
-│   └── pytest.ini                # Pytest configuration
-│
-├── database/
-│   ├── schema_documentation/     # DATABASE_DESIGN.md (full column-level docs)
-│   ├── sql/                      # schema.sql (PostgreSQL DDL schema dump)
-│   └── seed_scripts/             # Generation, validation, and loading scripts
-│
-├── datasets/
-│   ├── csv/                      # 23 normalized CSV files
-│   ├── ml_ready/                 # ML-ready task delay prediction dataset
-│   ├── data_dictionary/          # Relational and ML feature dictionaries
-│   └── validation_reports/       # Integrity validation reports
-│
-├── ml/
-│   └── datasets/                 # ML datasets copy
-│
-├── docs/                         # Architecture documentation
-├── .env.example                  # Environment configuration template
-├── .gitignore                    # Git exclusions
-├── PROJECT_SPEC.md               # Master permanent specification
-└── README.md                     # Project overview and runbook
-```
+
+The frontend communicates with the FastAPI backend through REST APIs. The backend manages HR workflows and interacts with PostgreSQL to store and retrieve information. The ML model provides task-delay predictions, while the AI Copilot uses Gemini and backend tools to answer HR-related queries.
 
 ---
 
-## 4. Phase 0 Verification & Runbook
+## Database
+
+PostgreSQL is used as the central relational database.
+
+The documented database design contains 23 tables covering:
+
+- Employee and user information.
+- Tasks and task dependencies.
+- Employee lifecycle records.
+- Follow-ups and escalations.
+- Documents and performance reviews.
+- Audit logs and AI/ML records.
+
+---
+
+## Installation and Setup
 
 ### Prerequisites
-- Python 3.12+
-- PostgreSQL 17 running on `localhost:5432` with database `hr_operations_db`
 
-### Setup Python Environment
+- Python 3.12 or compatible version.
+- Node.js 20 or compatible version.
+- PostgreSQL 17.
+- Git.
+
+### 1. Clone the Repository
+
 ```bash
-python -m venv backend/.venv
-backend/.venv/Scripts/pip install -r backend/requirements.txt
+git clone <YOUR_GITHUB_REPOSITORY_URL>
+cd <YOUR_PROJECT_FOLDER>
 ```
 
-### Apply Database Migrations (23 Tables)
-```bash
-cd backend
-.venv/Scripts/alembic upgrade head
-cd ..
-```
+### 2. Backend Setup
 
-### Generate, Validate & Load Synthetic Data
-```bash
-# 1. Generate 360 employees, 24+ months of operations, 65,000+ relational rows
-backend/.venv/Scripts/python.exe database/seed_scripts/generate_synthetic_data.py
-
-# 2. Execute automated 10-point integrity validation
-backend/.venv/Scripts/python.exe database/seed_scripts/validate_synthetic_data.py
-
-# 3. Load all 23 datasets into PostgreSQL in dependency order
-backend/.venv/Scripts/python.exe database/seed_scripts/load_synthetic_data.py
-```
-
-### Run Backend Tests & Health Check
 ```bash
 cd backend
-.venv/Scripts/python.exe -m pytest tests/test_health.py -v
+
+python -m venv venv
 ```
 
-### Start Backend Development Server
+Activate the virtual environment:
+
+**Windows:**
 ```bash
-cd backend
-.venv/Scripts/uvicorn.exe app.main:app --host 0.0.0.0 --port 8000 --reload
+venv\Scripts\activate
 ```
 
-Endpoints available:
-- Swagger Documentation: `http://localhost:8000/docs`
-- Health Check: `http://localhost:8000/health`
-- Database Health Check: `http://localhost:8000/health/db`
+**Linux / macOS:**
+```bash
+source venv/bin/activate
+```
 
+Install dependencies:
 
+```bash
+pip install -r requirements.txt
+```
 
-Role	Email	Password	Access Scope
-HR Admin (ADMIN)	neha.saxena@auratech.in	Password@123	System settings, user management, full access
-HR Operations (HR_EXECUTIVE)	kavita.iyer@auratech.in	Password@123	Lifecycle ops (Onboarding, Probation, Offboarding)
-HR Manager (HR_MANAGER)	rajesh.venkat@auratech.in	Password@123	Org-wide oversight, performance reviews, escalations
-Reporting Manager (REPORTING_MANAGER)	vikram.malhotra@auratech.in	Password@123	Scoped to direct/indirect team members and approvals
-3. Verification of Features & Data Fetching
+Configure the required environment variables using the provided `.env.example` file.
+
+Create the PostgreSQL database and configure its connection details.
+
+Run database migrations:
+
+```bash
+alembic upgrade head
+```
+
+Start the backend using the application entry point configured in the project.
+
+### 3. Frontend Setup
+
+Open a separate terminal:
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+The frontend development server will start using the configured Vite development port.
+
+### 4. Database Initialization
+
+Use the database scripts provided in the repository to generate, validate and load the synthetic HR dataset.
+
+**Note:** Refer to the project configuration and setup scripts for the exact environment variables and database initialization commands.
+
+---
+
+## Current Limitations and Future Enhancements
+
+### Current Limitations
+- The application currently uses synthetic employee and operational data.
+- ML predictions require further improvement and real-world validation.
+- External email and SMS notification integrations are not currently implemented.
+- The platform currently focuses on a single organizational environment.
+
+### Future Enhancements
+- Email and messaging integrations for automated notifications.
+- Improved ML performance through additional training data and model monitoring.
+- Multi-organization support.
+- Enhanced analytics and reporting.
+- Scalable background job processing.
+
+---
+
+## Project Objective
+
+The main objective of HR Flow is to transform traditional HR operational tracking into a centralized and intelligent workflow management system.
+
+By integrating employee lifecycle management, task tracking, Machine Learning and Generative AI, the platform aims to help HR teams manage operations more efficiently, identify potential delays and make informed decisions.
+
+---
+
+**Project:** HR Flow – AI-Powered HR Operations & Action Intelligence Platform
+
+**Category:** Full-Stack Development | Machine Learning | Generative AI
+
+**Status:** Functional Prototype
