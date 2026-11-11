@@ -14,7 +14,6 @@ import {
   ChartNoAxesCombined,
   MessageCircle,
   Settings,
-  UserCog,
   LucideIcon,
 } from 'lucide-react';
 import { RoleCode } from '../types/auth';
@@ -166,19 +165,6 @@ export const NAVIGATION_GROUPS: NavGroup[] = [
     ],
   },
   {
-    id: 'administration',
-    title: 'Administration',
-    items: [
-      {
-        name: 'User Administration',
-        path: '/admin/users',
-        icon: UserCog,
-        allowedRoles: ['ADMIN'],
-        description: 'Platform user accounts, security roles & access permissions',
-      },
-    ],
-  },
-  {
     id: 'settings-group',
     title: 'Preferences',
     items: [
@@ -300,8 +286,9 @@ export const getBreadcrumbs = (pathname: string): BreadcrumbItem[] => {
 
   if (cleanPath === '/lifecycle') {
     return [
-      { label: 'Employee Lifecycle' },
-      { label: 'Overview', path: '/lifecycle' },
+      { label: 'Lifecycle & Operations' },
+      { label: 'Employee Lifecycle', path: '/lifecycle/onboarding' },
+      { label: 'Onboarding', path: '/lifecycle/onboarding' },
     ];
   }
 
@@ -369,8 +356,8 @@ export const getPageMeta = (pathname: string): { title: string; subtitle: string
 
   if (cleanPath === '/lifecycle') {
     return {
-      title: 'Employee Lifecycle Overview',
-      subtitle: 'Complete lifecycle status distribution across all 6 operational stages',
+      title: 'Onboarding',
+      subtitle: 'New hire checklists and welcome kit distribution',
     };
   }
 

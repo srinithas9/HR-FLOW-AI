@@ -11,7 +11,6 @@ import { ActionCenterPage } from '../pages/action-center/ActionCenterPage';
 import { FollowUpsPage } from '../pages/follow-ups/FollowUpsPage';
 import { HROperationsInsightsPage } from '../pages/insights/HROperationsInsightsPage';
 import { AIIntelligencePage } from '../pages/ai-intelligence/AIIntelligencePage';
-import { UsersPage } from '../pages/admin/UsersPage';
 import { SettingsPage } from '../pages/settings/SettingsPage';
 import { NotFoundPage } from '../pages/errors/NotFoundPage';
 import { UnauthorizedPage } from '../pages/errors/UnauthorizedPage';
@@ -57,14 +56,7 @@ export const AppRoutes: React.FC = () => {
           />
 
           {/* 3. Employee Lifecycle */}
-          <Route
-            path="/lifecycle"
-            element={
-              <ProtectedRoute allowedRoles={['ADMIN', 'HR_MANAGER', 'HR_EXECUTIVE', 'REPORTING_MANAGER']}>
-                <LifecyclePage />
-              </ProtectedRoute>
-            }
-          />
+          <Route path="/lifecycle" element={<Navigate to="/lifecycle/onboarding" replace />} />
           <Route
             path="/lifecycle/:tab"
             element={
@@ -152,16 +144,6 @@ export const AppRoutes: React.FC = () => {
             element={
               <ProtectedRoute allowedRoles={['ADMIN', 'HR_MANAGER', 'HR_EXECUTIVE', 'REPORTING_MANAGER']}>
                 <SettingsPage />
-              </ProtectedRoute>
-            }
-          />
-
-          {/* Protected Administration Route (Restricted to ADMIN) */}
-          <Route
-            path="/admin/users"
-            element={
-              <ProtectedRoute allowedRoles={['ADMIN']}>
-                <UsersPage />
               </ProtectedRoute>
             }
           />

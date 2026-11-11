@@ -74,11 +74,7 @@ describe('Sidebar Component & Consolidated Navigation Matrix', () => {
     // 6. HR Insights & Assistance (expandable parent)
     expect(screen.getAllByText('HR Insights & Assistance').length).toBeGreaterThanOrEqual(1);
 
-    // 7. Administration & User Administration (ADMIN only)
-    expect(screen.getByText('Administration')).toBeInTheDocument();
-    expect(screen.getByText('User Administration')).toBeInTheDocument();
-
-    // 8. Settings
+    // 7. Settings
     expect(screen.getByText('Settings')).toBeInTheDocument();
 
     // Verification of removed items:
@@ -88,6 +84,11 @@ describe('Sidebar Component & Consolidated Navigation Matrix', () => {
     // B. Standalone duplicate entries removed
     expect(screen.queryByText('ML Intelligence')).not.toBeInTheDocument();
     expect(screen.queryByText('Operational Analytics')).not.toBeInTheDocument();
+
+    // C. User Administration / Management removed from sidebar
+    expect(screen.queryByText('Administration')).not.toBeInTheDocument();
+    expect(screen.queryByText('User Administration')).not.toBeInTheDocument();
+    expect(screen.queryByText('User & Role Management')).not.toBeInTheDocument();
 
     // User details in footer
     expect(screen.getByText('System Admin User')).toBeInTheDocument();
@@ -214,12 +215,12 @@ describe('Sidebar Component & Consolidated Navigation Matrix', () => {
     const lifecycleButton = screen.getByRole('button', { name: /employee lifecycle/i });
     fireEvent.click(lifecycleButton);
 
-    // Now all 6 sub-stages + overview should be visible
-    expect(screen.getByText('Overview')).toBeInTheDocument();
+    // Now exactly the 6 sub-stages should be visible (Overview must NOT exist)
+    expect(screen.queryByText('Overview')).not.toBeInTheDocument();
     expect(screen.getByText('Onboarding')).toBeInTheDocument();
+    expect(screen.getByText('Documentation')).toBeInTheDocument();
     expect(screen.getByText('Probation')).toBeInTheDocument();
     expect(screen.getByText('Confirmation')).toBeInTheDocument();
-    expect(screen.getByText('Documentation')).toBeInTheDocument();
     expect(screen.getByText('Performance Reviews')).toBeInTheDocument();
     expect(screen.getByText('Offboarding')).toBeInTheDocument();
 

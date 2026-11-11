@@ -144,7 +144,7 @@ describe('LifecyclePage', () => {
     (lifecycleApi.getCalendarEvents as any).mockResolvedValue([]);
   });
 
-  it('renders the main heading, subtitle and 6 process cards on /lifecycle', async () => {
+  it('renders the main heading, subtitle and defaults to Onboarding on /lifecycle', async () => {
     render(
       <MemoryRouter initialEntries={['/lifecycle']}>
         <Routes>
@@ -160,49 +160,44 @@ describe('LifecyclePage', () => {
     ).toBeInTheDocument();
 
     await waitFor(() => {
-      expect(screen.getByText('View Onboarding')).toBeInTheDocument();
-      expect(screen.getByText('View Probation')).toBeInTheDocument();
-      expect(screen.getByText('View Confirmation')).toBeInTheDocument();
-      expect(screen.getByText('View Documents')).toBeInTheDocument();
-      expect(screen.getByText('View Reviews')).toBeInTheDocument();
-      expect(screen.getByText('View Offboarding')).toBeInTheDocument();
+      expect(lifecycleApi.listOnboarding).toHaveBeenCalled();
     });
 
-    // Check that generic KPI strip is NOT present (Total Employees, Open Tasks, Overdue Tasks)
-    expect(screen.queryByText('Total Employees')).not.toBeInTheDocument();
-    expect(screen.queryByText('Open Tasks')).not.toBeInTheDocument();
-    expect(screen.queryByText('Overdue Tasks')).not.toBeInTheDocument();
+    // Check that Overview process cards are NOT present
+    expect(screen.queryByText('View Onboarding')).not.toBeInTheDocument();
   });
 
-  it('renders exactly the six lifecycle workspace tabs and excludes removed features', async () => {
+  it('renders exactly the six lifecycle workspace tabs in order and excludes Overview and removed features', async () => {
     render(
-      <MemoryRouter initialEntries={['/lifecycle']}>
+      <MemoryRouter initialEntries={['/lifecycle/onboarding']}>
         <Routes>
-          <Route path="/lifecycle" element={<LifecyclePage />} />
+          <Route path="/lifecycle/:tab" element={<LifecyclePage />} />
         </Routes>
       </MemoryRouter>
     );
 
     const nav = screen.getByRole('navigation', { name: 'Lifecycle Workspaces' });
-    expect(within(nav).getByText('Overview')).toBeInTheDocument();
-    expect(within(nav).getByText('Onboarding')).toBeInTheDocument();
-    expect(within(nav).getByText('Probation')).toBeInTheDocument();
-    expect(within(nav).getByText('Confirmation')).toBeInTheDocument();
-    expect(within(nav).getByText('Documentation')).toBeInTheDocument();
-    expect(within(nav).getByText('Performance Reviews')).toBeInTheDocument();
-    expect(within(nav).getByText('Offboarding')).toBeInTheDocument();
+    const buttons = within(nav).getAllByRole('button');
+    expect(buttons.map((b) => b.textContent?.trim())).toEqual([
+      'Onboarding',
+      'Documentation',
+      'Probation',
+      'Confirmation',
+      'Performance Reviews',
+      'Offboarding',
+    ]);
 
-    // Removed features must not be in the navigation or anywhere on the page
+    // Overview and removed features must not be in the navigation or anywhere on the page
+    expect(within(nav).queryByText('Overview')).not.toBeInTheDocument();
     expect(within(nav).queryByText('Templates')).not.toBeInTheDocument();
     expect(within(nav).queryByText('Calendar')).not.toBeInTheDocument();
     expect(screen.queryByText('Lifecycle Templates')).not.toBeInTheDocument();
     expect(screen.queryByText('Lifecycle Calendar')).not.toBeInTheDocument();
-    expect(screen.queryByText('Operational Planning & Milestones')).not.toBeInTheDocument();
   });
 
-  it('navigates to workspaces when tab clicked', async () => {
+  it('navigates between the six workspaces when tabs are clicked', async () => {
     render(
-      <MemoryRouter initialEntries={['/lifecycle']}>
+      <MemoryRouter initialEntries={['/lifecycle/onboarding']}>
         <Routes>
           <Route path="/lifecycle" element={<LifecyclePage />} />
           <Route path="/lifecycle/:tab" element={<LifecyclePage />} />
@@ -211,15 +206,14 @@ describe('LifecyclePage', () => {
     );
 
     await waitFor(() => {
-      expect(screen.getByText('View Onboarding')).toBeInTheDocument();
+      expect(lifecycleApi.listOnboarding).toHaveBeenCalled();
     });
 
-    // Click Onboarding tab in nav
-    const onboardingTabs = screen.getAllByText('Onboarding');
-    fireEvent.click(onboardingTabs[0]);
+    const nav = screen.getByRole('navigation', { name: 'Lifecycle Workspaces' });
+    fireEvent.click(within(nav).getByText('Probation'));
 
     await waitFor(() => {
-      expect(lifecycleApi.listOnboarding).toHaveBeenCalled();
+      expect(lifecycleApi.listProbation).toHaveBeenCalled();
     });
   });
 });

@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import {
-  Layers,
   UserCheck,
   Clock,
   Award,
@@ -10,9 +9,6 @@ import {
   LogOut,
 } from 'lucide-react';
 import { useAuth } from '../../hooks/useAuth';
-import { lifecycleApi } from '../../api/lifecycleApi';
-import { LifecycleOverview } from '../../types/lifecycle';
-import { LifecycleOverviewTab } from './LifecycleOverviewTab';
 import { OnboardingTab } from './OnboardingTab';
 import { ProbationTab } from './ProbationTab';
 import { ConfirmationTab } from './ConfirmationTab';
@@ -21,11 +17,10 @@ import { PerformanceTab } from './PerformanceTab';
 import { OffboardingTab } from './OffboardingTab';
 
 type TabKey =
-  | 'overview'
   | 'onboarding'
+  | 'documentation'
   | 'probation'
   | 'confirmation'
-  | 'documentation'
   | 'performance-reviews'
   | 'offboarding';
 
@@ -43,25 +38,24 @@ export const LifecyclePage: React.FC = () => {
     switch (param) {
       case 'onboarding':
         return 'onboarding';
+      case 'documentation':
+      case 'documents':
+        return 'documentation';
       case 'probation':
         return 'probation';
       case 'confirmation':
         return 'confirmation';
-      case 'documentation':
-      case 'documents':
-        return 'documentation';
       case 'performance-reviews':
       case 'reviews':
         return 'performance-reviews';
       case 'offboarding':
         return 'offboarding';
       default:
-        return 'overview';
+        return 'onboarding';
     }
   };
 
   const [activeTab, setActiveTab] = useState<TabKey>(() => resolveTab(tab));
-  const [overview, setOverview] = useState<LifecycleOverview | null>(null);
 
   // Sync state when URL param changes
   useEffect(() => {
@@ -71,32 +65,13 @@ export const LifecyclePage: React.FC = () => {
     }
   }, [tab]);
 
-  // Fetch overview counts
-  const fetchOverview = useCallback(async () => {
-    try {
-      const data = await lifecycleApi.getOverview();
-      setOverview(data);
-    } catch (err) {
-      console.error('Failed to load lifecycle overview', err);
-    }
-  }, []);
-
-  useEffect(() => {
-    fetchOverview();
-  }, [fetchOverview]);
-
   const handleTabChange = (newTab: string) => {
     const resolved = resolveTab(newTab);
     setActiveTab(resolved);
-    if (resolved === 'overview') {
-      navigate('/lifecycle');
-    } else {
-      navigate(`/lifecycle/${resolved}`);
-    }
+    navigate(`/lifecycle/${resolved}`);
   };
 
   const navTabs: { key: TabKey; label: string; icon: React.ReactNode }[] = [
-    { key: 'overview', label: 'Overview', icon: <Layers className="w-4 h-4" /> },
     { key: 'onboarding', label: 'Onboarding', icon: <UserCheck className="w-4 h-4" /> },
     { key: 'documentation', label: 'Documentation', icon: <FileText className="w-4 h-4" /> },
     { key: 'probation', label: 'Probation', icon: <Clock className="w-4 h-4" /> },
@@ -144,13 +119,6 @@ export const LifecyclePage: React.FC = () => {
 
       {/* Tab Workspaces Content */}
       <div className="pt-1">
-        {activeTab === 'overview' && (
-          <LifecycleOverviewTab
-            overview={overview}
-            onNavigateTab={handleTabChange}
-          />
-        )}
-
         {activeTab === 'onboarding' && (
           <OnboardingTab
             canInitiate={isAdminOrHRM}
