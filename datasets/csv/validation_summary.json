@@ -1,0 +1,23 @@
+{
+  "status": "PASSED",
+  "timestamp": "2026-11-08T22:03:08.953037",
+  "total_tables_checked": 26,
+  "total_records_checked": 37150,
+  "gates": {
+    "csv_schema_and_headers_match": true,
+    "exact_row_counts_match": true,
+    "unique_primary_keys": true,
+    "department_headcounts_match": true,
+    "manager_hierarchy_validity": true,
+    "users_and_rbac_integrity": true,
+    "employee_lifecycle_semantics": true,
+    "confirmation_records_integrity": true,
+    "task_dependencies_dag_acyclic": true,
+    "task_chronology_and_invariants": true,
+    "foreign_key_referential_integrity": true,
+    "ml_anti_leakage_temporal_ordering": true,
+    "operational_summaries_uniqueness": true
+  },
+  "warnings": [],
+  "errors": []
+}

@@ -1,0 +1,13 @@
+id,department_code,name,description,head_of_department_id,is_active,created_at,updated_at
+1,DEPT_SWE,Software Engineering,"Core application, backend, frontend, and full-stack software development.",2,True,2024-11-01T09:00:00+05:30,2024-11-01T09:00:00+05:30
+2,DEPT_QA,QA & Testing,"Automated, performance, and functional software testing and validation.",3,True,2024-11-01T09:00:00+05:30,2024-11-01T09:00:00+05:30
+3,DEPT_DEVOPS,"DevOps, Cloud & SRE","Cloud infrastructure, CI/CD pipelines, SRE, and platform resilience.",4,True,2024-11-01T09:00:00+05:30,2024-11-01T09:00:00+05:30
+4,DEPT_DATA,Data Engineering,"Data pipelines, warehousing, lakehouses, and ETL architectures.",5,True,2024-11-01T09:00:00+05:30,2024-11-01T09:00:00+05:30
+5,DEPT_AIML,AI & ML,"Machine learning models, GenAI agents, and predictive operational intelligence.",6,True,2024-11-01T09:00:00+05:30,2024-11-01T09:00:00+05:30
+6,DEPT_CYBER,Cybersecurity,"Information security, threat monitoring, vulnerability management, and audit compliance.",7,True,2024-11-01T09:00:00+05:30,2024-11-01T09:00:00+05:30
+7,DEPT_IT,IT Support,"Corporate IT systems, developer workstation provisioning, network, and hardware support.",8,True,2024-11-01T09:00:00+05:30,2024-11-01T09:00:00+05:30
+8,DEPT_PROD,Product Management,"Product strategy, roadmap development, feature specifications, and UX research.",12,True,2024-11-01T09:00:00+05:30,2024-11-01T09:00:00+05:30
+9,DEPT_PMO,Project Management,"Agile project management, sprint governance, release coordination, and delivery tracking.",13,True,2024-11-01T09:00:00+05:30,2024-11-01T09:00:00+05:30
+10,DEPT_HR,Human Resources,"People operations, employee experience, talent administration, and organizational culture.",9,True,2024-11-01T09:00:00+05:30,2024-11-01T09:00:00+05:30
+11,DEPT_FIN,Finance & Administration,"Corporate finance, payroll administration, taxation, vendor accounts, and budgeting.",14,True,2024-11-01T09:00:00+05:30,2024-11-01T09:00:00+05:30
+12,DEPT_OPS,Business Operations,"Executive governance, facilities administration, corporate legal, and executive office.",15,True,2024-11-01T09:00:00+05:30,2024-11-01T09:00:00+05:30

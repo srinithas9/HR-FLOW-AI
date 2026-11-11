@@ -1,0 +1,5 @@
+id,role_code,role_name,description,is_active,created_at,updated_at
+1,ADMIN,Admin,System and HR Administrator with user management and configuration rights.,True,2024-11-01T09:00:00+05:30,2024-11-01T09:00:00+05:30
+2,HR_EXECUTIVE,HR Executive,HR Operations Specialist with employee record management permissions.,True,2024-11-01T09:00:00+05:30,2024-11-01T09:00:00+05:30
+3,REPORTING_MANAGER,Reporting Manager,People Manager with reporting-scope employee access and team approvals.,True,2024-11-01T09:00:00+05:30,2024-11-01T09:00:00+05:30
+4,HR_MANAGER,HR Manager,HR Manager with organization-wide HR operations and management permissions.,True,2024-11-01T09:00:00+05:30,2024-11-01T09:00:00+05:30

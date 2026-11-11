@@ -1,0 +1,13 @@
+id,requirement_code,name,lifecycle_stage,is_mandatory,file_format_allowed,description,is_active,created_at,updated_at
+1,DOC_PAN,PAN Card Copy,ONBOARDING,True,"PDF, JPG, PNG",Permanent Account Number card for Indian tax verification.,True,2024-11-01T09:00:00+05:30,2024-11-01T09:00:00+05:30
+2,DOC_AADHAAR,Aadhaar Card Copy,ONBOARDING,True,PDF,Government of India identity and address verification.,True,2024-11-01T09:00:00+05:30,2024-11-01T09:00:00+05:30
+3,DOC_DEGREE,Highest Educational Degree Certificate,ONBOARDING,True,PDF,Attested degree certificate for background verification.,True,2024-11-01T09:00:00+05:30,2024-11-01T09:00:00+05:30
+4,DOC_RELIEVING,Previous Employer Relieving Letter,ONBOARDING,True,PDF,Proof of formal separation from previous employer.,True,2024-11-01T09:00:00+05:30,2024-11-01T09:00:00+05:30
+5,DOC_PAYSLIPS,Last 3 Months Payslips,ONBOARDING,True,PDF,Salary verification documents.,True,2024-11-01T09:00:00+05:30,2024-11-01T09:00:00+05:30
+6,DOC_OFFER_NDA,Signed Offer Letter & NDA,ONBOARDING,True,PDF,Signed formal employment agreement and intellectual property NDA.,True,2024-11-01T09:00:00+05:30,2024-11-01T09:00:00+05:30
+7,DOC_PROB_GOALS,Probation Objectives Signoff Sheet,PROBATION,True,"PDF, DOCX",Agreed 90-day deliverables signed by manager.,True,2024-11-01T09:00:00+05:30,2024-11-01T09:00:00+05:30
+8,DOC_CONFIRM_REC,Manager Confirmation Recommendation,CONFIRMATION,True,PDF,Formal signoff recommending transition to confirmed status.,True,2024-11-01T09:00:00+05:30,2024-11-01T09:00:00+05:30
+9,DOC_SELF_APPRAISAL,Self-Appraisal Portfolio,PERFORMANCE,True,PDF,Comprehensive bi-annual achievement documentation.,True,2024-11-01T09:00:00+05:30,2024-11-01T09:00:00+05:30
+10,DOC_KT_PLAN,Knowledge Transfer Plan & Signoff,OFFBOARDING,True,PDF,Handover documentation signed by replacement or lead.,True,2024-11-01T09:00:00+05:30,2024-11-01T09:00:00+05:30
+11,DOC_ASSET_RETURN,IT Hardware Handover Receipt,OFFBOARDING,True,PDF,Confirmation of physical IT hardware return.,True,2024-11-01T09:00:00+05:30,2024-11-01T09:00:00+05:30
+12,DOC_CODE_CONDUCT,Annual Code of Conduct Acknowledgment,COMPLIANCE,True,PDF,Annual compliance declaration.,True,2024-11-01T09:00:00+05:30,2024-11-01T09:00:00+05:30

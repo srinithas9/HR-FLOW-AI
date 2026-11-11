@@ -1,0 +1,201 @@
+id,employee_code,first_name,last_name,email,phone_number,department_id,designation,location,employment_status,date_of_joining,manager_id,created_at,updated_at
+1,EMP0001,Vikram,Malhotra,vikram.malhotra@auratech.in,+919800000001,12,Managing Director & CEO,Bengaluru,ACTIVE,2024-11-01,,2024-11-01T00:00:00+05:30,2024-11-01T00:00:00+05:30
+2,EMP0002,Ananya,Sharma,ananya.sharma@auratech.in,+919800000002,1,VP Software Engineering,Bengaluru,ACTIVE,2024-11-01,1,2024-11-01T00:00:00+05:30,2024-11-01T00:00:00+05:30
+3,EMP0003,Karthik,Raman,karthik.raman@auratech.in,+919800000003,2,Head of QA & Testing,Bengaluru,ACTIVE,2024-11-01,1,2024-11-01T00:00:00+05:30,2024-11-01T00:00:00+05:30
+4,EMP0004,Sandeep,Kulkarni,sandeep.kulkarni@auratech.in,+919800000004,3,Head of DevOps & SRE,Bengaluru,ACTIVE,2024-11-01,1,2024-11-01T00:00:00+05:30,2024-11-01T00:00:00+05:30
+5,EMP0005,Priya,Nambiar,priya.nambiar@auratech.in,+919800000005,4,Head of Data Engineering,Bengaluru,ACTIVE,2024-11-01,1,2024-11-01T00:00:00+05:30,2024-11-01T00:00:00+05:30
+6,EMP0006,Aditya,Joshi,aditya.joshi@auratech.in,+919800000006,5,Head of AI & Machine Learning,Bengaluru,ACTIVE,2024-11-01,1,2024-11-01T00:00:00+05:30,2024-11-01T00:00:00+05:30
+7,EMP0007,Rohan,Deshmukh,rohan.deshmukh@auratech.in,+919800000007,6,Head of Cybersecurity (CISO),Bengaluru,ACTIVE,2024-11-01,1,2024-11-01T00:00:00+05:30,2024-11-01T00:00:00+05:30
+8,EMP0008,Suresh,Menon,suresh.menon@auratech.in,+919800000008,7,Head of IT & Corporate Systems,Bengaluru,ACTIVE,2024-11-01,1,2024-11-01T00:00:00+05:30,2024-11-01T00:00:00+05:30
+9,EMP0009,Rajesh,Venkat,rajesh.venkat@auratech.in,+919800000009,10,Head of People Operations,Bengaluru,ACTIVE,2024-11-01,1,2024-11-01T00:00:00+05:30,2024-11-01T00:00:00+05:30
+10,EMP0010,Neha,Saxena,neha.saxena@auratech.in,+919800000010,10,HR Technology Lead,Bengaluru,ACTIVE,2024-11-01,9,2024-11-01T00:00:00+05:30,2024-11-01T00:00:00+05:30
+11,EMP0011,Kavita,Iyer,kavita.iyer@auratech.in,+919800000011,10,Senior HR Operations Specialist,Bengaluru,ACTIVE,2024-11-01,9,2024-11-01T00:00:00+05:30,2024-11-01T00:00:00+05:30
+12,EMP0012,Neha,Agarwal,neha.agarwal@auratech.in,+919800000012,8,Head of Product Management,Bengaluru,ACTIVE,2024-11-01,1,2024-11-01T00:00:00+05:30,2024-11-01T00:00:00+05:30
+13,EMP0013,Amitav,Ghosh,amitav.ghosh@auratech.in,+919800000013,9,Head of Project Management (PMO),Bengaluru,ACTIVE,2024-11-01,1,2024-11-01T00:00:00+05:30,2024-11-01T00:00:00+05:30
+14,EMP0014,Meera,Sundaram,meera.sundaram@auratech.in,+919800000014,11,Head of Finance & Administration,Bengaluru,ACTIVE,2024-11-01,1,2024-11-01T00:00:00+05:30,2024-11-01T00:00:00+05:30
+15,EMP0015,Deepak,Chawla,deepak.chawla@auratech.in,+919800000015,12,Head of Business Operations,Bengaluru,ACTIVE,2024-11-01,1,2024-11-01T00:00:00+05:30,2024-11-01T00:00:00+05:30
+16,EMP0016,Rahul,Mehra,rahul.mehra@auratech.in,+919800000016,1,Lead Frontend Architect,Bengaluru,ACTIVE,2024-11-15,2,2024-11-15T00:00:00+05:30,2024-11-15T00:00:00+05:30
+17,EMP0017,Smita,Patil,smita.patil@auratech.in,+919800000017,1,Lead Backend Architect,Bengaluru,ACTIVE,2024-11-15,2,2024-11-15T00:00:00+05:30,2024-11-15T00:00:00+05:30
+18,EMP0018,Arvind,Swamy,arvind.swamy@auratech.in,+919800000018,1,Lead Mobile Engineer,Bengaluru,ACTIVE,2024-11-15,2,2024-11-15T00:00:00+05:30,2024-11-15T00:00:00+05:30
+19,EMP0019,Tanvi,Hegde,tanvi.hegde@auratech.in,+919800000019,1,Lead Platform Engineer,Bengaluru,ACTIVE,2024-11-15,2,2024-11-15T00:00:00+05:30,2024-11-15T00:00:00+05:30
+20,EMP0020,Gaurav,Kapoor,gaurav.kapoor@auratech.in,+919800000020,2,Test Automation Lead,Bengaluru,ACTIVE,2024-11-15,3,2024-11-15T00:00:00+05:30,2024-11-15T00:00:00+05:30
+21,EMP0021,Shweta,Rao,shweta.rao@auratech.in,+919800000021,2,SDET & Performance Lead,Bengaluru,ACTIVE,2024-11-15,3,2024-11-15T00:00:00+05:30,2024-11-15T00:00:00+05:30
+22,EMP0022,Manish,Gupta,manish.gupta@auratech.in,+919800000022,3,Cloud Infrastructure Lead,Bengaluru,ACTIVE,2024-11-15,4,2024-11-15T00:00:00+05:30,2024-11-15T00:00:00+05:30
+23,EMP0023,Deepa,Pillai,deepa.pillai@auratech.in,+919800000023,4,Data Platform & Pipeline Lead,Bengaluru,ACTIVE,2024-11-15,5,2024-11-15T00:00:00+05:30,2024-11-15T00:00:00+05:30
+24,EMP0024,Nikhil,Iyer,nikhil.iyer24@auratech.in,+919800000024,1,Frontend Engineer,Bengaluru,ACTIVE,2025-04-18,16,2025-04-18T00:00:00+05:30,2025-04-18T00:00:00+05:30
+25,EMP0025,Harish,Reddy,harish.reddy25@auratech.in,+919800000025,1,Frontend Engineer,Bengaluru,ACTIVE,2025-04-25,16,2025-04-25T00:00:00+05:30,2025-04-25T00:00:00+05:30
+26,EMP0026,Aakash,Mehta,aakash.mehta26@auratech.in,+919800000026,1,Frontend Engineer,Bengaluru,ACTIVE,2025-05-02,16,2025-05-02T00:00:00+05:30,2025-05-02T00:00:00+05:30
+27,EMP0027,Prateek,Hegde,prateek.hegde27@auratech.in,+919800000027,1,Frontend Engineer,Bengaluru,ACTIVE,2025-05-09,16,2025-05-09T00:00:00+05:30,2025-05-09T00:00:00+05:30
+28,EMP0028,Alok,Choudhury,alok.choudhury28@auratech.in,+919800000028,1,Frontend Engineer,Bengaluru,ACTIVE,2025-05-16,16,2025-05-16T00:00:00+05:30,2025-05-16T00:00:00+05:30
+29,EMP0029,Kunal,Sen,kunal.sen29@auratech.in,+919800000029,1,Frontend Engineer,Bengaluru,ACTIVE,2025-05-23,16,2025-05-23T00:00:00+05:30,2025-05-23T00:00:00+05:30
+30,EMP0030,Tarun,Verma,tarun.verma30@auratech.in,+919800000030,1,Frontend Engineer,Bengaluru,ACTIVE,2025-05-30,16,2025-05-30T00:00:00+05:30,2025-05-30T00:00:00+05:30
+31,EMP0031,Sneha,Kulkarni,sneha.kulkarni31@auratech.in,+919800000031,1,Frontend Engineer,Bengaluru,ACTIVE,2025-06-06,16,2025-06-06T00:00:00+05:30,2025-06-06T00:00:00+05:30
+32,EMP0032,Kavita,Gupta,kavita.gupta32@auratech.in,+919800000032,1,Frontend Engineer,Bengaluru,ACTIVE,2025-06-13,16,2025-06-13T00:00:00+05:30,2025-06-13T00:00:00+05:30
+33,EMP0033,Sunita,Menon,sunita.menon33@auratech.in,+919800000033,1,Frontend Engineer,Bengaluru,ACTIVE,2025-06-20,16,2025-06-20T00:00:00+05:30,2025-06-20T00:00:00+05:30
+34,EMP0034,Ritu,Jain,ritu.jain34@auratech.in,+919800000034,1,Frontend Engineer,Bengaluru,ACTIVE,2025-06-27,16,2025-06-27T00:00:00+05:30,2025-06-27T00:00:00+05:30
+35,EMP0035,Rhea,Kapoor,rhea.kapoor35@auratech.in,+919800000035,1,Frontend Engineer,Bengaluru,ACTIVE,2025-07-04,16,2025-07-04T00:00:00+05:30,2025-07-04T00:00:00+05:30
+36,EMP0036,Shruti,Malhotra,shruti.malhotra36@auratech.in,+919800000036,1,Frontend Engineer,Bengaluru,ACTIVE,2025-07-11,16,2025-07-11T00:00:00+05:30,2025-07-11T00:00:00+05:30
+37,EMP0037,Nandini,Nair,nandini.nair37@auratech.in,+919800000037,1,Frontend Engineer,Bengaluru,ACTIVE,2025-07-18,16,2025-07-18T00:00:00+05:30,2025-07-18T00:00:00+05:30
+38,EMP0038,Geeta,Chatterjee,geeta.chatterjee38@auratech.in,+919800000038,1,Frontend Engineer,Bengaluru,ACTIVE,2025-07-25,16,2025-07-25T00:00:00+05:30,2025-07-25T00:00:00+05:30
+39,EMP0039,Bhavna,Joshi,bhavna.joshi39@auratech.in,+919800000039,1,Backend Engineer,Bengaluru,ACTIVE,2025-08-01,17,2025-08-01T00:00:00+05:30,2025-08-01T00:00:00+05:30
+40,EMP0040,Suman,Bhatt,suman.bhatt40@auratech.in,+919800000040,1,Backend Engineer,Bengaluru,ACTIVE,2025-08-08,17,2025-08-08T00:00:00+05:30,2025-08-08T00:00:00+05:30
+41,EMP0041,Aarav,Mishra,aarav.mishra41@auratech.in,+919800000041,1,Backend Engineer,Bengaluru,ACTIVE,2025-08-15,17,2025-08-15T00:00:00+05:30,2025-08-15T00:00:00+05:30
+42,EMP0042,Vikram,Dutta,vikram.dutta42@auratech.in,+919800000042,1,Backend Engineer,Bengaluru,ACTIVE,2025-08-22,17,2025-08-22T00:00:00+05:30,2025-08-22T00:00:00+05:30
+43,EMP0043,Siddharth,Patel,siddharth.patel43@auratech.in,+919800000043,1,Backend Engineer,Bengaluru,ACTIVE,2025-08-29,17,2025-08-29T00:00:00+05:30,2025-08-29T00:00:00+05:30
+44,EMP0044,Karthik,Deshmukh,karthik.deshmukh44@auratech.in,+919800000044,1,Backend Engineer,Bengaluru,ACTIVE,2025-09-05,17,2025-09-05T00:00:00+05:30,2025-09-05T00:00:00+05:30
+45,EMP0045,Deepak,Singh,deepak.singh45@auratech.in,+919800000045,1,Backend Engineer,Bengaluru,ACTIVE,2025-09-12,17,2025-09-12T00:00:00+05:30,2025-09-12T00:00:00+05:30
+46,EMP0046,Varun,Pillai,varun.pillai46@auratech.in,+919800000046,1,Backend Engineer,Bengaluru,ACTIVE,2025-09-19,17,2025-09-19T00:00:00+05:30,2025-09-19T00:00:00+05:30
+47,EMP0047,Ishaan,Saxena,ishaan.saxena47@auratech.in,+919800000047,1,Backend Engineer,Bengaluru,ACTIVE,2025-09-26,17,2025-09-26T00:00:00+05:30,2025-09-26T00:00:00+05:30
+48,EMP0048,Rakesh,Bhatnagar,rakesh.bhatnagar48@auratech.in,+919800000048,1,Backend Engineer,Bengaluru,ACTIVE,2025-10-03,17,2025-10-03T00:00:00+05:30,2025-10-03T00:00:00+05:30
+49,EMP0049,Manish,Sharma,manish.sharma49@auratech.in,+919800000049,1,Backend Engineer,Bengaluru,ACTIVE,2025-10-10,17,2025-10-10T00:00:00+05:30,2025-10-10T00:00:00+05:30
+50,EMP0050,Vivek,Rao,vivek.rao50@auratech.in,+919800000050,1,Backend Engineer,Bengaluru,ACTIVE,2025-10-17,17,2025-10-17T00:00:00+05:30,2025-10-17T00:00:00+05:30
+51,EMP0051,Sumit,Banerjee,sumit.banerjee51@auratech.in,+919800000051,1,Backend Engineer,Bengaluru,ACTIVE,2025-10-24,17,2025-10-24T00:00:00+05:30,2025-10-24T00:00:00+05:30
+52,EMP0052,Priya,Nambiar,priya.nambiar52@auratech.in,+919800000052,1,Backend Engineer,Bengaluru,ACTIVE,2024-11-05,17,2024-11-05T00:00:00+05:30,2024-11-05T00:00:00+05:30
+53,EMP0053,Neha,Agarwal,neha.agarwal53@auratech.in,+919800000053,1,Backend Engineer,Bengaluru,ACTIVE,2024-11-12,17,2024-11-12T00:00:00+05:30,2024-11-12T00:00:00+05:30
+54,EMP0054,Divya,Pandey,divya.pandey54@auratech.in,+919800000054,1,Mobile Engineer,Bengaluru,ACTIVE,2024-11-19,18,2024-11-19T00:00:00+05:30,2024-11-19T00:00:00+05:30
+55,EMP0055,Preeti,Mukherjee,preeti.mukherjee55@auratech.in,+919800000055,1,Mobile Engineer,Bengaluru,ACTIVE,2024-11-26,18,2024-11-26T00:00:00+05:30,2024-11-26T00:00:00+05:30
+56,EMP0056,Tanvi,Iyer,tanvi.iyer56@auratech.in,+919800000056,1,Mobile Engineer,Bengaluru,ACTIVE,2024-12-03,18,2024-12-03T00:00:00+05:30,2024-12-03T00:00:00+05:30
+57,EMP0057,Aditi,Reddy,aditi.reddy57@auratech.in,+919800000057,1,Mobile Engineer,Bengaluru,ACTIVE,2024-12-10,18,2024-12-10T00:00:00+05:30,2024-12-10T00:00:00+05:30
+58,EMP0058,Anjali,Mehta,anjali.mehta58@auratech.in,+919800000058,1,Mobile Engineer,Bengaluru,ACTIVE,2024-12-17,18,2024-12-17T00:00:00+05:30,2024-12-17T00:00:00+05:30
+59,EMP0059,Shilpa,Hegde,shilpa.hegde59@auratech.in,+919800000059,1,Mobile Engineer,Bengaluru,ACTIVE,2024-12-24,18,2024-12-24T00:00:00+05:30,2024-12-24T00:00:00+05:30
+60,EMP0060,Radhika,Choudhury,radhika.choudhury60@auratech.in,+919800000060,1,Mobile Engineer,Bengaluru,ACTIVE,2024-12-31,18,2024-12-31T00:00:00+05:30,2024-12-31T00:00:00+05:30
+61,EMP0061,Kiran,Sen,kiran.sen61@auratech.in,+919800000061,1,Mobile Engineer,Bengaluru,ACTIVE,2025-01-07,18,2025-01-07T00:00:00+05:30,2025-01-07T00:00:00+05:30
+62,EMP0062,Aparna,Verma,aparna.verma62@auratech.in,+919800000062,1,Mobile Engineer,Bengaluru,ACTIVE,2025-01-14,18,2025-01-14T00:00:00+05:30,2025-01-14T00:00:00+05:30
+63,EMP0063,Rohan,Kulkarni,rohan.kulkarni63@auratech.in,+919800000063,1,Mobile Engineer,Bengaluru,ACTIVE,2025-01-21,18,2025-01-21T00:00:00+05:30,2025-01-21T00:00:00+05:30
+64,EMP0064,Rahul,Gupta,rahul.gupta64@auratech.in,+919800000064,1,Mobile Engineer,Bengaluru,ACTIVE,2025-01-28,18,2025-01-28T00:00:00+05:30,2025-01-28T00:00:00+05:30
+65,EMP0065,Suresh,Menon,suresh.menon65@auratech.in,+919800000065,1,Mobile Engineer,Bengaluru,ACTIVE,2025-02-04,18,2025-02-04T00:00:00+05:30,2025-02-04T00:00:00+05:30
+66,EMP0066,Amit,Jain,amit.jain66@auratech.in,+919800000066,1,Mobile Engineer,Bengaluru,ACTIVE,2025-02-11,18,2025-02-11T00:00:00+05:30,2025-02-11T00:00:00+05:30
+67,EMP0067,Manoj,Kapoor,manoj.kapoor67@auratech.in,+919800000067,1,Mobile Engineer,Bengaluru,ACTIVE,2025-02-18,18,2025-02-18T00:00:00+05:30,2025-02-18T00:00:00+05:30
+68,EMP0068,Sanjay,Malhotra,sanjay.malhotra68@auratech.in,+919800000068,1,Mobile Engineer,Bengaluru,ACTIVE,2025-02-25,18,2025-02-25T00:00:00+05:30,2025-02-25T00:00:00+05:30
+69,EMP0069,Gaurav,Nair,gaurav.nair69@auratech.in,+919800000069,1,Platform Engineer,Bengaluru,ACTIVE,2025-03-04,19,2025-03-04T00:00:00+05:30,2025-03-04T00:00:00+05:30
+70,EMP0070,Abhishek,Chatterjee,abhishek.chatterjee70@auratech.in,+919800000070,1,Platform Engineer,Bengaluru,ACTIVE,2025-03-11,19,2025-03-11T00:00:00+05:30,2025-03-11T00:00:00+05:30
+71,EMP0071,Anand,Joshi,anand.joshi71@auratech.in,+919800000071,1,Platform Engineer,Bengaluru,ACTIVE,2025-03-18,19,2025-03-18T00:00:00+05:30,2025-03-18T00:00:00+05:30
+72,EMP0072,Vishal,Bhatt,vishal.bhatt72@auratech.in,+919800000072,1,Platform Engineer,Bengaluru,ACTIVE,2025-03-25,19,2025-03-25T00:00:00+05:30,2025-03-25T00:00:00+05:30
+73,EMP0073,Mayank,Mishra,mayank.mishra73@auratech.in,+919800000073,1,Platform Engineer,Bengaluru,ACTIVE,2025-04-01,19,2025-04-01T00:00:00+05:30,2025-04-01T00:00:00+05:30
+74,EMP0074,Ananya,Dutta,ananya.dutta74@auratech.in,+919800000074,1,Platform Engineer,Bengaluru,ACTIVE,2025-04-08,19,2025-04-08T00:00:00+05:30,2025-04-08T00:00:00+05:30
+75,EMP0075,Pooja,Patel,pooja.patel75@auratech.in,+919800000075,1,Platform Engineer,Bengaluru,ACTIVE,2025-04-15,19,2025-04-15T00:00:00+05:30,2025-04-15T00:00:00+05:30
+76,EMP0076,Meera,Deshmukh,meera.deshmukh76@auratech.in,+919800000076,1,Platform Engineer,Bengaluru,ACTIVE,2025-04-22,19,2025-04-22T00:00:00+05:30,2025-04-22T00:00:00+05:30
+77,EMP0077,Swati,Singh,swati.singh77@auratech.in,+919800000077,1,Platform Engineer,Bengaluru,ACTIVE,2025-04-29,19,2025-04-29T00:00:00+05:30,2025-04-29T00:00:00+05:30
+78,EMP0078,Shreya,Pillai,shreya.pillai78@auratech.in,+919800000078,1,Platform Engineer,Bengaluru,ACTIVE,2025-05-06,19,2025-05-06T00:00:00+05:30,2025-05-06T00:00:00+05:30
+79,EMP0079,Deepika,Saxena,deepika.saxena79@auratech.in,+919800000079,1,Platform Engineer,Bengaluru,ACTIVE,2025-05-13,19,2025-05-13T00:00:00+05:30,2025-05-13T00:00:00+05:30
+80,EMP0080,Pallavi,Bhatnagar,pallavi.bhatnagar80@auratech.in,+919800000080,1,Platform Engineer,Bengaluru,RESIGNED,2025-05-20,19,2025-05-20T00:00:00+05:30,2025-05-20T00:00:00+05:30
+81,EMP0081,Payal,Sharma,payal.sharma81@auratech.in,+919800000081,1,Platform Engineer,Bengaluru,RESIGNED,2025-05-27,19,2025-05-27T00:00:00+05:30,2025-05-27T00:00:00+05:30
+82,EMP0082,Isha,Rao,isha.rao82@auratech.in,+919800000082,1,Platform Engineer,Bengaluru,RESIGNED,2025-06-03,19,2025-06-03T00:00:00+05:30,2025-06-03T00:00:00+05:30
+83,EMP0083,Vidya,Banerjee,vidya.banerjee83@auratech.in,+919800000083,1,Platform Engineer,Bengaluru,RESIGNED,2025-06-10,19,2025-06-10T00:00:00+05:30,2025-06-10T00:00:00+05:30
+84,EMP0084,Namrata,Nambiar,namrata.nambiar84@auratech.in,+919800000084,2,Automation QA Engineer,Bengaluru,RESIGNED,2025-06-17,20,2025-06-17T00:00:00+05:30,2025-06-17T00:00:00+05:30
+85,EMP0085,Aditya,Agarwal,aditya.agarwal85@auratech.in,+919800000085,2,Automation QA Engineer,Bengaluru,RESIGNED,2025-06-24,20,2025-06-24T00:00:00+05:30,2025-06-24T00:00:00+05:30
+86,EMP0086,Arjun,Pandey,arjun.pandey86@auratech.in,+919800000086,2,Automation QA Engineer,Bengaluru,ACTIVE,2025-07-01,20,2025-07-01T00:00:00+05:30,2025-07-01T00:00:00+05:30
+87,EMP0087,Ramesh,Mukherjee,ramesh.mukherjee87@auratech.in,+919800000087,2,Automation QA Engineer,Bengaluru,ACTIVE,2025-07-08,20,2025-07-08T00:00:00+05:30,2025-07-08T00:00:00+05:30
+88,EMP0088,Rajesh,Iyer,rajesh.iyer88@auratech.in,+919800000088,2,Automation QA Engineer,Bengaluru,ACTIVE,2025-07-15,20,2025-07-15T00:00:00+05:30,2025-07-15T00:00:00+05:30
+89,EMP0089,Nikhil,Reddy,nikhil.reddy89@auratech.in,+919800000089,2,Automation QA Engineer,Bengaluru,ACTIVE,2025-07-22,20,2025-07-22T00:00:00+05:30,2025-07-22T00:00:00+05:30
+90,EMP0090,Harish,Mehta,harish.mehta90@auratech.in,+919800000090,2,Automation QA Engineer,Bengaluru,ACTIVE,2025-07-29,20,2025-07-29T00:00:00+05:30,2025-07-29T00:00:00+05:30
+91,EMP0091,Aakash,Hegde,aakash.hegde91@auratech.in,+919800000091,2,Automation QA Engineer,Bengaluru,ACTIVE,2025-08-05,20,2025-08-05T00:00:00+05:30,2025-08-05T00:00:00+05:30
+92,EMP0092,Prateek,Choudhury,prateek.choudhury92@auratech.in,+919800000092,2,Automation QA Engineer,Bengaluru,ACTIVE,2025-08-12,20,2025-08-12T00:00:00+05:30,2025-08-12T00:00:00+05:30
+93,EMP0093,Alok,Sen,alok.sen93@auratech.in,+919800000093,2,Automation QA Engineer,Bengaluru,ACTIVE,2025-08-19,20,2025-08-19T00:00:00+05:30,2025-08-19T00:00:00+05:30
+94,EMP0094,Kunal,Verma,kunal.verma94@auratech.in,+919800000094,2,Automation QA Engineer,Bengaluru,ACTIVE,2025-08-26,20,2025-08-26T00:00:00+05:30,2025-08-26T00:00:00+05:30
+95,EMP0095,Tarun,Kulkarni,tarun.kulkarni95@auratech.in,+919800000095,2,Automation QA Engineer,Bengaluru,ACTIVE,2025-09-02,20,2025-09-02T00:00:00+05:30,2025-09-02T00:00:00+05:30
+96,EMP0096,Sneha,Gupta,sneha.gupta96@auratech.in,+919800000096,2,SDET Engineer,Bengaluru,ACTIVE,2025-09-09,21,2025-09-09T00:00:00+05:30,2025-09-09T00:00:00+05:30
+97,EMP0097,Kavita,Menon,kavita.menon97@auratech.in,+919800000097,2,SDET Engineer,Bengaluru,ACTIVE,2025-09-16,21,2025-09-16T00:00:00+05:30,2025-09-16T00:00:00+05:30
+98,EMP0098,Sunita,Jain,sunita.jain98@auratech.in,+919800000098,2,SDET Engineer,Bengaluru,ACTIVE,2025-09-23,21,2025-09-23T00:00:00+05:30,2025-09-23T00:00:00+05:30
+99,EMP0099,Ritu,Kapoor,ritu.kapoor99@auratech.in,+919800000099,2,SDET Engineer,Bengaluru,ACTIVE,2025-09-30,21,2025-09-30T00:00:00+05:30,2025-09-30T00:00:00+05:30
+100,EMP0100,Rhea,Malhotra,rhea.malhotra100@auratech.in,+919800000100,2,SDET Engineer,Bengaluru,ACTIVE,2025-10-07,21,2025-10-07T00:00:00+05:30,2025-10-07T00:00:00+05:30
+101,EMP0101,Shruti,Nair,shruti.nair101@auratech.in,+919800000101,2,SDET Engineer,Bengaluru,ACTIVE,2025-10-14,21,2025-10-14T00:00:00+05:30,2025-10-14T00:00:00+05:30
+102,EMP0102,Nandini,Chatterjee,nandini.chatterjee102@auratech.in,+919800000102,2,SDET Engineer,Bengaluru,ACTIVE,2025-10-21,21,2025-10-21T00:00:00+05:30,2025-10-21T00:00:00+05:30
+103,EMP0103,Geeta,Joshi,geeta.joshi103@auratech.in,+919800000103,2,SDET Engineer,Bengaluru,ACTIVE,2024-11-02,21,2024-11-02T00:00:00+05:30,2024-11-02T00:00:00+05:30
+104,EMP0104,Bhavna,Bhatt,bhavna.bhatt104@auratech.in,+919800000104,2,SDET Engineer,Bengaluru,ACTIVE,2024-11-09,21,2024-11-09T00:00:00+05:30,2024-11-09T00:00:00+05:30
+105,EMP0105,Suman,Mishra,suman.mishra105@auratech.in,+919800000105,2,SDET Engineer,Bengaluru,ACTIVE,2024-11-16,21,2024-11-16T00:00:00+05:30,2024-11-16T00:00:00+05:30
+106,EMP0106,Aarav,Dutta,aarav.dutta106@auratech.in,+919800000106,2,SDET Engineer,Bengaluru,ACTIVE,2024-11-23,21,2024-11-23T00:00:00+05:30,2024-11-23T00:00:00+05:30
+107,EMP0107,Vikram,Patel,vikram.patel107@auratech.in,+919800000107,2,SDET Engineer,Bengaluru,ACTIVE,2024-11-30,21,2024-11-30T00:00:00+05:30,2024-11-30T00:00:00+05:30
+108,EMP0108,Siddharth,Deshmukh,siddharth.deshmukh108@auratech.in,+919800000108,2,SDET Engineer,Bengaluru,ACTIVE,2024-12-07,21,2024-12-07T00:00:00+05:30,2024-12-07T00:00:00+05:30
+109,EMP0109,Karthik,Singh,karthik.singh109@auratech.in,+919800000109,3,SRE Engineer,Bengaluru,ACTIVE,2024-12-14,4,2024-12-14T00:00:00+05:30,2024-12-14T00:00:00+05:30
+110,EMP0110,Deepak,Pillai,deepak.pillai110@auratech.in,+919800000110,3,SRE Engineer,Bengaluru,ACTIVE,2024-12-21,4,2024-12-21T00:00:00+05:30,2024-12-21T00:00:00+05:30
+111,EMP0111,Varun,Saxena,varun.saxena111@auratech.in,+919800000111,3,SRE Engineer,Bengaluru,ACTIVE,2024-12-28,4,2024-12-28T00:00:00+05:30,2024-12-28T00:00:00+05:30
+112,EMP0112,Ishaan,Bhatnagar,ishaan.bhatnagar112@auratech.in,+919800000112,3,SRE Engineer,Bengaluru,ACTIVE,2025-01-04,4,2025-01-04T00:00:00+05:30,2025-01-04T00:00:00+05:30
+113,EMP0113,Rakesh,Sharma,rakesh.sharma113@auratech.in,+919800000113,3,SRE Engineer,Bengaluru,ACTIVE,2025-01-11,4,2025-01-11T00:00:00+05:30,2025-01-11T00:00:00+05:30
+114,EMP0114,Manish,Rao,manish.rao114@auratech.in,+919800000114,3,SRE Engineer,Bengaluru,ACTIVE,2025-01-18,4,2025-01-18T00:00:00+05:30,2025-01-18T00:00:00+05:30
+115,EMP0115,Vivek,Banerjee,vivek.banerjee115@auratech.in,+919800000115,3,SRE Engineer,Bengaluru,ACTIVE,2025-01-25,4,2025-01-25T00:00:00+05:30,2025-01-25T00:00:00+05:30
+116,EMP0116,Sumit,Nambiar,sumit.nambiar116@auratech.in,+919800000116,3,SRE Engineer,Bengaluru,ACTIVE,2025-02-01,4,2025-02-01T00:00:00+05:30,2025-02-01T00:00:00+05:30
+117,EMP0117,Priya,Agarwal,priya.agarwal117@auratech.in,+919800000117,3,Cloud Infrastructure Engineer,Bengaluru,ACTIVE,2025-02-08,22,2025-02-08T00:00:00+05:30,2025-02-08T00:00:00+05:30
+118,EMP0118,Neha,Pandey,neha.pandey118@auratech.in,+919800000118,3,Cloud Infrastructure Engineer,Bengaluru,ACTIVE,2025-02-15,22,2025-02-15T00:00:00+05:30,2025-02-15T00:00:00+05:30
+119,EMP0119,Divya,Mukherjee,divya.mukherjee119@auratech.in,+919800000119,3,Cloud Infrastructure Engineer,Bengaluru,ACTIVE,2025-02-22,22,2025-02-22T00:00:00+05:30,2025-02-22T00:00:00+05:30
+120,EMP0120,Preeti,Iyer,preeti.iyer120@auratech.in,+919800000120,3,Cloud Infrastructure Engineer,Bengaluru,ACTIVE,2025-03-01,22,2025-03-01T00:00:00+05:30,2025-03-01T00:00:00+05:30
+121,EMP0121,Tanvi,Reddy,tanvi.reddy121@auratech.in,+919800000121,3,Cloud Infrastructure Engineer,Bengaluru,ACTIVE,2025-03-08,22,2025-03-08T00:00:00+05:30,2025-03-08T00:00:00+05:30
+122,EMP0122,Aditi,Mehta,aditi.mehta122@auratech.in,+919800000122,3,Cloud Infrastructure Engineer,Bengaluru,ACTIVE,2025-03-15,22,2025-03-15T00:00:00+05:30,2025-03-15T00:00:00+05:30
+123,EMP0123,Anjali,Hegde,anjali.hegde123@auratech.in,+919800000123,3,Cloud Infrastructure Engineer,Bengaluru,ACTIVE,2025-03-22,22,2025-03-22T00:00:00+05:30,2025-03-22T00:00:00+05:30
+124,EMP0124,Shilpa,Choudhury,shilpa.choudhury124@auratech.in,+919800000124,3,Cloud Infrastructure Engineer,Bengaluru,ACTIVE,2025-03-29,22,2025-03-29T00:00:00+05:30,2025-03-29T00:00:00+05:30
+125,EMP0125,Radhika,Sen,radhika.sen125@auratech.in,+919800000125,4,Analytics Engineer,Bengaluru,ACTIVE,2025-04-05,5,2025-04-05T00:00:00+05:30,2025-04-05T00:00:00+05:30
+126,EMP0126,Kiran,Verma,kiran.verma126@auratech.in,+919800000126,4,Analytics Engineer,Bengaluru,ACTIVE,2025-04-12,5,2025-04-12T00:00:00+05:30,2025-04-12T00:00:00+05:30
+127,EMP0127,Aparna,Kulkarni,aparna.kulkarni127@auratech.in,+919800000127,4,Analytics Engineer,Bengaluru,ACTIVE,2025-04-19,5,2025-04-19T00:00:00+05:30,2025-04-19T00:00:00+05:30
+128,EMP0128,Rohan,Gupta,rohan.gupta128@auratech.in,+919800000128,4,Analytics Engineer,Bengaluru,ACTIVE,2025-04-26,5,2025-04-26T00:00:00+05:30,2025-04-26T00:00:00+05:30
+129,EMP0129,Rahul,Menon,rahul.menon129@auratech.in,+919800000129,4,Analytics Engineer,Bengaluru,ACTIVE,2025-05-03,5,2025-05-03T00:00:00+05:30,2025-05-03T00:00:00+05:30
+130,EMP0130,Suresh,Jain,suresh.jain130@auratech.in,+919800000130,4,Analytics Engineer,Bengaluru,ACTIVE,2025-05-10,5,2025-05-10T00:00:00+05:30,2025-05-10T00:00:00+05:30
+131,EMP0131,Amit,Kapoor,amit.kapoor131@auratech.in,+919800000131,4,Analytics Engineer,Bengaluru,ACTIVE,2025-05-17,5,2025-05-17T00:00:00+05:30,2025-05-17T00:00:00+05:30
+132,EMP0132,Manoj,Malhotra,manoj.malhotra132@auratech.in,+919800000132,4,Data Pipeline Engineer,Bengaluru,ACTIVE,2025-05-24,23,2025-05-24T00:00:00+05:30,2025-05-24T00:00:00+05:30
+133,EMP0133,Sanjay,Nair,sanjay.nair133@auratech.in,+919800000133,4,Data Pipeline Engineer,Bengaluru,ACTIVE,2025-05-31,23,2025-05-31T00:00:00+05:30,2025-05-31T00:00:00+05:30
+134,EMP0134,Gaurav,Chatterjee,gaurav.chatterjee134@auratech.in,+919800000134,4,Data Pipeline Engineer,Bengaluru,ACTIVE,2025-06-07,23,2025-06-07T00:00:00+05:30,2025-06-07T00:00:00+05:30
+135,EMP0135,Abhishek,Joshi,abhishek.joshi135@auratech.in,+919800000135,4,Data Pipeline Engineer,Bengaluru,ACTIVE,2025-06-14,23,2025-06-14T00:00:00+05:30,2025-06-14T00:00:00+05:30
+136,EMP0136,Anand,Bhatt,anand.bhatt136@auratech.in,+919800000136,4,Data Pipeline Engineer,Bengaluru,ACTIVE,2025-06-21,23,2025-06-21T00:00:00+05:30,2025-06-21T00:00:00+05:30
+137,EMP0137,Vishal,Mishra,vishal.mishra137@auratech.in,+919800000137,4,Data Pipeline Engineer,Bengaluru,ACTIVE,2025-06-28,23,2025-06-28T00:00:00+05:30,2025-06-28T00:00:00+05:30
+138,EMP0138,Mayank,Dutta,mayank.dutta138@auratech.in,+919800000138,4,Data Pipeline Engineer,Bengaluru,ACTIVE,2025-07-05,23,2025-07-05T00:00:00+05:30,2025-07-05T00:00:00+05:30
+139,EMP0139,Ananya,Patel,ananya.patel139@auratech.in,+919800000139,5,AI/ML Engineer,Bengaluru,ACTIVE,2025-07-12,6,2025-07-12T00:00:00+05:30,2025-07-12T00:00:00+05:30
+140,EMP0140,Pooja,Deshmukh,pooja.deshmukh140@auratech.in,+919800000140,5,AI/ML Engineer,Bengaluru,ACTIVE,2025-07-19,6,2025-07-19T00:00:00+05:30,2025-07-19T00:00:00+05:30
+141,EMP0141,Meera,Singh,meera.singh141@auratech.in,+919800000141,5,AI/ML Engineer,Bengaluru,ACTIVE,2026-01-15,6,2026-01-15T00:00:00+05:30,2026-01-15T00:00:00+05:30
+142,EMP0142,Swati,Pillai,swati.pillai142@auratech.in,+919800000142,5,AI/ML Engineer,Bengaluru,ACTIVE,2026-01-20,6,2026-01-20T00:00:00+05:30,2026-01-20T00:00:00+05:30
+143,EMP0143,Shreya,Saxena,shreya.saxena143@auratech.in,+919800000143,5,AI/ML Engineer,Bengaluru,ACTIVE,2026-01-25,6,2026-01-25T00:00:00+05:30,2026-01-25T00:00:00+05:30
+144,EMP0144,Deepika,Bhatnagar,deepika.bhatnagar144@auratech.in,+919800000144,5,AI/ML Engineer,Bengaluru,ACTIVE,2026-01-30,6,2026-01-30T00:00:00+05:30,2026-01-30T00:00:00+05:30
+145,EMP0145,Pallavi,Sharma,pallavi.sharma145@auratech.in,+919800000145,5,AI/ML Engineer,Bengaluru,ACTIVE,2026-02-04,6,2026-02-04T00:00:00+05:30,2026-02-04T00:00:00+05:30
+146,EMP0146,Payal,Rao,payal.rao146@auratech.in,+919800000146,5,AI/ML Engineer,Bengaluru,ACTIVE,2026-02-09,6,2026-02-09T00:00:00+05:30,2026-02-09T00:00:00+05:30
+147,EMP0147,Isha,Banerjee,isha.banerjee147@auratech.in,+919800000147,5,AI/ML Engineer,Bengaluru,ACTIVE,2026-02-14,6,2026-02-14T00:00:00+05:30,2026-02-14T00:00:00+05:30
+148,EMP0148,Vidya,Nambiar,vidya.nambiar148@auratech.in,+919800000148,5,AI/ML Engineer,Bengaluru,ACTIVE,2026-02-19,6,2026-02-19T00:00:00+05:30,2026-02-19T00:00:00+05:30
+149,EMP0149,Namrata,Agarwal,namrata.agarwal149@auratech.in,+919800000149,5,AI/ML Engineer,Bengaluru,ACTIVE,2026-02-24,6,2026-02-24T00:00:00+05:30,2026-02-24T00:00:00+05:30
+150,EMP0150,Aditya,Pandey,aditya.pandey150@auratech.in,+919800000150,5,AI/ML Engineer,Bengaluru,ACTIVE,2026-03-01,6,2026-03-01T00:00:00+05:30,2026-03-01T00:00:00+05:30
+151,EMP0151,Arjun,Mukherjee,arjun.mukherjee151@auratech.in,+919800000151,5,AI/ML Engineer,Bengaluru,ACTIVE,2026-03-06,6,2026-03-06T00:00:00+05:30,2026-03-06T00:00:00+05:30
+152,EMP0152,Ramesh,Iyer,ramesh.iyer152@auratech.in,+919800000152,6,Security Operations Engineer,Bengaluru,ACTIVE,2026-03-11,7,2026-03-11T00:00:00+05:30,2026-03-11T00:00:00+05:30
+153,EMP0153,Rajesh,Reddy,rajesh.reddy153@auratech.in,+919800000153,6,Security Operations Engineer,Bengaluru,ACTIVE,2026-03-16,7,2026-03-16T00:00:00+05:30,2026-03-16T00:00:00+05:30
+154,EMP0154,Nikhil,Mehta,nikhil.mehta154@auratech.in,+919800000154,6,Security Operations Engineer,Bengaluru,ACTIVE,2026-03-21,7,2026-03-21T00:00:00+05:30,2026-03-21T00:00:00+05:30
+155,EMP0155,Harish,Hegde,harish.hegde155@auratech.in,+919800000155,6,Security Operations Engineer,Bengaluru,ACTIVE,2026-03-26,7,2026-03-26T00:00:00+05:30,2026-03-26T00:00:00+05:30
+156,EMP0156,Aakash,Choudhury,aakash.choudhury156@auratech.in,+919800000156,6,Security Operations Engineer,Bengaluru,ACTIVE,2026-03-31,7,2026-03-31T00:00:00+05:30,2026-03-31T00:00:00+05:30
+157,EMP0157,Prateek,Sen,prateek.sen157@auratech.in,+919800000157,6,Security Operations Engineer,Bengaluru,ACTIVE,2026-04-05,7,2026-04-05T00:00:00+05:30,2026-04-05T00:00:00+05:30
+158,EMP0158,Alok,Verma,alok.verma158@auratech.in,+919800000158,6,Security Operations Engineer,Bengaluru,ACTIVE,2026-04-10,7,2026-04-10T00:00:00+05:30,2026-04-10T00:00:00+05:30
+159,EMP0159,Kunal,Kulkarni,kunal.kulkarni159@auratech.in,+919800000159,6,Security Operations Engineer,Bengaluru,ACTIVE,2026-04-15,7,2026-04-15T00:00:00+05:30,2026-04-15T00:00:00+05:30
+160,EMP0160,Tarun,Gupta,tarun.gupta160@auratech.in,+919800000160,6,Security Operations Engineer,Bengaluru,ACTIVE,2026-04-20,7,2026-04-20T00:00:00+05:30,2026-04-20T00:00:00+05:30
+161,EMP0161,Sneha,Menon,sneha.menon161@auratech.in,+919800000161,7,IT Systems Engineer,Bengaluru,ACTIVE,2026-04-25,8,2026-04-25T00:00:00+05:30,2026-04-25T00:00:00+05:30
+162,EMP0162,Kavita,Jain,kavita.jain162@auratech.in,+919800000162,7,IT Systems Engineer,Bengaluru,ACTIVE,2026-04-30,8,2026-04-30T00:00:00+05:30,2026-04-30T00:00:00+05:30
+163,EMP0163,Sunita,Kapoor,sunita.kapoor163@auratech.in,+919800000163,7,IT Systems Engineer,Bengaluru,ACTIVE,2026-05-05,8,2026-05-05T00:00:00+05:30,2026-05-05T00:00:00+05:30
+164,EMP0164,Ritu,Malhotra,ritu.malhotra164@auratech.in,+919800000164,7,IT Systems Engineer,Bengaluru,ACTIVE,2026-05-10,8,2026-05-10T00:00:00+05:30,2026-05-10T00:00:00+05:30
+165,EMP0165,Rhea,Nair,rhea.nair165@auratech.in,+919800000165,7,IT Systems Engineer,Bengaluru,ACTIVE,2026-05-15,8,2026-05-15T00:00:00+05:30,2026-05-15T00:00:00+05:30
+166,EMP0166,Shruti,Chatterjee,shruti.chatterjee166@auratech.in,+919800000166,7,IT Systems Engineer,Bengaluru,ACTIVE,2026-05-20,8,2026-05-20T00:00:00+05:30,2026-05-20T00:00:00+05:30
+167,EMP0167,Nandini,Joshi,nandini.joshi167@auratech.in,+919800000167,7,IT Systems Engineer,Bengaluru,ACTIVE,2026-05-25,8,2026-05-25T00:00:00+05:30,2026-05-25T00:00:00+05:30
+168,EMP0168,Geeta,Bhatt,geeta.bhatt168@auratech.in,+919800000168,7,IT Systems Engineer,Bengaluru,ACTIVE,2025-11-01,8,2025-11-01T00:00:00+05:30,2025-11-01T00:00:00+05:30
+169,EMP0169,Bhavna,Mishra,bhavna.mishra169@auratech.in,+919800000169,7,IT Systems Engineer,Bengaluru,ACTIVE,2025-11-06,8,2025-11-06T00:00:00+05:30,2025-11-06T00:00:00+05:30
+170,EMP0170,Suman,Dutta,suman.dutta170@auratech.in,+919800000170,8,Technical Product Manager,Bengaluru,ACTIVE,2025-11-11,12,2025-11-11T00:00:00+05:30,2025-11-11T00:00:00+05:30
+171,EMP0171,Aarav,Patel,aarav.patel171@auratech.in,+919800000171,8,Technical Product Manager,Bengaluru,ACTIVE,2025-11-16,12,2025-11-16T00:00:00+05:30,2025-11-16T00:00:00+05:30
+172,EMP0172,Vikram,Deshmukh,vikram.deshmukh172@auratech.in,+919800000172,8,Technical Product Manager,Bengaluru,ACTIVE,2025-11-21,12,2025-11-21T00:00:00+05:30,2025-11-21T00:00:00+05:30
+173,EMP0173,Siddharth,Singh,siddharth.singh173@auratech.in,+919800000173,8,Technical Product Manager,Bengaluru,ACTIVE,2025-11-26,12,2025-11-26T00:00:00+05:30,2025-11-26T00:00:00+05:30
+174,EMP0174,Karthik,Pillai,karthik.pillai174@auratech.in,+919800000174,8,Technical Product Manager,Bengaluru,ACTIVE,2025-12-01,12,2025-12-01T00:00:00+05:30,2025-12-01T00:00:00+05:30
+175,EMP0175,Deepak,Saxena,deepak.saxena175@auratech.in,+919800000175,8,Technical Product Manager,Bengaluru,ACTIVE,2025-12-06,12,2025-12-06T00:00:00+05:30,2025-12-06T00:00:00+05:30
+176,EMP0176,Varun,Bhatnagar,varun.bhatnagar176@auratech.in,+919800000176,8,Technical Product Manager,Bengaluru,ACTIVE,2025-12-11,12,2025-12-11T00:00:00+05:30,2025-12-11T00:00:00+05:30
+177,EMP0177,Ishaan,Sharma,ishaan.sharma177@auratech.in,+919800000177,8,Technical Product Manager,Bengaluru,ACTIVE,2025-12-16,12,2025-12-16T00:00:00+05:30,2025-12-16T00:00:00+05:30
+178,EMP0178,Rakesh,Rao,rakesh.rao178@auratech.in,+919800000178,8,Technical Product Manager,Bengaluru,ACTIVE,2025-12-21,12,2025-12-21T00:00:00+05:30,2025-12-21T00:00:00+05:30
+179,EMP0179,Manish,Banerjee,manish.banerjee179@auratech.in,+919800000179,9,Technical Project Manager,Bengaluru,ACTIVE,2025-12-26,13,2025-12-26T00:00:00+05:30,2025-12-26T00:00:00+05:30
+180,EMP0180,Vivek,Nambiar,vivek.nambiar180@auratech.in,+919800000180,9,Technical Project Manager,Bengaluru,ACTIVE,2025-12-31,13,2025-12-31T00:00:00+05:30,2025-12-31T00:00:00+05:30
+181,EMP0181,Sumit,Agarwal,sumit.agarwal181@auratech.in,+919800000181,9,Technical Project Manager,Bengaluru,ACTIVE,2026-06-08,13,2026-06-08T00:00:00+05:30,2026-06-08T00:00:00+05:30
+182,EMP0182,Priya,Pandey,priya.pandey182@auratech.in,+919800000182,9,Technical Project Manager,Bengaluru,ACTIVE,2026-06-12,13,2026-06-12T00:00:00+05:30,2026-06-12T00:00:00+05:30
+183,EMP0183,Neha,Mukherjee,neha.mukherjee183@auratech.in,+919800000183,9,Technical Project Manager,Bengaluru,ACTIVE,2026-06-16,13,2026-06-16T00:00:00+05:30,2026-06-16T00:00:00+05:30
+184,EMP0184,Divya,Iyer,divya.iyer184@auratech.in,+919800000184,9,Technical Project Manager,Bengaluru,ACTIVE,2026-06-20,13,2026-06-20T00:00:00+05:30,2026-06-20T00:00:00+05:30
+185,EMP0185,Preeti,Reddy,preeti.reddy185@auratech.in,+919800000185,9,Technical Project Manager,Bengaluru,ACTIVE,2026-06-24,13,2026-06-24T00:00:00+05:30,2026-06-24T00:00:00+05:30
+186,EMP0186,Tanvi,Mehta,tanvi.mehta186@auratech.in,+919800000186,11,Finance & Accounts Specialist,Bengaluru,ACTIVE,2026-06-28,14,2026-06-28T00:00:00+05:30,2026-06-28T00:00:00+05:30
+187,EMP0187,Aditi,Hegde,aditi.hegde187@auratech.in,+919800000187,11,Finance & Accounts Specialist,Bengaluru,ACTIVE,2026-07-02,14,2026-07-02T00:00:00+05:30,2026-07-02T00:00:00+05:30
+188,EMP0188,Anjali,Choudhury,anjali.choudhury188@auratech.in,+919800000188,11,Finance & Accounts Specialist,Bengaluru,ACTIVE,2026-07-06,14,2026-07-06T00:00:00+05:30,2026-07-06T00:00:00+05:30
+189,EMP0189,Shilpa,Sen,shilpa.sen189@auratech.in,+919800000189,11,Finance & Accounts Specialist,Bengaluru,ACTIVE,2026-07-10,14,2026-07-10T00:00:00+05:30,2026-07-10T00:00:00+05:30
+190,EMP0190,Radhika,Verma,radhika.verma190@auratech.in,+919800000190,11,Finance & Accounts Specialist,Bengaluru,ACTIVE,2026-07-14,14,2026-07-14T00:00:00+05:30,2026-07-14T00:00:00+05:30
+191,EMP0191,Kiran,Kulkarni,kiran.kulkarni191@auratech.in,+919800000191,11,Finance & Accounts Specialist,Bengaluru,ACTIVE,2026-07-18,14,2026-07-18T00:00:00+05:30,2026-07-18T00:00:00+05:30
+192,EMP0192,Aparna,Gupta,aparna.gupta192@auratech.in,+919800000192,11,Finance & Accounts Specialist,Bengaluru,ACTIVE,2026-07-22,14,2026-07-22T00:00:00+05:30,2026-07-22T00:00:00+05:30
+193,EMP0193,Rohan,Menon,rohan.menon193@auratech.in,+919800000193,12,Operations Specialist,Bengaluru,ACTIVE,2026-07-26,15,2026-07-26T00:00:00+05:30,2026-07-26T00:00:00+05:30
+194,EMP0194,Rahul,Jain,rahul.jain194@auratech.in,+919800000194,12,Operations Specialist,Bengaluru,ACTIVE,2026-07-30,15,2026-07-30T00:00:00+05:30,2026-07-30T00:00:00+05:30
+195,EMP0195,Suresh,Kapoor,suresh.kapoor195@auratech.in,+919800000195,12,Operations Specialist,Bengaluru,ACTIVE,2026-08-03,15,2026-08-03T00:00:00+05:30,2026-08-03T00:00:00+05:30
+196,EMP0196,Amit,Malhotra,amit.malhotra196@auratech.in,+919800000196,12,Operations Specialist,Bengaluru,ACTIVE,2026-10-20,15,2026-10-20T00:00:00+05:30,2026-10-20T00:00:00+05:30
+197,EMP0197,Manoj,Nair,manoj.nair197@auratech.in,+919800000197,12,Operations Specialist,Bengaluru,ACTIVE,2026-10-23,15,2026-10-23T00:00:00+05:30,2026-10-23T00:00:00+05:30
+198,EMP0198,Sanjay,Chatterjee,sanjay.chatterjee198@auratech.in,+919800000198,12,Operations Specialist,Bengaluru,ACTIVE,2026-10-26,15,2026-10-26T00:00:00+05:30,2026-10-26T00:00:00+05:30
+199,EMP0199,Gaurav,Joshi,gaurav.joshi199@auratech.in,+919800000199,12,Operations Specialist,Bengaluru,ACTIVE,2026-10-29,15,2026-10-29T00:00:00+05:30,2026-10-29T00:00:00+05:30
+200,EMP0200,Abhishek,Bhatt,abhishek.bhatt200@auratech.in,+919800000200,12,Operations Specialist,Bengaluru,ACTIVE,2026-09-02,15,2026-09-02T00:00:00+05:30,2026-09-02T00:00:00+05:30

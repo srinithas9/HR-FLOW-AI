@@ -1,0 +1,136 @@
+{
+  "model_version": "v2.1.0-phase7a",
+  "timestamp": "2026-11-08T17:50:20.076970+00:00",
+  "cross_validation_evaluation": {
+    "cv_roc_auc_mean": 0.651616033596271,
+    "cv_roc_auc_std": 0.02003585299620114,
+    "cv_pr_auc_mean": 0.2612771594595067,
+    "cv_pr_auc_std": 0.0364284895095704,
+    "cv_brier_mean": 0.12738646462926553,
+    "cv_brier_std": 0.008716236970514405
+  },
+  "validation_evaluation": {
+    "roc_auc": 0.6230712989108513,
+    "pr_auc": 0.19658594481599467,
+    "brier_score": 0.10645299381420069,
+    "pr_auc_lift_pct": 62.05057613210371,
+    "prevalence_baseline": 0.12131147540983607
+  },
+  "test_evaluation": {
+    "roc_auc": 0.537831803522699,
+    "roc_auc_95_ci": [
+      0.42413675760858854,
+      0.653494004809949
+    ],
+    "pr_auc": 0.19334553023737794,
+    "pr_auc_95_ci": [
+      0.12804453808972646,
+      0.31255727276781414
+    ],
+    "brier_score": 0.14422003510396914,
+    "brier_score_95_ci": [
+      0.10490151232528398,
+      0.184131919853972
+    ],
+    "pr_auc_lift_pct": 12.00706579268791,
+    "prevalence_baseline": 0.17261904761904762,
+    "task_count": 179,
+    "snapshot_count": 358,
+    "delayed_snapshot_count": 58,
+    "ontime_snapshot_count": 300
+  },
+  "calibration_comparison": {
+    "uncalibrated": {
+      "brier_score": 0.10612916869645449,
+      "roc_auc": 0.6177011899959661,
+      "pr_auc": 0.20022631269563307
+    },
+    "sigmoid_platt": {
+      "brier_score": 0.10837998307111364,
+      "roc_auc": 0.6167935659540137,
+      "pr_auc": 0.19195557813040798
+    },
+    "isotonic": {
+      "brier_score": 0.10954033888647488,
+      "roc_auc": 0.6186970552642194,
+      "pr_auc": 0.1816788739489006
+    }
+  },
+  "subgroup_evaluation": {
+    "category_PROBATION": {
+      "snapshot_count": 42,
+      "delayed_count": 0,
+      "delay_rate": 0.0,
+      "roc_auc": null,
+      "pr_auc": null,
+      "sample_adequate": false
+    },
+    "category_PERFORMANCE": {
+      "snapshot_count": 156,
+      "delayed_count": 32,
+      "delay_rate": 0.20512820512820512,
+      "roc_auc": 0.4818548387096774,
+      "pr_auc": 0.19239589320898137,
+      "sample_adequate": true
+    },
+    "category_ONBOARDING": {
+      "snapshot_count": 26,
+      "delayed_count": 2,
+      "delay_rate": 0.07692307692307693,
+      "roc_auc": 0.6666666666666666,
+      "pr_auc": 0.15555555555555556,
+      "sample_adequate": false
+    },
+    "category_COMPLIANCE": {
+      "snapshot_count": 2,
+      "delayed_count": 0,
+      "delay_rate": 0.0,
+      "roc_auc": null,
+      "pr_auc": null,
+      "sample_adequate": false
+    },
+    "category_OFFBOARDING": {
+      "snapshot_count": 110,
+      "delayed_count": 24,
+      "delay_rate": 0.21818181818181817,
+      "roc_auc": 0.6162790697674418,
+      "pr_auc": 0.35961432185282216,
+      "sample_adequate": true
+    }
+  },
+  "top_feature_importance": [
+    {
+      "feature": "task_priority_HIGH",
+      "importance": 0.05860856192012907
+    },
+    {
+      "feature": "days_remaining",
+      "importance": 0.028128781766841426
+    },
+    {
+      "feature": "task_priority_LOW",
+      "importance": 0.008592174263816022
+    },
+    {
+      "feature": "task_priority_MEDIUM",
+      "importance": 0.0074122630092778976
+    },
+    {
+      "feature": "task_category_PROBATION",
+      "importance": 0.004032624041952359
+    },
+    {
+      "feature": "current_status_IN_PROGRESS",
+      "importance": 0.003355687777329519
+    },
+    {
+      "feature": "current_status_COMPLETED",
+      "importance": 0.002798507462686528
+    },
+    {
+      "feature": "reminder_count",
+      "importance": 0.0010135135135134865
+    }
+  ],
+  "gate_recommendation": "A \u2014 MODEL ACCEPTED FOR PHASE 7B"
+}

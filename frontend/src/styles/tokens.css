@@ -1,0 +1,171 @@
+/**
+ * Centralized Design System Tokens
+ * AI-Powered HR Operations & Action Intelligence Platform
+ */
+
+:root {
+  /* Brand Tokens */
+  --brand-primary: #17365D;
+  --brand-primary-hover: #122B4A;
+  --brand-primary-light: #F0F4F8;
+  
+  /* Action Tokens */
+  --action-primary: #2563EB;
+  --action-hover: #1D4ED8;
+  --action-active: #1E40AF;
+  --action-light: #EFF6FF;
+
+  /* Neutrals & Surfaces */
+  --app-bg: #F5F7FB;
+  --surface-card: #FFFFFF;
+  --surface-sidebar: #17365D;
+  --surface-sidebar-hover: #1D4373;
+  --surface-sidebar-active: #204B80;
+
+  /* Typography / Text Colors */
+  --text-primary: #172B4D;
+  --text-secondary: #64748B;
+  --text-muted: #94A3B8;
+  --text-inverted: #FFFFFF;
+
+  /* Borders & Dividers */
+  --border-color: #E2E8F0;
+  --border-subtle: #F1F5F9;
+  --border-strong: #CBD5E1;
+
+  /* Semantic Status Indicators */
+  --status-success: #16A34A;
+  --status-success-bg: #F0FDF4;
+  --status-success-border: #BBF7D0;
+
+  --status-warning: #D97706;
+  --status-warning-bg: #FFFBEB;
+  --status-warning-border: #FDE68A;
+
+  --status-danger: #DC2626;
+  --status-danger-bg: #FEF2F2;
+  --status-danger-border: #FECACA;
+
+  --status-info: #0284C7;
+  --status-info-bg: #F0F9FF;
+  --status-info-border: #BAE6FD;
+
+  /* Dimensions & Spacing */
+  --sidebar-width: 250px;
+  --sidebar-collapsed-width: 72px;
+  --header-height: 64px;
+
+  /* Radii */
+  --radius-sm: 0.25rem; /* 4px */
+  --radius-md: 0.375rem; /* 6px */
+  --radius-lg: 0.5rem; /* 8px */
+  --radius-xl: 0.75rem; /* 12px */
+
+  /* Shadows */
+  --shadow-subtle: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px 0 rgba(0, 0, 0, 0.03);
+  --shadow-card: 0 1px 3px 0 rgba(15, 23, 42, 0.06), 0 1px 2px 0 rgba(15, 23, 42, 0.04);
+  --shadow-dropdown: 0 10px 15px -3px rgba(15, 23, 42, 0.08), 0 4px 6px -2px rgba(15, 23, 42, 0.04);
+  --shadow-modal: 0 20px 25px -5px rgba(15, 23, 42, 0.1), 0 10px 10px -5px rgba(15, 23, 42, 0.04);
+
+  /* shadcn/ui compatible HSL values */
+  --background: 220 33% 98%;
+  --foreground: 218 54% 20%;
+  --card: 0 0% 100%;
+  --card-foreground: 218 54% 20%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 218 54% 20%;
+  --primary: 214 60% 23%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 214 32% 96%;
+  --secondary-foreground: 214 60% 23%;
+  --muted: 210 40% 96.1%;
+  --muted-foreground: 215 16% 47%;
+  --accent: 214 32% 96%;
+  --accent-foreground: 214 60% 23%;
+  --destructive: 0 72% 51%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 214 32% 91%;
+  --input: 214 32% 91%;
+  --ring: 217 91% 60%;
+  --radius: 0.375rem;
+
+  /* =========================================================
+   * Premium Lavender Enterprise Design Tokens (HRFlow AI)
+   * Phase 1: Foundational Design System & Login Experience
+   * ========================================================= */
+
+  /* Primary Violet Palette */
+  --color-primary-violet: #6938EF;
+  --color-secondary-violet: #8056F5;
+  --color-deep-violet: #5425CB;
+  --color-violet-hover: #5425CB;
+  --color-violet-active: #4319AB;
+
+  /* Lavender Surfaces & Accents */
+  --color-lavender-light: #EDE7FF;
+  --color-lavender-soft: #F5F1FF;
+  --color-lavender-border: #DCD0FF;
+  --color-lavender-glow: rgba(105, 56, 239, 0.12);
+
+  /* Enterprise Neutrals */
+  --color-enterprise-bg: #F7F6FB;
+  --color-enterprise-card: #FFFFFF;
+  --color-enterprise-text-primary: #24212E;
+  --color-enterprise-text-secondary: #777387;
+  --color-enterprise-text-muted: #A09BAE;
+  --color-enterprise-border: #E7E3EF;
+  --color-enterprise-border-focus: #6938EF;
+
+  /* Enterprise Semantics */
+  --color-semantic-success: #16A36A;
+  --color-semantic-warning: #E9A23B;
+  --color-semantic-danger: #DC4545;
+  --color-semantic-info: #4285D4;
+
+  /* Foundational Component Tokens (Inputs & Buttons) */
+  --input-bg: #FFFFFF;
+  --input-border: #E7E3EF;
+  --input-border-hover: #C5B2FF;
+  --input-border-focus: #6938EF;
+  --input-ring-focus: rgba(105, 56, 239, 0.20);
+  --input-radius: 0.5rem; /* 8px rounded */
+  --button-radius: 0.5rem; /* 8px rounded */
+
+  /* Lavender Focus Ring & Shadows */
+  --focus-ring-lavender: 0 0 0 3px rgba(105, 56, 239, 0.25);
+  --shadow-lavender-subtle: 0 2px 8px -1px rgba(105, 56, 239, 0.08);
+  --shadow-lavender-card: 0 4px 20px -2px rgba(105, 56, 239, 0.08), 0 2px 6px -1px rgba(36, 33, 46, 0.04);
+  --shadow-lavender-hover: 0 10px 25px -4px rgba(105, 56, 239, 0.18), 0 4px 10px -2px rgba(105, 56, 239, 0.08);
+
+  /* =========================================================
+   * Phase 2.1 Refined Application Shell Design Tokens
+   * Stronger Premium Lavender Enterprise Design
+   * ========================================================= */
+  --color-sidebar-bg: #E6DFF2;
+  --color-sidebar-surface: #EDE7F7;
+  --color-sidebar-border: #D1C5E4;
+  --color-sidebar-text: #1E162B;
+  --color-sidebar-text-secondary: #5E4E7A;
+  --color-sidebar-section: #6D5D8A;
+  --color-sidebar-hover: #DAD0EC;
+  --color-sidebar-active-bg: #FFFFFF;
+  --color-sidebar-active-text: #3B1599;
+
+  --color-workspace-bg: #F7F5FB;
+  --color-workspace-header: #FFFFFF;
+  --color-workspace-card: #FFFFFF;
+  --color-workspace-border: #E2DBEB;
+
+  --color-nav-hover: #DAD0EC;
+  --color-nav-active-bg: #FFFFFF;
+  --color-nav-active-text: #3B1599;
+  --color-nav-active-border: #5425CB;
+
+  --color-text-primary: #1E162B;
+  --color-text-secondary: #5C5270;
+  --color-text-muted: #827799;
+
+  --shadow-card-refined: 0 2px 12px rgba(30, 22, 43, 0.05);
+  --shadow-sidebar-refined: 4px 0 24px rgba(15, 10, 26, 0.18);
+}
+

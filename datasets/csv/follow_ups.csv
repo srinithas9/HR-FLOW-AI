@@ -1,0 +1,481 @@
+id,task_id,initiator_user_id,target_user_id,follow_up_date,notes,response_received,response_notes,created_at
+1,6,3,2,2024-11-07,Automated SLA check-in for TSK-00006.,True,"Prerequisites received, finishing documentation",2024-11-07T00:00:00+05:30
+2,11,2,2,2024-11-14,Automated SLA check-in for TSK-00011.,True,"Prerequisites received, finishing documentation",2024-11-14T00:00:00+05:30
+3,16,3,5,2024-11-15,Automated SLA check-in for TSK-00016.,False,,2024-11-15T00:00:00+05:30
+4,21,2,6,2024-11-22,Automated SLA check-in for TSK-00021.,True,"Prerequisites received, finishing documentation",2024-11-22T00:00:00+05:30
+5,26,3,2,2025-05-12,Automated SLA check-in for TSK-00026.,True,"Prerequisites received, finishing documentation",2025-05-12T00:00:00+05:30
+6,31,2,2,2025-06-07,Automated SLA check-in for TSK-00031.,False,,2025-06-07T00:00:00+05:30
+7,36,3,2,2025-07-17,Automated SLA check-in for TSK-00036.,True,"Prerequisites received, finishing documentation",2025-07-17T00:00:00+05:30
+8,41,2,2,2025-08-28,Automated SLA check-in for TSK-00041.,True,"Prerequisites received, finishing documentation",2025-08-28T00:00:00+05:30
+9,46,3,17,2025-09-19,Automated SLA check-in for TSK-00046.,False,,2025-09-19T00:00:00+05:30
+10,51,2,17,2025-10-31,Automated SLA check-in for TSK-00051.,True,"Prerequisites received, finishing documentation",2025-10-31T00:00:00+05:30
+11,56,3,2,2024-12-13,Automated SLA check-in for TSK-00056.,True,"Prerequisites received, finishing documentation",2024-12-13T00:00:00+05:30
+12,61,2,2,2025-01-08,Automated SLA check-in for TSK-00061.,False,,2025-01-08T00:00:00+05:30
+13,66,3,2,2025-02-17,Automated SLA check-in for TSK-00066.,True,"Prerequisites received, finishing documentation",2025-02-17T00:00:00+05:30
+14,71,2,2,2025-03-31,Automated SLA check-in for TSK-00071.,True,"Prerequisites received, finishing documentation",2025-03-31T00:00:00+05:30
+15,76,3,19,2025-04-22,Automated SLA check-in for TSK-00076.,False,,2025-04-22T00:00:00+05:30
+16,81,2,19,2025-06-03,Automated SLA check-in for TSK-00081.,True,"Prerequisites received, finishing documentation",2025-06-03T00:00:00+05:30
+17,86,3,2,2025-07-11,Automated SLA check-in for TSK-00086.,True,"Prerequisites received, finishing documentation",2025-07-11T00:00:00+05:30
+18,91,2,2,2025-08-06,Automated SLA check-in for TSK-00091.,False,,2025-08-06T00:00:00+05:30
+19,96,3,2,2025-09-15,Automated SLA check-in for TSK-00096.,True,"Prerequisites received, finishing documentation",2025-09-15T00:00:00+05:30
+20,101,2,2,2025-10-27,Automated SLA check-in for TSK-00101.,True,"Prerequisites received, finishing documentation",2025-10-27T00:00:00+05:30
+21,106,3,21,2024-11-23,Automated SLA check-in for TSK-00106.,False,,2024-11-23T00:00:00+05:30
+22,111,2,7,2025-01-04,Automated SLA check-in for TSK-00111.,True,"Prerequisites received, finishing documentation",2025-01-04T00:00:00+05:30
+23,116,3,2,2025-02-11,Automated SLA check-in for TSK-00116.,True,"Prerequisites received, finishing documentation",2025-02-11T00:00:00+05:30
+24,121,2,2,2025-03-09,Automated SLA check-in for TSK-00121.,False,,2025-03-09T00:00:00+05:30
+25,126,3,2,2025-04-18,Automated SLA check-in for TSK-00126.,True,"Prerequisites received, finishing documentation",2025-04-18T00:00:00+05:30
+26,131,2,2,2025-05-30,Automated SLA check-in for TSK-00131.,True,"Prerequisites received, finishing documentation",2025-05-30T00:00:00+05:30
+27,136,3,23,2025-06-21,Automated SLA check-in for TSK-00136.,False,,2025-06-21T00:00:00+05:30
+28,141,2,9,2026-01-22,Automated SLA check-in for TSK-00141.,True,"Prerequisites received, finishing documentation",2026-01-22T00:00:00+05:30
+29,146,3,2,2026-02-19,Automated SLA check-in for TSK-00146.,True,"Prerequisites received, finishing documentation",2026-02-19T00:00:00+05:30
+30,151,2,2,2026-03-07,Automated SLA check-in for TSK-00151.,False,,2026-03-07T00:00:00+05:30
+31,156,3,2,2026-04-06,Automated SLA check-in for TSK-00156.,True,"Prerequisites received, finishing documentation",2026-04-06T00:00:00+05:30
+32,161,2,2,2026-05-08,Automated SLA check-in for TSK-00161.,True,"Prerequisites received, finishing documentation",2026-05-08T00:00:00+05:30
+33,166,3,11,2026-05-20,Automated SLA check-in for TSK-00166.,False,,2026-05-20T00:00:00+05:30
+34,171,2,12,2025-11-23,Automated SLA check-in for TSK-00171.,True,"Prerequisites received, finishing documentation",2025-11-23T00:00:00+05:30
+35,176,3,2,2025-12-21,Automated SLA check-in for TSK-00176.,True,"Prerequisites received, finishing documentation",2025-12-21T00:00:00+05:30
+36,181,2,2,2026-06-09,Automated SLA check-in for TSK-00181.,False,,2026-06-09T00:00:00+05:30
+37,186,3,2,2026-07-04,Automated SLA check-in for TSK-00186.,True,"Prerequisites received, finishing documentation",2026-07-04T00:00:00+05:30
+38,191,2,2,2026-07-31,Automated SLA check-in for TSK-00191.,True,"Prerequisites received, finishing documentation",2026-07-31T00:00:00+05:30
+39,196,3,15,2026-10-20,Automated SLA check-in for TSK-00196.,False,,2026-10-20T00:00:00+05:30
+40,201,2,4,2024-11-08,Automated SLA check-in for TSK-00201.,True,"Prerequisites received, finishing documentation",2024-11-08T00:00:00+05:30
+41,206,3,2,2024-11-11,Automated SLA check-in for TSK-00206.,True,"Prerequisites received, finishing documentation",2024-11-11T00:00:00+05:30
+42,211,2,2,2024-11-02,Automated SLA check-in for TSK-00211.,False,,2024-11-02T00:00:00+05:30
+43,216,3,2,2024-11-21,Automated SLA check-in for TSK-00216.,True,"Prerequisites received, finishing documentation",2024-11-21T00:00:00+05:30
+44,221,2,2,2024-11-28,Automated SLA check-in for TSK-00221.,True,"Prerequisites received, finishing documentation",2024-11-28T00:00:00+05:30
+45,226,3,16,2025-05-02,Automated SLA check-in for TSK-00226.,False,,2025-05-02T00:00:00+05:30
+46,231,2,16,2025-06-13,Automated SLA check-in for TSK-00231.,True,"Prerequisites received, finishing documentation",2025-06-13T00:00:00+05:30
+47,236,3,2,2025-07-21,Automated SLA check-in for TSK-00236.,True,"Prerequisites received, finishing documentation",2025-07-21T00:00:00+05:30
+48,241,2,2,2025-08-16,Automated SLA check-in for TSK-00241.,False,,2025-08-16T00:00:00+05:30
+49,246,3,2,2025-09-25,Automated SLA check-in for TSK-00246.,True,"Prerequisites received, finishing documentation",2025-09-25T00:00:00+05:30
+50,251,2,2,2025-11-06,Automated SLA check-in for TSK-00251.,True,"Prerequisites received, finishing documentation",2025-11-06T00:00:00+05:30
+51,256,3,18,2024-12-03,Automated SLA check-in for TSK-00256.,False,,2024-12-03T00:00:00+05:30
+52,261,2,18,2025-01-14,Automated SLA check-in for TSK-00261.,True,"Prerequisites received, finishing documentation",2025-01-14T00:00:00+05:30
+53,266,3,2,2025-02-21,Automated SLA check-in for TSK-00266.,True,"Prerequisites received, finishing documentation",2025-02-21T00:00:00+05:30
+54,271,2,2,2025-03-19,Automated SLA check-in for TSK-00271.,False,,2025-03-19T00:00:00+05:30
+55,276,3,2,2025-04-28,Automated SLA check-in for TSK-00276.,True,"Prerequisites received, finishing documentation",2025-04-28T00:00:00+05:30
+56,281,2,2,2025-06-09,Automated SLA check-in for TSK-00281.,True,"Prerequisites received, finishing documentation",2025-06-09T00:00:00+05:30
+57,286,3,20,2025-07-01,Automated SLA check-in for TSK-00286.,False,,2025-07-01T00:00:00+05:30
+58,291,2,20,2025-08-12,Automated SLA check-in for TSK-00291.,True,"Prerequisites received, finishing documentation",2025-08-12T00:00:00+05:30
+59,296,3,2,2025-09-19,Automated SLA check-in for TSK-00296.,True,"Prerequisites received, finishing documentation",2025-09-19T00:00:00+05:30
+60,301,2,2,2025-10-15,Automated SLA check-in for TSK-00301.,False,,2025-10-15T00:00:00+05:30
+61,306,3,2,2024-11-29,Automated SLA check-in for TSK-00306.,True,"Prerequisites received, finishing documentation",2024-11-29T00:00:00+05:30
+62,311,2,2,2025-01-10,Automated SLA check-in for TSK-00311.,True,"Prerequisites received, finishing documentation",2025-01-10T00:00:00+05:30
+63,316,3,7,2025-02-01,Automated SLA check-in for TSK-00316.,False,,2025-02-01T00:00:00+05:30
+64,321,2,22,2025-03-15,Automated SLA check-in for TSK-00321.,True,"Prerequisites received, finishing documentation",2025-03-15T00:00:00+05:30
+65,326,3,2,2025-04-22,Automated SLA check-in for TSK-00326.,True,"Prerequisites received, finishing documentation",2025-04-22T00:00:00+05:30
+66,331,2,2,2025-05-18,Automated SLA check-in for TSK-00331.,False,,2025-05-18T00:00:00+05:30
+67,336,3,2,2025-06-27,Automated SLA check-in for TSK-00336.,True,"Prerequisites received, finishing documentation",2025-06-27T00:00:00+05:30
+68,341,2,2,2026-01-28,Automated SLA check-in for TSK-00341.,True,"Prerequisites received, finishing documentation",2026-01-28T00:00:00+05:30
+69,346,3,9,2026-02-09,Automated SLA check-in for TSK-00346.,False,,2026-02-09T00:00:00+05:30
+70,351,2,9,2026-03-13,Automated SLA check-in for TSK-00351.,True,"Prerequisites received, finishing documentation",2026-03-13T00:00:00+05:30
+71,356,3,2,2026-04-10,Automated SLA check-in for TSK-00356.,True,"Prerequisites received, finishing documentation",2026-04-10T00:00:00+05:30
+72,361,2,2,2026-04-26,Automated SLA check-in for TSK-00361.,False,,2026-04-26T00:00:00+05:30
+73,366,3,2,2026-05-26,Automated SLA check-in for TSK-00366.,True,"Prerequisites received, finishing documentation",2026-05-26T00:00:00+05:30
+74,371,2,2,2025-11-29,Automated SLA check-in for TSK-00371.,True,"Prerequisites received, finishing documentation",2025-11-29T00:00:00+05:30
+75,376,3,12,2025-12-11,Automated SLA check-in for TSK-00376.,False,,2025-12-11T00:00:00+05:30
+76,381,2,13,2026-06-15,Automated SLA check-in for TSK-00381.,True,"Prerequisites received, finishing documentation",2026-06-15T00:00:00+05:30
+77,386,3,2,2026-07-08,Automated SLA check-in for TSK-00386.,True,"Prerequisites received, finishing documentation",2026-07-08T00:00:00+05:30
+78,391,2,2,2026-07-19,Automated SLA check-in for TSK-00391.,False,,2026-07-19T00:00:00+05:30
+79,396,3,2,2026-10-26,Automated SLA check-in for TSK-00396.,True,"Prerequisites received, finishing documentation",2026-10-26T00:00:00+05:30
+80,401,2,2,2024-11-14,Automated SLA check-in for TSK-00401.,True,"Prerequisites received, finishing documentation",2024-11-14T00:00:00+05:30
+81,406,3,4,2024-11-01,Automated SLA check-in for TSK-00406.,False,,2024-11-01T00:00:00+05:30
+82,411,2,3,2024-11-08,Automated SLA check-in for TSK-00411.,True,"Prerequisites received, finishing documentation",2024-11-08T00:00:00+05:30
+83,416,3,2,2024-11-25,Automated SLA check-in for TSK-00416.,True,"Prerequisites received, finishing documentation",2024-11-25T00:00:00+05:30
+84,421,2,2,2024-11-16,Automated SLA check-in for TSK-00421.,False,,2024-11-16T00:00:00+05:30
+85,426,3,2,2025-05-08,Automated SLA check-in for TSK-00426.,True,"Prerequisites received, finishing documentation",2025-05-08T00:00:00+05:30
+86,431,2,2,2025-06-19,Automated SLA check-in for TSK-00431.,True,"Prerequisites received, finishing documentation",2025-06-19T00:00:00+05:30
+87,436,3,16,2025-07-11,Automated SLA check-in for TSK-00436.,False,,2025-07-11T00:00:00+05:30
+88,441,2,17,2025-08-22,Automated SLA check-in for TSK-00441.,True,"Prerequisites received, finishing documentation",2025-08-22T00:00:00+05:30
+89,446,3,2,2025-09-29,Automated SLA check-in for TSK-00446.,True,"Prerequisites received, finishing documentation",2025-09-29T00:00:00+05:30
+90,451,2,2,2025-10-25,Automated SLA check-in for TSK-00451.,False,,2025-10-25T00:00:00+05:30
+91,456,3,2,2024-12-09,Automated SLA check-in for TSK-00456.,True,"Prerequisites received, finishing documentation",2024-12-09T00:00:00+05:30
+92,461,2,2,2025-01-20,Automated SLA check-in for TSK-00461.,True,"Prerequisites received, finishing documentation",2025-01-20T00:00:00+05:30
+93,466,3,18,2025-02-11,Automated SLA check-in for TSK-00466.,False,,2025-02-11T00:00:00+05:30
+94,471,2,19,2025-03-25,Automated SLA check-in for TSK-00471.,True,"Prerequisites received, finishing documentation",2025-03-25T00:00:00+05:30
+95,476,3,2,2025-05-02,Automated SLA check-in for TSK-00476.,True,"Prerequisites received, finishing documentation",2025-05-02T00:00:00+05:30
+96,481,2,2,2025-05-28,Automated SLA check-in for TSK-00481.,False,,2025-05-28T00:00:00+05:30
+97,486,3,2,2025-07-07,Automated SLA check-in for TSK-00486.,True,"Prerequisites received, finishing documentation",2025-07-07T00:00:00+05:30
+98,491,2,2,2025-08-18,Automated SLA check-in for TSK-00491.,True,"Prerequisites received, finishing documentation",2025-08-18T00:00:00+05:30
+99,496,3,21,2025-09-09,Automated SLA check-in for TSK-00496.,False,,2025-09-09T00:00:00+05:30
+100,501,2,21,2025-10-21,Automated SLA check-in for TSK-00501.,True,"Prerequisites received, finishing documentation",2025-10-21T00:00:00+05:30
+101,506,3,2,2024-12-03,Automated SLA check-in for TSK-00506.,True,"Prerequisites received, finishing documentation",2024-12-03T00:00:00+05:30
+102,511,2,2,2024-12-29,Automated SLA check-in for TSK-00511.,False,,2024-12-29T00:00:00+05:30
+103,516,3,2,2025-02-07,Automated SLA check-in for TSK-00516.,True,"Prerequisites received, finishing documentation",2025-02-07T00:00:00+05:30
+104,521,2,2,2025-03-21,Automated SLA check-in for TSK-00521.,True,"Prerequisites received, finishing documentation",2025-03-21T00:00:00+05:30
+105,526,3,8,2025-04-12,Automated SLA check-in for TSK-00526.,False,,2025-04-12T00:00:00+05:30
+106,531,2,8,2025-05-24,Automated SLA check-in for TSK-00531.,True,"Prerequisites received, finishing documentation",2025-05-24T00:00:00+05:30
+107,536,3,2,2025-07-01,Automated SLA check-in for TSK-00536.,True,"Prerequisites received, finishing documentation",2025-07-01T00:00:00+05:30
+108,541,2,2,2026-01-16,Automated SLA check-in for TSK-00541.,False,,2026-01-16T00:00:00+05:30
+109,546,3,2,2026-02-15,Automated SLA check-in for TSK-00546.,True,"Prerequisites received, finishing documentation",2026-02-15T00:00:00+05:30
+110,551,2,2,2026-03-19,Automated SLA check-in for TSK-00551.,True,"Prerequisites received, finishing documentation",2026-03-19T00:00:00+05:30
+111,556,3,10,2026-03-31,Automated SLA check-in for TSK-00556.,False,,2026-03-31T00:00:00+05:30
+112,561,2,11,2026-05-02,Automated SLA check-in for TSK-00561.,True,"Prerequisites received, finishing documentation",2026-05-02T00:00:00+05:30
+113,566,3,2,2026-05-30,Automated SLA check-in for TSK-00566.,True,"Prerequisites received, finishing documentation",2026-05-30T00:00:00+05:30
+114,571,2,2,2025-11-17,Automated SLA check-in for TSK-00571.,False,,2025-11-17T00:00:00+05:30
+115,576,3,2,2025-12-17,Automated SLA check-in for TSK-00576.,True,"Prerequisites received, finishing documentation",2025-12-17T00:00:00+05:30
+116,581,2,2,2026-06-21,Automated SLA check-in for TSK-00581.,True,"Prerequisites received, finishing documentation",2026-06-21T00:00:00+05:30
+117,586,3,14,2026-06-28,Automated SLA check-in for TSK-00586.,False,,2026-06-28T00:00:00+05:30
+118,591,2,14,2026-07-25,Automated SLA check-in for TSK-00591.,True,"Prerequisites received, finishing documentation",2026-07-25T00:00:00+05:30
+119,596,3,2,2026-10-30,Automated SLA check-in for TSK-00596.,True,"Prerequisites received, finishing documentation",2026-10-30T00:00:00+05:30
+120,601,2,2,2024-11-02,Automated SLA check-in for TSK-00601.,False,,2024-11-02T00:00:00+05:30
+121,606,3,2,2024-11-07,Automated SLA check-in for TSK-00606.,True,"Prerequisites received, finishing documentation",2024-11-07T00:00:00+05:30
+122,611,2,2,2024-11-14,Automated SLA check-in for TSK-00611.,True,"Prerequisites received, finishing documentation",2024-11-14T00:00:00+05:30
+123,616,3,5,2024-11-15,Automated SLA check-in for TSK-00616.,False,,2024-11-15T00:00:00+05:30
+124,621,2,6,2024-11-22,Automated SLA check-in for TSK-00621.,True,"Prerequisites received, finishing documentation",2024-11-22T00:00:00+05:30
+125,626,3,2,2025-05-12,Automated SLA check-in for TSK-00626.,True,"Prerequisites received, finishing documentation",2025-05-12T00:00:00+05:30
+126,631,2,2,2025-06-07,Automated SLA check-in for TSK-00631.,False,,2025-06-07T00:00:00+05:30
+127,636,3,2,2025-07-17,Automated SLA check-in for TSK-00636.,True,"Prerequisites received, finishing documentation",2025-07-17T00:00:00+05:30
+128,641,2,2,2025-08-28,Automated SLA check-in for TSK-00641.,True,"Prerequisites received, finishing documentation",2025-08-28T00:00:00+05:30
+129,646,3,17,2025-09-19,Automated SLA check-in for TSK-00646.,False,,2025-09-19T00:00:00+05:30
+130,651,2,17,2025-10-31,Automated SLA check-in for TSK-00651.,True,"Prerequisites received, finishing documentation",2025-10-31T00:00:00+05:30
+131,656,3,2,2024-12-13,Automated SLA check-in for TSK-00656.,True,"Prerequisites received, finishing documentation",2024-12-13T00:00:00+05:30
+132,661,2,2,2025-01-08,Automated SLA check-in for TSK-00661.,False,,2025-01-08T00:00:00+05:30
+133,666,3,2,2025-02-17,Automated SLA check-in for TSK-00666.,True,"Prerequisites received, finishing documentation",2025-02-17T00:00:00+05:30
+134,671,2,2,2025-03-31,Automated SLA check-in for TSK-00671.,True,"Prerequisites received, finishing documentation",2025-03-31T00:00:00+05:30
+135,676,3,19,2025-04-22,Automated SLA check-in for TSK-00676.,False,,2025-04-22T00:00:00+05:30
+136,681,2,19,2025-06-03,Automated SLA check-in for TSK-00681.,True,"Prerequisites received, finishing documentation",2025-06-03T00:00:00+05:30
+137,686,3,2,2025-07-11,Automated SLA check-in for TSK-00686.,True,"Prerequisites received, finishing documentation",2025-07-11T00:00:00+05:30
+138,691,2,2,2025-08-06,Automated SLA check-in for TSK-00691.,False,,2025-08-06T00:00:00+05:30
+139,696,3,2,2025-09-15,Automated SLA check-in for TSK-00696.,True,"Prerequisites received, finishing documentation",2025-09-15T00:00:00+05:30
+140,701,2,2,2025-10-27,Automated SLA check-in for TSK-00701.,True,"Prerequisites received, finishing documentation",2025-10-27T00:00:00+05:30
+141,706,3,21,2024-11-23,Automated SLA check-in for TSK-00706.,False,,2024-11-23T00:00:00+05:30
+142,711,2,7,2025-01-04,Automated SLA check-in for TSK-00711.,True,"Prerequisites received, finishing documentation",2025-01-04T00:00:00+05:30
+143,716,3,2,2025-02-11,Automated SLA check-in for TSK-00716.,True,"Prerequisites received, finishing documentation",2025-02-11T00:00:00+05:30
+144,721,2,2,2025-03-09,Automated SLA check-in for TSK-00721.,False,,2025-03-09T00:00:00+05:30
+145,726,3,2,2025-04-18,Automated SLA check-in for TSK-00726.,True,"Prerequisites received, finishing documentation",2025-04-18T00:00:00+05:30
+146,731,2,2,2025-05-30,Automated SLA check-in for TSK-00731.,True,"Prerequisites received, finishing documentation",2025-05-30T00:00:00+05:30
+147,736,3,23,2025-06-21,Automated SLA check-in for TSK-00736.,False,,2025-06-21T00:00:00+05:30
+148,741,2,9,2026-01-22,Automated SLA check-in for TSK-00741.,True,"Prerequisites received, finishing documentation",2026-01-22T00:00:00+05:30
+149,746,3,2,2026-02-19,Automated SLA check-in for TSK-00746.,True,"Prerequisites received, finishing documentation",2026-02-19T00:00:00+05:30
+150,751,2,2,2026-03-07,Automated SLA check-in for TSK-00751.,False,,2026-03-07T00:00:00+05:30
+151,756,3,2,2026-04-06,Automated SLA check-in for TSK-00756.,True,"Prerequisites received, finishing documentation",2026-04-06T00:00:00+05:30
+152,761,2,2,2026-05-08,Automated SLA check-in for TSK-00761.,True,"Prerequisites received, finishing documentation",2026-05-08T00:00:00+05:30
+153,766,3,11,2026-05-20,Automated SLA check-in for TSK-00766.,False,,2026-05-20T00:00:00+05:30
+154,771,2,12,2025-11-23,Automated SLA check-in for TSK-00771.,True,"Prerequisites received, finishing documentation",2025-11-23T00:00:00+05:30
+155,776,3,2,2025-12-21,Automated SLA check-in for TSK-00776.,True,"Prerequisites received, finishing documentation",2025-12-21T00:00:00+05:30
+156,781,2,2,2026-06-09,Automated SLA check-in for TSK-00781.,False,,2026-06-09T00:00:00+05:30
+157,786,3,2,2026-07-04,Automated SLA check-in for TSK-00786.,True,"Prerequisites received, finishing documentation",2026-07-04T00:00:00+05:30
+158,791,2,2,2026-07-31,Automated SLA check-in for TSK-00791.,True,"Prerequisites received, finishing documentation",2026-07-31T00:00:00+05:30
+159,796,3,15,2026-10-20,Automated SLA check-in for TSK-00796.,False,,2026-10-20T00:00:00+05:30
+160,801,2,4,2024-11-08,Automated SLA check-in for TSK-00801.,True,"Prerequisites received, finishing documentation",2024-11-08T00:00:00+05:30
+161,806,3,2,2024-11-11,Automated SLA check-in for TSK-00806.,True,"Prerequisites received, finishing documentation",2024-11-11T00:00:00+05:30
+162,811,2,2,2024-11-02,Automated SLA check-in for TSK-00811.,False,,2024-11-02T00:00:00+05:30
+163,816,3,2,2024-11-21,Automated SLA check-in for TSK-00816.,True,"Prerequisites received, finishing documentation",2024-11-21T00:00:00+05:30
+164,821,2,2,2024-11-28,Automated SLA check-in for TSK-00821.,True,"Prerequisites received, finishing documentation",2024-11-28T00:00:00+05:30
+165,826,3,16,2025-05-02,Automated SLA check-in for TSK-00826.,False,,2025-05-02T00:00:00+05:30
+166,831,2,16,2025-06-13,Automated SLA check-in for TSK-00831.,True,"Prerequisites received, finishing documentation",2025-06-13T00:00:00+05:30
+167,836,3,2,2025-07-21,Automated SLA check-in for TSK-00836.,True,"Prerequisites received, finishing documentation",2025-07-21T00:00:00+05:30
+168,841,2,2,2025-08-16,Automated SLA check-in for TSK-00841.,False,,2025-08-16T00:00:00+05:30
+169,846,3,2,2025-09-25,Automated SLA check-in for TSK-00846.,True,"Prerequisites received, finishing documentation",2025-09-25T00:00:00+05:30
+170,851,2,2,2025-11-06,Automated SLA check-in for TSK-00851.,True,"Prerequisites received, finishing documentation",2025-11-06T00:00:00+05:30
+171,856,3,18,2024-12-03,Automated SLA check-in for TSK-00856.,False,,2024-12-03T00:00:00+05:30
+172,861,2,18,2025-01-14,Automated SLA check-in for TSK-00861.,True,"Prerequisites received, finishing documentation",2025-01-14T00:00:00+05:30
+173,866,3,2,2025-02-21,Automated SLA check-in for TSK-00866.,True,"Prerequisites received, finishing documentation",2025-02-21T00:00:00+05:30
+174,871,2,2,2025-03-19,Automated SLA check-in for TSK-00871.,False,,2025-03-19T00:00:00+05:30
+175,876,3,2,2025-04-28,Automated SLA check-in for TSK-00876.,True,"Prerequisites received, finishing documentation",2025-04-28T00:00:00+05:30
+176,881,2,2,2025-06-09,Automated SLA check-in for TSK-00881.,True,"Prerequisites received, finishing documentation",2025-06-09T00:00:00+05:30
+177,886,3,20,2025-07-01,Automated SLA check-in for TSK-00886.,False,,2025-07-01T00:00:00+05:30
+178,891,2,20,2025-08-12,Automated SLA check-in for TSK-00891.,True,"Prerequisites received, finishing documentation",2025-08-12T00:00:00+05:30
+179,896,3,2,2025-09-19,Automated SLA check-in for TSK-00896.,True,"Prerequisites received, finishing documentation",2025-09-19T00:00:00+05:30
+180,901,2,2,2025-10-15,Automated SLA check-in for TSK-00901.,False,,2025-10-15T00:00:00+05:30
+181,906,3,2,2024-11-29,Automated SLA check-in for TSK-00906.,True,"Prerequisites received, finishing documentation",2024-11-29T00:00:00+05:30
+182,911,2,2,2025-01-10,Automated SLA check-in for TSK-00911.,True,"Prerequisites received, finishing documentation",2025-01-10T00:00:00+05:30
+183,916,3,7,2025-02-01,Automated SLA check-in for TSK-00916.,False,,2025-02-01T00:00:00+05:30
+184,921,2,22,2025-03-15,Automated SLA check-in for TSK-00921.,True,"Prerequisites received, finishing documentation",2025-03-15T00:00:00+05:30
+185,926,3,2,2025-04-22,Automated SLA check-in for TSK-00926.,True,"Prerequisites received, finishing documentation",2025-04-22T00:00:00+05:30
+186,931,2,2,2025-05-18,Automated SLA check-in for TSK-00931.,False,,2025-05-18T00:00:00+05:30
+187,936,3,2,2025-06-27,Automated SLA check-in for TSK-00936.,True,"Prerequisites received, finishing documentation",2025-06-27T00:00:00+05:30
+188,941,2,2,2026-01-28,Automated SLA check-in for TSK-00941.,True,"Prerequisites received, finishing documentation",2026-01-28T00:00:00+05:30
+189,946,3,9,2026-02-09,Automated SLA check-in for TSK-00946.,False,,2026-02-09T00:00:00+05:30
+190,951,2,9,2026-03-13,Automated SLA check-in for TSK-00951.,True,"Prerequisites received, finishing documentation",2026-03-13T00:00:00+05:30
+191,956,3,2,2026-04-10,Automated SLA check-in for TSK-00956.,True,"Prerequisites received, finishing documentation",2026-04-10T00:00:00+05:30
+192,961,2,2,2026-04-26,Automated SLA check-in for TSK-00961.,False,,2026-04-26T00:00:00+05:30
+193,966,3,2,2026-05-26,Automated SLA check-in for TSK-00966.,True,"Prerequisites received, finishing documentation",2026-05-26T00:00:00+05:30
+194,971,2,2,2025-11-29,Automated SLA check-in for TSK-00971.,True,"Prerequisites received, finishing documentation",2025-11-29T00:00:00+05:30
+195,976,3,12,2025-12-11,Automated SLA check-in for TSK-00976.,False,,2025-12-11T00:00:00+05:30
+196,981,2,13,2026-06-15,Automated SLA check-in for TSK-00981.,True,"Prerequisites received, finishing documentation",2026-06-15T00:00:00+05:30
+197,986,3,2,2026-07-08,Automated SLA check-in for TSK-00986.,True,"Prerequisites received, finishing documentation",2026-07-08T00:00:00+05:30
+198,991,2,4,2024-12-09,Automated SLA check-in for TSK-00991.,False,,2024-12-09T00:00:00+05:30
+199,996,3,4,2024-12-14,Automated SLA check-in for TSK-00996.,True,"Prerequisites received, finishing documentation",2024-12-14T00:00:00+05:30
+200,1001,2,3,2024-12-19,Automated SLA check-in for TSK-01001.,True,"Prerequisites received, finishing documentation",2024-12-19T00:00:00+05:30
+201,1006,3,5,2025-01-07,Automated SLA check-in for TSK-01006.,False,,2025-01-07T00:00:00+05:30
+202,1011,2,6,2025-01-12,Automated SLA check-in for TSK-01011.,True,"Prerequisites received, finishing documentation",2025-01-12T00:00:00+05:30
+203,1016,3,16,2025-07-04,Automated SLA check-in for TSK-01016.,True,"Prerequisites received, finishing documentation",2025-07-04T00:00:00+05:30
+204,1021,2,16,2025-08-13,Automated SLA check-in for TSK-01021.,False,,2025-08-13T00:00:00+05:30
+205,1026,3,16,2025-09-22,Automated SLA check-in for TSK-01026.,True,"Prerequisites received, finishing documentation",2025-09-22T00:00:00+05:30
+206,1031,2,17,2025-11-01,Automated SLA check-in for TSK-01031.,True,"Prerequisites received, finishing documentation",2025-11-01T00:00:00+05:30
+207,1036,3,17,2025-10-27,Automated SLA check-in for TSK-01036.,False,,2025-10-27T00:00:00+05:30
+208,1041,2,17,2025-12-06,Automated SLA check-in for TSK-01041.,True,"Prerequisites received, finishing documentation",2025-12-06T00:00:00+05:30
+209,1046,3,18,2025-01-20,Automated SLA check-in for TSK-01046.,True,"Prerequisites received, finishing documentation",2025-01-20T00:00:00+05:30
+210,1051,2,18,2025-03-01,Automated SLA check-in for TSK-01051.,False,,2025-03-01T00:00:00+05:30
+211,1056,3,18,2025-04-10,Automated SLA check-in for TSK-01056.,True,"Prerequisites received, finishing documentation",2025-04-10T00:00:00+05:30
+212,1061,2,19,2025-05-20,Automated SLA check-in for TSK-01061.,True,"Prerequisites received, finishing documentation",2025-05-20T00:00:00+05:30
+213,1066,3,19,2025-06-29,Automated SLA check-in for TSK-01066.,False,,2025-06-29T00:00:00+05:30
+214,1071,2,19,2025-08-08,Automated SLA check-in for TSK-01071.,True,"Prerequisites received, finishing documentation",2025-08-08T00:00:00+05:30
+215,1076,3,20,2025-09-17,Automated SLA check-in for TSK-01076.,True,"Prerequisites received, finishing documentation",2025-09-17T00:00:00+05:30
+216,1081,2,20,2025-09-12,Automated SLA check-in for TSK-01081.,False,,2025-09-12T00:00:00+05:30
+217,1086,3,21,2025-10-22,Automated SLA check-in for TSK-01086.,True,"Prerequisites received, finishing documentation",2025-10-22T00:00:00+05:30
+218,1091,2,21,2025-12-01,Automated SLA check-in for TSK-01091.,True,"Prerequisites received, finishing documentation",2025-12-01T00:00:00+05:30
+219,1096,3,21,2025-01-15,Automated SLA check-in for TSK-01096.,False,,2025-01-15T00:00:00+05:30
+220,1101,2,7,2025-02-24,Automated SLA check-in for TSK-01101.,True,"Prerequisites received, finishing documentation",2025-02-24T00:00:00+05:30
+221,1106,3,7,2025-04-05,Automated SLA check-in for TSK-01106.,True,"Prerequisites received, finishing documentation",2025-04-05T00:00:00+05:30
+222,1111,2,22,2025-05-15,Automated SLA check-in for TSK-01111.,False,,2025-05-15T00:00:00+05:30
+223,1116,3,8,2025-06-24,Automated SLA check-in for TSK-01116.,True,"Prerequisites received, finishing documentation",2025-06-24T00:00:00+05:30
+224,1121,2,8,2025-08-03,Automated SLA check-in for TSK-01121.,True,"Prerequisites received, finishing documentation",2025-08-03T00:00:00+05:30
+225,1126,3,23,2025-07-29,Automated SLA check-in for TSK-01126.,False,,2025-07-29T00:00:00+05:30
+226,1131,2,9,2026-02-27,Automated SLA check-in for TSK-01131.,True,"Prerequisites received, finishing documentation",2026-02-27T00:00:00+05:30
+227,1136,3,9,2026-03-29,Automated SLA check-in for TSK-01136.,True,"Prerequisites received, finishing documentation",2026-03-29T00:00:00+05:30
+228,1141,2,9,2026-04-28,Automated SLA check-in for TSK-01141.,False,,2026-04-28T00:00:00+05:30
+229,1146,3,10,2026-05-28,Automated SLA check-in for TSK-01146.,True,"Prerequisites received, finishing documentation",2026-05-28T00:00:00+05:30
+230,1151,2,11,2026-06-27,Automated SLA check-in for TSK-01151.,True,"Prerequisites received, finishing documentation",2026-06-27T00:00:00+05:30
+231,1156,3,11,2026-07-27,Automated SLA check-in for TSK-01156.,False,,2026-07-27T00:00:00+05:30
+232,1161,2,12,2026-01-28,Automated SLA check-in for TSK-01161.,True,"Prerequisites received, finishing documentation",2026-01-28T00:00:00+05:30
+233,1166,3,12,2026-02-27,Automated SLA check-in for TSK-01166.,True,"Prerequisites received, finishing documentation",2026-02-27T00:00:00+05:30
+234,1171,2,13,2026-07-16,Automated SLA check-in for TSK-01171.,False,,2026-07-16T00:00:00+05:30
+235,1176,3,14,2026-08-10,Automated SLA check-in for TSK-01176.,True,"Prerequisites received, finishing documentation",2026-08-10T00:00:00+05:30
+236,1181,2,14,2026-09-04,Automated SLA check-in for TSK-01181.,True,"Prerequisites received, finishing documentation",2026-09-04T00:00:00+05:30
+237,1186,3,15,2026-12-12,Automated SLA check-in for TSK-01186.,False,,2026-12-12T00:00:00+05:30
+238,1191,2,4,2024-12-29,Automated SLA check-in for TSK-01191.,True,"Prerequisites received, finishing documentation",2024-12-29T00:00:00+05:30
+239,1196,3,4,2025-01-03,Automated SLA check-in for TSK-01196.,True,"Prerequisites received, finishing documentation",2025-01-03T00:00:00+05:30
+240,1201,2,3,2025-01-08,Automated SLA check-in for TSK-01201.,False,,2025-01-08T00:00:00+05:30
+241,1206,3,5,2025-01-27,Automated SLA check-in for TSK-01206.,True,"Prerequisites received, finishing documentation",2025-01-27T00:00:00+05:30
+242,1211,2,6,2025-02-01,Automated SLA check-in for TSK-01211.,True,"Prerequisites received, finishing documentation",2025-02-01T00:00:00+05:30
+243,1216,3,16,2025-06-09,Automated SLA check-in for TSK-01216.,False,,2025-06-09T00:00:00+05:30
+244,1221,2,16,2025-07-19,Automated SLA check-in for TSK-01221.,True,"Prerequisites received, finishing documentation",2025-07-19T00:00:00+05:30
+245,1226,3,16,2025-08-28,Automated SLA check-in for TSK-01226.,True,"Prerequisites received, finishing documentation",2025-08-28T00:00:00+05:30
+246,1231,2,17,2025-10-07,Automated SLA check-in for TSK-01231.,False,,2025-10-07T00:00:00+05:30
+247,1236,3,17,2025-11-16,Automated SLA check-in for TSK-01236.,True,"Prerequisites received, finishing documentation",2025-11-16T00:00:00+05:30
+248,1241,2,17,2025-12-26,Automated SLA check-in for TSK-01241.,True,"Prerequisites received, finishing documentation",2025-12-26T00:00:00+05:30
+249,1246,3,18,2025-02-09,Automated SLA check-in for TSK-01246.,False,,2025-02-09T00:00:00+05:30
+250,1251,2,18,2025-03-21,Automated SLA check-in for TSK-01251.,True,"Prerequisites received, finishing documentation",2025-03-21T00:00:00+05:30
+251,1256,3,18,2025-04-30,Automated SLA check-in for TSK-01256.,True,"Prerequisites received, finishing documentation",2025-04-30T00:00:00+05:30
+252,1261,2,19,2025-04-25,Automated SLA check-in for TSK-01261.,False,,2025-04-25T00:00:00+05:30
+253,1266,3,19,2025-06-04,Automated SLA check-in for TSK-01266.,True,"Prerequisites received, finishing documentation",2025-06-04T00:00:00+05:30
+254,1271,2,19,2025-07-14,Automated SLA check-in for TSK-01271.,True,"Prerequisites received, finishing documentation",2025-07-14T00:00:00+05:30
+255,1276,3,20,2025-08-23,Automated SLA check-in for TSK-01276.,False,,2025-08-23T00:00:00+05:30
+256,1281,2,20,2025-10-02,Automated SLA check-in for TSK-01281.,True,"Prerequisites received, finishing documentation",2025-10-02T00:00:00+05:30
+257,1286,3,21,2025-11-11,Automated SLA check-in for TSK-01286.,True,"Prerequisites received, finishing documentation",2025-11-11T00:00:00+05:30
+258,1291,2,21,2025-12-21,Automated SLA check-in for TSK-01291.,False,,2025-12-21T00:00:00+05:30
+259,1296,3,21,2025-02-04,Automated SLA check-in for TSK-01296.,True,"Prerequisites received, finishing documentation",2025-02-04T00:00:00+05:30
+260,1301,2,7,2025-03-16,Automated SLA check-in for TSK-01301.,True,"Prerequisites received, finishing documentation",2025-03-16T00:00:00+05:30
+261,1306,3,7,2025-03-11,Automated SLA check-in for TSK-01306.,False,,2025-03-11T00:00:00+05:30
+262,1311,2,22,2025-04-20,Automated SLA check-in for TSK-01311.,True,"Prerequisites received, finishing documentation",2025-04-20T00:00:00+05:30
+263,1316,3,8,2025-05-30,Automated SLA check-in for TSK-01316.,True,"Prerequisites received, finishing documentation",2025-05-30T00:00:00+05:30
+264,1321,2,8,2025-07-09,Automated SLA check-in for TSK-01321.,False,,2025-07-09T00:00:00+05:30
+265,1326,3,23,2025-08-18,Automated SLA check-in for TSK-01326.,True,"Prerequisites received, finishing documentation",2025-08-18T00:00:00+05:30
+266,1331,2,9,2026-03-19,Automated SLA check-in for TSK-01331.,True,"Prerequisites received, finishing documentation",2026-03-19T00:00:00+05:30
+267,1336,3,9,2026-04-18,Automated SLA check-in for TSK-01336.,False,,2026-04-18T00:00:00+05:30
+268,1341,2,9,2026-05-18,Automated SLA check-in for TSK-01341.,True,"Prerequisites received, finishing documentation",2026-05-18T00:00:00+05:30
+269,1346,3,10,2026-06-17,Automated SLA check-in for TSK-01346.,True,"Prerequisites received, finishing documentation",2026-06-17T00:00:00+05:30
+270,1351,2,11,2026-06-02,Automated SLA check-in for TSK-01351.,False,,2026-06-02T00:00:00+05:30
+271,1356,3,11,2026-07-02,Automated SLA check-in for TSK-01356.,True,"Prerequisites received, finishing documentation",2026-07-02T00:00:00+05:30
+272,1361,2,12,2026-01-03,Automated SLA check-in for TSK-01361.,True,"Prerequisites received, finishing documentation",2026-01-03T00:00:00+05:30
+273,1366,3,12,2026-02-02,Automated SLA check-in for TSK-01366.,False,,2026-02-02T00:00:00+05:30
+274,1371,2,13,2026-08-05,Automated SLA check-in for TSK-01371.,True,"Prerequisites received, finishing documentation",2026-08-05T00:00:00+05:30
+275,1376,3,14,2026-08-30,Automated SLA check-in for TSK-01376.,True,"Prerequisites received, finishing documentation",2026-08-30T00:00:00+05:30
+276,1381,2,14,2026-09-24,Automated SLA check-in for TSK-01381.,False,,2026-09-24T00:00:00+05:30
+277,1386,3,15,2027-01-01,Automated SLA check-in for TSK-01386.,True,"Prerequisites received, finishing documentation",2027-01-01T00:00:00+05:30
+278,1391,2,4,2025-01-18,Automated SLA check-in for TSK-01391.,True,"Prerequisites received, finishing documentation",2025-01-18T00:00:00+05:30
+279,1396,3,4,2024-12-09,Automated SLA check-in for TSK-01396.,False,,2024-12-09T00:00:00+05:30
+280,1401,2,3,2024-12-14,Automated SLA check-in for TSK-01401.,True,"Prerequisites received, finishing documentation",2024-12-14T00:00:00+05:30
+281,1406,3,5,2025-01-02,Automated SLA check-in for TSK-01406.,True,"Prerequisites received, finishing documentation",2025-01-02T00:00:00+05:30
+282,1411,2,6,2025-01-07,Automated SLA check-in for TSK-01411.,False,,2025-01-07T00:00:00+05:30
+283,1416,3,16,2025-06-29,Automated SLA check-in for TSK-01416.,True,"Prerequisites received, finishing documentation",2025-06-29T00:00:00+05:30
+284,1421,2,16,2025-08-08,Automated SLA check-in for TSK-01421.,True,"Prerequisites received, finishing documentation",2025-08-08T00:00:00+05:30
+285,1426,3,16,2025-09-17,Automated SLA check-in for TSK-01426.,False,,2025-09-17T00:00:00+05:30
+286,1431,2,17,2025-10-27,Automated SLA check-in for TSK-01431.,True,"Prerequisites received, finishing documentation",2025-10-27T00:00:00+05:30
+287,1436,3,17,2025-12-06,Automated SLA check-in for TSK-01436.,True,"Prerequisites received, finishing documentation",2025-12-06T00:00:00+05:30
+288,1441,2,17,2025-12-01,Automated SLA check-in for TSK-01441.,False,,2025-12-01T00:00:00+05:30
+289,1446,3,18,2025-01-15,Automated SLA check-in for TSK-01446.,True,"Prerequisites received, finishing documentation",2025-01-15T00:00:00+05:30
+290,1451,2,18,2025-02-24,Automated SLA check-in for TSK-01451.,True,"Prerequisites received, finishing documentation",2025-02-24T00:00:00+05:30
+291,1456,3,18,2025-04-05,Automated SLA check-in for TSK-01456.,False,,2025-04-05T00:00:00+05:30
+292,1461,2,19,2025-05-15,Automated SLA check-in for TSK-01461.,True,"Prerequisites received, finishing documentation",2025-05-15T00:00:00+05:30
+293,1466,3,19,2025-06-24,Automated SLA check-in for TSK-01466.,True,"Prerequisites received, finishing documentation",2025-06-24T00:00:00+05:30
+294,1471,2,19,2025-08-03,Automated SLA check-in for TSK-01471.,False,,2025-08-03T00:00:00+05:30
+295,1476,3,20,2025-09-12,Automated SLA check-in for TSK-01476.,True,"Prerequisites received, finishing documentation",2025-09-12T00:00:00+05:30
+296,1481,2,20,2025-10-22,Automated SLA check-in for TSK-01481.,True,"Prerequisites received, finishing documentation",2025-10-22T00:00:00+05:30
+297,1486,3,21,2025-10-17,Automated SLA check-in for TSK-01486.,False,,2025-10-17T00:00:00+05:30
+298,1491,2,21,2025-11-26,Automated SLA check-in for TSK-01491.,True,"Prerequisites received, finishing documentation",2025-11-26T00:00:00+05:30
+299,1496,3,21,2025-01-10,Automated SLA check-in for TSK-01496.,True,"Prerequisites received, finishing documentation",2025-01-10T00:00:00+05:30
+300,1501,2,7,2025-02-19,Automated SLA check-in for TSK-01501.,False,,2025-02-19T00:00:00+05:30
+301,1506,3,7,2025-03-31,Automated SLA check-in for TSK-01506.,True,"Prerequisites received, finishing documentation",2025-03-31T00:00:00+05:30
+302,1511,2,22,2025-05-10,Automated SLA check-in for TSK-01511.,True,"Prerequisites received, finishing documentation",2025-05-10T00:00:00+05:30
+303,1516,3,8,2025-06-19,Automated SLA check-in for TSK-01516.,False,,2025-06-19T00:00:00+05:30
+304,1521,2,8,2025-07-29,Automated SLA check-in for TSK-01521.,True,"Prerequisites received, finishing documentation",2025-07-29T00:00:00+05:30
+305,1526,3,23,2025-09-07,Automated SLA check-in for TSK-01526.,True,"Prerequisites received, finishing documentation",2025-09-07T00:00:00+05:30
+306,1531,2,9,2026-02-22,Automated SLA check-in for TSK-01531.,False,,2026-02-22T00:00:00+05:30
+307,1536,3,9,2026-03-24,Automated SLA check-in for TSK-01536.,True,"Prerequisites received, finishing documentation",2026-03-24T00:00:00+05:30
+308,1541,2,9,2026-04-23,Automated SLA check-in for TSK-01541.,True,"Prerequisites received, finishing documentation",2026-04-23T00:00:00+05:30
+309,1546,3,10,2026-05-23,Automated SLA check-in for TSK-01546.,False,,2026-05-23T00:00:00+05:30
+310,1551,2,11,2026-06-22,Automated SLA check-in for TSK-01551.,True,"Prerequisites received, finishing documentation",2026-06-22T00:00:00+05:30
+311,1556,3,11,2026-07-22,Automated SLA check-in for TSK-01556.,True,"Prerequisites received, finishing documentation",2026-07-22T00:00:00+05:30
+312,1561,2,12,2026-01-23,Automated SLA check-in for TSK-01561.,False,,2026-01-23T00:00:00+05:30
+313,1566,3,12,2026-02-22,Automated SLA check-in for TSK-01566.,True,"Prerequisites received, finishing documentation",2026-02-22T00:00:00+05:30
+314,1571,2,13,2026-08-25,Automated SLA check-in for TSK-01571.,True,"Prerequisites received, finishing documentation",2026-08-25T00:00:00+05:30
+315,1576,3,14,2026-08-05,Automated SLA check-in for TSK-01576.,False,,2026-08-05T00:00:00+05:30
+316,1581,2,14,2026-08-30,Automated SLA check-in for TSK-01581.,True,"Prerequisites received, finishing documentation",2026-08-30T00:00:00+05:30
+317,1586,3,15,2026-12-07,Automated SLA check-in for TSK-01586.,True,"Prerequisites received, finishing documentation",2026-12-07T00:00:00+05:30
+318,1591,2,4,2024-12-24,Automated SLA check-in for TSK-01591.,False,,2024-12-24T00:00:00+05:30
+319,1596,3,4,2024-12-29,Automated SLA check-in for TSK-01596.,True,"Prerequisites received, finishing documentation",2024-12-29T00:00:00+05:30
+320,1601,2,3,2025-01-03,Automated SLA check-in for TSK-01601.,True,"Prerequisites received, finishing documentation",2025-01-03T00:00:00+05:30
+321,1606,3,5,2025-01-22,Automated SLA check-in for TSK-01606.,False,,2025-01-22T00:00:00+05:30
+322,1611,2,6,2025-01-27,Automated SLA check-in for TSK-01611.,True,"Prerequisites received, finishing documentation",2025-01-27T00:00:00+05:30
+323,1616,3,16,2025-07-19,Automated SLA check-in for TSK-01616.,True,"Prerequisites received, finishing documentation",2025-07-19T00:00:00+05:30
+324,1621,2,16,2025-07-14,Automated SLA check-in for TSK-01621.,False,,2025-07-14T00:00:00+05:30
+325,1626,3,16,2025-08-23,Automated SLA check-in for TSK-01626.,True,"Prerequisites received, finishing documentation",2025-08-23T00:00:00+05:30
+326,1631,2,17,2025-10-02,Automated SLA check-in for TSK-01631.,True,"Prerequisites received, finishing documentation",2025-10-02T00:00:00+05:30
+327,1636,3,17,2025-11-11,Automated SLA check-in for TSK-01636.,False,,2025-11-11T00:00:00+05:30
+328,1641,2,17,2025-12-21,Automated SLA check-in for TSK-01641.,True,"Prerequisites received, finishing documentation",2025-12-21T00:00:00+05:30
+329,1646,3,18,2025-02-04,Automated SLA check-in for TSK-01646.,True,"Prerequisites received, finishing documentation",2025-02-04T00:00:00+05:30
+330,1651,2,18,2025-03-16,Automated SLA check-in for TSK-01651.,False,,2025-03-16T00:00:00+05:30
+331,1656,3,18,2025-04-25,Automated SLA check-in for TSK-01656.,True,"Prerequisites received, finishing documentation",2025-04-25T00:00:00+05:30
+332,1661,2,19,2025-06-04,Automated SLA check-in for TSK-01661.,True,"Prerequisites received, finishing documentation",2025-06-04T00:00:00+05:30
+333,1666,3,19,2025-05-30,Automated SLA check-in for TSK-01666.,False,,2025-05-30T00:00:00+05:30
+334,1671,2,19,2025-07-09,Automated SLA check-in for TSK-01671.,True,"Prerequisites received, finishing documentation",2025-07-09T00:00:00+05:30
+335,1676,3,20,2025-08-18,Automated SLA check-in for TSK-01676.,True,"Prerequisites received, finishing documentation",2025-08-18T00:00:00+05:30
+336,1681,2,20,2025-09-27,Automated SLA check-in for TSK-01681.,False,,2025-09-27T00:00:00+05:30
+337,1686,3,21,2025-11-06,Automated SLA check-in for TSK-01686.,True,"Prerequisites received, finishing documentation",2025-11-06T00:00:00+05:30
+338,1691,2,21,2025-12-16,Automated SLA check-in for TSK-01691.,True,"Prerequisites received, finishing documentation",2025-12-16T00:00:00+05:30
+339,1696,3,21,2025-01-30,Automated SLA check-in for TSK-01696.,False,,2025-01-30T00:00:00+05:30
+340,1701,2,7,2025-03-11,Automated SLA check-in for TSK-01701.,True,"Prerequisites received, finishing documentation",2025-03-11T00:00:00+05:30
+341,1706,3,7,2025-04-20,Automated SLA check-in for TSK-01706.,True,"Prerequisites received, finishing documentation",2025-04-20T00:00:00+05:30
+342,1711,2,22,2025-04-15,Automated SLA check-in for TSK-01711.,False,,2025-04-15T00:00:00+05:30
+343,1716,3,8,2025-05-25,Automated SLA check-in for TSK-01716.,True,"Prerequisites received, finishing documentation",2025-05-25T00:00:00+05:30
+344,1721,2,8,2025-07-04,Automated SLA check-in for TSK-01721.,True,"Prerequisites received, finishing documentation",2025-07-04T00:00:00+05:30
+345,1726,3,23,2025-08-13,Automated SLA check-in for TSK-01726.,False,,2025-08-13T00:00:00+05:30
+346,1731,2,9,2026-03-14,Automated SLA check-in for TSK-01731.,True,"Prerequisites received, finishing documentation",2026-03-14T00:00:00+05:30
+347,1736,3,9,2026-04-13,Automated SLA check-in for TSK-01736.,True,"Prerequisites received, finishing documentation",2026-04-13T00:00:00+05:30
+348,1741,2,9,2026-05-13,Automated SLA check-in for TSK-01741.,False,,2026-05-13T00:00:00+05:30
+349,1746,3,10,2026-06-12,Automated SLA check-in for TSK-01746.,True,"Prerequisites received, finishing documentation",2026-06-12T00:00:00+05:30
+350,1751,2,11,2026-07-12,Automated SLA check-in for TSK-01751.,True,"Prerequisites received, finishing documentation",2026-07-12T00:00:00+05:30
+351,1756,3,11,2026-06-27,Automated SLA check-in for TSK-01756.,False,,2026-06-27T00:00:00+05:30
+352,1761,2,12,2025-12-29,Automated SLA check-in for TSK-01761.,True,"Prerequisites received, finishing documentation",2025-12-29T00:00:00+05:30
+353,1766,3,12,2026-01-28,Automated SLA check-in for TSK-01766.,True,"Prerequisites received, finishing documentation",2026-01-28T00:00:00+05:30
+354,1771,2,13,2026-07-31,Automated SLA check-in for TSK-01771.,False,,2026-07-31T00:00:00+05:30
+355,1776,3,14,2026-08-25,Automated SLA check-in for TSK-01776.,True,"Prerequisites received, finishing documentation",2026-08-25T00:00:00+05:30
+356,1781,2,2,2024-11-14,Automated SLA check-in for TSK-01781.,True,"Prerequisites received, finishing documentation",2024-11-14T00:00:00+05:30
+357,1786,3,2,2024-11-09,Automated SLA check-in for TSK-01786.,False,,2024-11-09T00:00:00+05:30
+358,1791,2,2,2024-11-24,Automated SLA check-in for TSK-01791.,True,"Prerequisites received, finishing documentation",2024-11-24T00:00:00+05:30
+359,1796,3,2,2024-12-03,Automated SLA check-in for TSK-01796.,True,"Prerequisites received, finishing documentation",2024-12-03T00:00:00+05:30
+360,1801,2,2,2024-12-18,Automated SLA check-in for TSK-01801.,False,,2024-12-18T00:00:00+05:30
+361,1806,3,2,2025-05-30,Automated SLA check-in for TSK-01806.,True,"Prerequisites received, finishing documentation",2025-05-30T00:00:00+05:30
+362,1811,2,2,2025-07-19,Automated SLA check-in for TSK-01811.,True,"Prerequisites received, finishing documentation",2025-07-19T00:00:00+05:30
+363,1816,3,2,2025-08-18,Automated SLA check-in for TSK-01816.,False,,2025-08-18T00:00:00+05:30
+364,1821,2,2,2025-10-07,Automated SLA check-in for TSK-01821.,True,"Prerequisites received, finishing documentation",2025-10-07T00:00:00+05:30
+365,1826,3,2,2025-11-06,Automated SLA check-in for TSK-01826.,True,"Prerequisites received, finishing documentation",2025-11-06T00:00:00+05:30
+366,1831,2,2,2025-12-26,Automated SLA check-in for TSK-01831.,False,,2025-12-26T00:00:00+05:30
+367,1836,3,2,2025-01-30,Automated SLA check-in for TSK-01836.,True,"Prerequisites received, finishing documentation",2025-01-30T00:00:00+05:30
+368,1841,2,2,2025-01-20,Automated SLA check-in for TSK-01841.,True,"Prerequisites received, finishing documentation",2025-01-20T00:00:00+05:30
+369,1846,3,2,2025-02-19,Automated SLA check-in for TSK-01846.,False,,2025-02-19T00:00:00+05:30
+370,1851,2,2,2025-04-10,Automated SLA check-in for TSK-01851.,True,"Prerequisites received, finishing documentation",2025-04-10T00:00:00+05:30
+371,1856,3,2,2025-05-10,Automated SLA check-in for TSK-01856.,True,"Prerequisites received, finishing documentation",2025-05-10T00:00:00+05:30
+372,1861,2,2,2025-06-29,Automated SLA check-in for TSK-01861.,False,,2025-06-29T00:00:00+05:30
+373,1866,3,2,2025-07-29,Automated SLA check-in for TSK-01866.,True,"Prerequisites received, finishing documentation",2025-07-29T00:00:00+05:30
+374,1871,2,2,2025-09-17,Automated SLA check-in for TSK-01871.,True,"Prerequisites received, finishing documentation",2025-09-17T00:00:00+05:30
+375,1876,3,2,2025-10-17,Automated SLA check-in for TSK-01876.,False,,2025-10-17T00:00:00+05:30
+376,1881,2,2,2025-12-06,Automated SLA check-in for TSK-01881.,True,"Prerequisites received, finishing documentation",2025-12-06T00:00:00+05:30
+377,1886,3,2,2025-01-10,Automated SLA check-in for TSK-01886.,True,"Prerequisites received, finishing documentation",2025-01-10T00:00:00+05:30
+378,1891,2,2,2025-03-01,Automated SLA check-in for TSK-01891.,False,,2025-03-01T00:00:00+05:30
+379,1896,3,2,2025-03-31,Automated SLA check-in for TSK-01896.,True,"Prerequisites received, finishing documentation",2025-03-31T00:00:00+05:30
+380,1901,2,2,2025-03-21,Automated SLA check-in for TSK-01901.,True,"Prerequisites received, finishing documentation",2025-03-21T00:00:00+05:30
+381,1906,3,2,2025-04-20,Automated SLA check-in for TSK-01906.,False,,2025-04-20T00:00:00+05:30
+382,1911,2,2,2025-06-09,Automated SLA check-in for TSK-01911.,True,"Prerequisites received, finishing documentation",2025-06-09T00:00:00+05:30
+383,1916,3,2,2025-07-09,Automated SLA check-in for TSK-01916.,True,"Prerequisites received, finishing documentation",2025-07-09T00:00:00+05:30
+384,1921,2,2,2026-02-17,Automated SLA check-in for TSK-01921.,False,,2026-02-17T00:00:00+05:30
+385,1926,3,2,2026-03-09,Automated SLA check-in for TSK-01926.,True,"Prerequisites received, finishing documentation",2026-03-09T00:00:00+05:30
+386,1931,2,2,2026-04-18,Automated SLA check-in for TSK-01931.,True,"Prerequisites received, finishing documentation",2026-04-18T00:00:00+05:30
+387,1936,3,2,2026-05-08,Automated SLA check-in for TSK-01936.,False,,2026-05-08T00:00:00+05:30
+388,1941,2,2,2026-06-17,Automated SLA check-in for TSK-01941.,True,"Prerequisites received, finishing documentation",2026-06-17T00:00:00+05:30
+389,1946,3,2,2026-07-07,Automated SLA check-in for TSK-01946.,True,"Prerequisites received, finishing documentation",2026-07-07T00:00:00+05:30
+390,1951,2,2,2026-01-18,Automated SLA check-in for TSK-01951.,False,,2026-01-18T00:00:00+05:30
+391,1956,3,2,2026-02-07,Automated SLA check-in for TSK-01956.,True,"Prerequisites received, finishing documentation",2026-02-07T00:00:00+05:30
+392,1961,2,2,2026-06-21,Automated SLA check-in for TSK-01961.,True,"Prerequisites received, finishing documentation",2026-06-21T00:00:00+05:30
+393,1966,3,2,2026-07-06,Automated SLA check-in for TSK-01966.,False,,2026-07-06T00:00:00+05:30
+394,1971,2,2,2026-08-10,Automated SLA check-in for TSK-01971.,True,"Prerequisites received, finishing documentation",2026-08-10T00:00:00+05:30
+395,1976,3,2,2026-11-07,Automated SLA check-in for TSK-01976.,True,"Prerequisites received, finishing documentation",2026-11-07T00:00:00+05:30
+396,1981,2,2,2024-12-04,Automated SLA check-in for TSK-01981.,False,,2024-12-04T00:00:00+05:30
+397,1986,3,2,2024-11-29,Automated SLA check-in for TSK-01986.,True,"Prerequisites received, finishing documentation",2024-11-29T00:00:00+05:30
+398,1991,2,2,2024-12-14,Automated SLA check-in for TSK-01991.,True,"Prerequisites received, finishing documentation",2024-12-14T00:00:00+05:30
+399,1996,3,2,2024-12-23,Automated SLA check-in for TSK-01996.,False,,2024-12-23T00:00:00+05:30
+400,2001,2,2,2025-01-07,Automated SLA check-in for TSK-02001.,True,"Prerequisites received, finishing documentation",2025-01-07T00:00:00+05:30
+401,2006,3,2,2025-06-19,Automated SLA check-in for TSK-02006.,True,"Prerequisites received, finishing documentation",2025-06-19T00:00:00+05:30
+402,2011,2,2,2025-08-08,Automated SLA check-in for TSK-02011.,False,,2025-08-08T00:00:00+05:30
+403,2016,3,2,2025-09-07,Automated SLA check-in for TSK-02016.,True,"Prerequisites received, finishing documentation",2025-09-07T00:00:00+05:30
+404,2021,2,2,2025-08-28,Automated SLA check-in for TSK-02021.,True,"Prerequisites received, finishing documentation",2025-08-28T00:00:00+05:30
+405,2026,3,2,2025-09-27,Automated SLA check-in for TSK-02026.,False,,2025-09-27T00:00:00+05:30
+406,2031,2,2,2025-11-16,Automated SLA check-in for TSK-02031.,True,"Prerequisites received, finishing documentation",2025-11-16T00:00:00+05:30
+407,2036,3,2,2024-12-21,Automated SLA check-in for TSK-02036.,True,"Prerequisites received, finishing documentation",2024-12-21T00:00:00+05:30
+408,2041,2,2,2025-02-09,Automated SLA check-in for TSK-02041.,False,,2025-02-09T00:00:00+05:30
+409,2046,3,2,2025-03-11,Automated SLA check-in for TSK-02046.,True,"Prerequisites received, finishing documentation",2025-03-11T00:00:00+05:30
+410,2051,2,2,2025-04-30,Automated SLA check-in for TSK-02051.,True,"Prerequisites received, finishing documentation",2025-04-30T00:00:00+05:30
+411,2056,3,2,2025-05-30,Automated SLA check-in for TSK-02056.,False,,2025-05-30T00:00:00+05:30
+412,2061,2,2,2025-07-19,Automated SLA check-in for TSK-02061.,True,"Prerequisites received, finishing documentation",2025-07-19T00:00:00+05:30
+413,2066,3,2,2025-08-18,Automated SLA check-in for TSK-02066.,True,"Prerequisites received, finishing documentation",2025-08-18T00:00:00+05:30
+414,2071,2,2,2025-10-07,Automated SLA check-in for TSK-02071.,False,,2025-10-07T00:00:00+05:30
+415,2076,3,2,2025-11-06,Automated SLA check-in for TSK-02076.,True,"Prerequisites received, finishing documentation",2025-11-06T00:00:00+05:30
+416,2081,2,2,2025-10-27,Automated SLA check-in for TSK-02081.,True,"Prerequisites received, finishing documentation",2025-10-27T00:00:00+05:30
+417,2086,3,2,2024-12-01,Automated SLA check-in for TSK-02086.,False,,2024-12-01T00:00:00+05:30
+418,2091,2,2,2025-01-20,Automated SLA check-in for TSK-02091.,True,"Prerequisites received, finishing documentation",2025-01-20T00:00:00+05:30
+419,2096,3,2,2025-02-19,Automated SLA check-in for TSK-02096.,True,"Prerequisites received, finishing documentation",2025-02-19T00:00:00+05:30
+420,2101,2,2,2025-04-10,Automated SLA check-in for TSK-02101.,False,,2025-04-10T00:00:00+05:30
+421,2106,3,2,2025-05-10,Automated SLA check-in for TSK-02106.,True,"Prerequisites received, finishing documentation",2025-05-10T00:00:00+05:30
+422,2111,2,4,2025-03-13,Automated SLA check-in for TSK-02111.,True,"Prerequisites received, finishing documentation",2025-03-13T00:00:00+05:30
+423,2116,3,4,2025-03-18,Automated SLA check-in for TSK-02116.,False,,2025-03-18T00:00:00+05:30
+424,2121,2,3,2025-03-16,Automated SLA check-in for TSK-02121.,True,"Prerequisites received, finishing documentation",2025-03-16T00:00:00+05:30
+425,2126,3,5,2025-04-07,Automated SLA check-in for TSK-02126.,True,"Prerequisites received, finishing documentation",2025-04-07T00:00:00+05:30
+426,2131,2,6,2025-04-16,Automated SLA check-in for TSK-02131.,False,,2025-04-16T00:00:00+05:30
+427,2136,3,16,2025-10-06,Automated SLA check-in for TSK-02136.,True,"Prerequisites received, finishing documentation",2025-10-06T00:00:00+05:30
+428,2141,2,3,2025-11-08,Automated SLA check-in for TSK-02141.,True,"Prerequisites received, finishing documentation",2025-11-08T00:00:00+05:30
+429,2146,3,16,2025-12-21,Automated SLA check-in for TSK-02146.,False,,2025-12-21T00:00:00+05:30
+430,2151,2,17,2026-02-03,Automated SLA check-in for TSK-02151.,True,"Prerequisites received, finishing documentation",2026-02-03T00:00:00+05:30
+431,2156,3,17,2026-03-15,Automated SLA check-in for TSK-02156.,True,"Prerequisites received, finishing documentation",2026-03-15T00:00:00+05:30
+432,2161,2,3,2026-04-17,Automated SLA check-in for TSK-02161.,False,,2026-04-17T00:00:00+05:30
+433,2166,3,18,2025-06-04,Automated SLA check-in for TSK-02166.,True,"Prerequisites received, finishing documentation",2025-06-04T00:00:00+05:30
+434,2171,2,18,2025-07-18,Automated SLA check-in for TSK-02171.,True,"Prerequisites received, finishing documentation",2025-07-18T00:00:00+05:30
+435,2176,3,18,2025-08-27,Automated SLA check-in for TSK-02176.,False,,2025-08-27T00:00:00+05:30
+436,2181,2,3,2025-09-29,Automated SLA check-in for TSK-02181.,True,"Prerequisites received, finishing documentation",2025-09-29T00:00:00+05:30
+437,2186,3,19,2025-11-11,Automated SLA check-in for TSK-02186.,True,"Prerequisites received, finishing documentation",2025-11-11T00:00:00+05:30
+438,2191,2,19,2025-12-25,Automated SLA check-in for TSK-02191.,False,,2025-12-25T00:00:00+05:30
+439,2196,3,20,2026-02-03,Automated SLA check-in for TSK-02196.,True,"Prerequisites received, finishing documentation",2026-02-03T00:00:00+05:30
+440,2201,2,3,2026-03-08,Automated SLA check-in for TSK-02201.,True,"Prerequisites received, finishing documentation",2026-03-08T00:00:00+05:30
+441,2206,3,21,2026-04-20,Automated SLA check-in for TSK-02206.,False,,2026-04-20T00:00:00+05:30
+442,2211,2,21,2026-06-03,Automated SLA check-in for TSK-02211.,True,"Prerequisites received, finishing documentation",2026-06-03T00:00:00+05:30
+443,2216,3,21,2025-07-18,Automated SLA check-in for TSK-02216.,True,"Prerequisites received, finishing documentation",2025-07-18T00:00:00+05:30
+444,2221,2,3,2025-08-20,Automated SLA check-in for TSK-02221.,False,,2025-08-20T00:00:00+05:30
+445,2226,3,7,2025-10-02,Automated SLA check-in for TSK-02226.,True,"Prerequisites received, finishing documentation",2025-10-02T00:00:00+05:30
+446,2231,2,22,2025-11-15,Automated SLA check-in for TSK-02231.,True,"Prerequisites received, finishing documentation",2025-11-15T00:00:00+05:30
+447,2236,3,8,2025-12-25,Automated SLA check-in for TSK-02236.,False,,2025-12-25T00:00:00+05:30
+448,2241,2,3,2026-01-27,Automated SLA check-in for TSK-02241.,True,"Prerequisites received, finishing documentation",2026-01-27T00:00:00+05:30
+449,2246,3,23,2026-03-11,Automated SLA check-in for TSK-02246.,True,"Prerequisites received, finishing documentation",2026-03-11T00:00:00+05:30
+450,2251,2,9,2026-10-14,Automated SLA check-in for TSK-02251.,False,,2026-10-14T00:00:00+05:30
+451,2256,3,9,2026-11-13,Automated SLA check-in for TSK-02256.,True,"Prerequisites received, finishing documentation",2026-11-13T00:00:00+05:30
+452,2261,2,3,2026-12-06,Automated SLA check-in for TSK-02261.,True,"Prerequisites received, finishing documentation",2026-12-06T00:00:00+05:30
+453,2266,3,10,2027-01-08,Automated SLA check-in for TSK-02266.,False,,2027-01-08T00:00:00+05:30
+454,2271,2,11,2027-02-11,Automated SLA check-in for TSK-02271.,True,"Prerequisites received, finishing documentation",2027-02-11T00:00:00+05:30
+455,2276,3,11,2027-03-13,Automated SLA check-in for TSK-02276.,True,"Prerequisites received, finishing documentation",2027-03-13T00:00:00+05:30
+456,2281,2,3,2026-09-07,Automated SLA check-in for TSK-02281.,False,,2026-09-07T00:00:00+05:30
+457,2286,3,12,2026-10-10,Automated SLA check-in for TSK-02286.,True,"Prerequisites received, finishing documentation",2026-10-10T00:00:00+05:30
+458,2291,2,13,2027-04-16,Automated SLA check-in for TSK-02291.,True,"Prerequisites received, finishing documentation",2027-04-16T00:00:00+05:30
+459,2296,3,14,2027-05-11,Automated SLA check-in for TSK-02296.,False,,2027-05-11T00:00:00+05:30
+460,2301,2,3,2027-05-29,Automated SLA check-in for TSK-02301.,True,"Prerequisites received, finishing documentation",2027-05-29T00:00:00+05:30
+461,2306,3,15,2027-09-08,Automated SLA check-in for TSK-02306.,True,"Prerequisites received, finishing documentation",2027-09-08T00:00:00+05:30
+462,2311,2,4,2025-09-29,Automated SLA check-in for TSK-02311.,False,,2025-09-29T00:00:00+05:30
+463,2316,3,4,2025-10-04,Automated SLA check-in for TSK-02316.,True,"Prerequisites received, finishing documentation",2025-10-04T00:00:00+05:30
+464,2321,2,3,2025-10-02,Automated SLA check-in for TSK-02321.,True,"Prerequisites received, finishing documentation",2025-10-02T00:00:00+05:30
+465,2326,3,5,2025-10-24,Automated SLA check-in for TSK-02326.,False,,2025-10-24T00:00:00+05:30
+466,2331,2,6,2025-11-02,Automated SLA check-in for TSK-02331.,True,"Prerequisites received, finishing documentation",2025-11-02T00:00:00+05:30
+467,2336,3,16,2026-04-24,Automated SLA check-in for TSK-02336.,True,"Prerequisites received, finishing documentation",2026-04-24T00:00:00+05:30
+468,2341,2,3,2026-05-27,Automated SLA check-in for TSK-02341.,False,,2026-05-27T00:00:00+05:30
+469,2346,3,16,2026-07-09,Automated SLA check-in for TSK-02346.,True,"Prerequisites received, finishing documentation",2026-07-09T00:00:00+05:30
+470,2351,2,17,2026-08-22,Automated SLA check-in for TSK-02351.,True,"Prerequisites received, finishing documentation",2026-08-22T00:00:00+05:30
+471,2356,3,17,2026-10-01,Automated SLA check-in for TSK-02356.,False,,2026-10-01T00:00:00+05:30
+472,2361,2,3,2026-11-03,Automated SLA check-in for TSK-02361.,True,"Prerequisites received, finishing documentation",2026-11-03T00:00:00+05:30
+473,2366,3,18,2025-12-21,Automated SLA check-in for TSK-02366.,True,"Prerequisites received, finishing documentation",2025-12-21T00:00:00+05:30
+474,2371,2,18,2026-02-03,Automated SLA check-in for TSK-02371.,False,,2026-02-03T00:00:00+05:30
+475,2376,3,18,2026-03-15,Automated SLA check-in for TSK-02376.,True,"Prerequisites received, finishing documentation",2026-03-15T00:00:00+05:30
+476,2381,2,3,2026-04-17,Automated SLA check-in for TSK-02381.,True,"Prerequisites received, finishing documentation",2026-04-17T00:00:00+05:30
+477,2386,3,19,2026-05-30,Automated SLA check-in for TSK-02386.,False,,2026-05-30T00:00:00+05:30
+478,2391,2,19,2026-07-13,Automated SLA check-in for TSK-02391.,True,"Prerequisites received, finishing documentation",2026-07-13T00:00:00+05:30
+479,2396,3,20,2026-08-22,Automated SLA check-in for TSK-02396.,True,"Prerequisites received, finishing documentation",2026-08-22T00:00:00+05:30
+480,2401,2,3,2026-09-24,Automated SLA check-in for TSK-02401.,False,,2026-09-24T00:00:00+05:30

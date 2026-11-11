@@ -1,0 +1,90 @@
+{
+  "model_version": "v2.1.0-phase7a",
+  "input_features": [
+    {
+      "name": "days_remaining",
+      "type": "integer",
+      "description": "Days remaining until task due date",
+      "min": 1,
+      "max": 30,
+      "default": 5
+    },
+    {
+      "name": "task_category",
+      "type": "string",
+      "description": "Administrative category of the task",
+      "allowed_values": [
+        "ONBOARDING",
+        "PROBATION",
+        "PERFORMANCE",
+        "COMPLIANCE",
+        "OFFBOARDING"
+      ],
+      "default": "ONBOARDING"
+    },
+    {
+      "name": "task_priority",
+      "type": "string",
+      "description": "Operational urgency tier",
+      "allowed_values": [
+        "HIGH",
+        "MEDIUM",
+        "LOW"
+      ],
+      "default": "MEDIUM"
+    },
+    {
+      "name": "current_status",
+      "type": "string",
+      "description": "Current task operational status at observation time",
+      "allowed_values": [
+        "IN_PROGRESS",
+        "COMPLETED",
+        "BLOCKED"
+      ],
+      "default": "IN_PROGRESS"
+    },
+    {
+      "name": "reminder_count",
+      "type": "integer",
+      "description": "Cumulative reminder notifications sent before observation",
+      "min": 0,
+      "max": 5,
+      "default": 0
+    },
+    {
+      "name": "owner_previous_delay_rate",
+      "type": "float",
+      "description": "Historical delay rate of the assigned owner (Empirical Bayes smoothed)",
+      "min": 0.0,
+      "max": 1.0,
+      "default": 0.2
+    },
+    {
+      "name": "owner_current_workload",
+      "type": "integer",
+      "description": "Active concurrent task backlog of the assigned owner",
+      "min": 0,
+      "max": 50,
+      "default": 8
+    },
+    {
+      "name": "dependency_status",
+      "type": "string",
+      "description": "Status of prerequisite tasks",
+      "allowed_values": [
+        "NONE",
+        "ALL_MET",
+        "PENDING"
+      ],
+      "default": "NONE"
+    }
+  ],
+  "output_schema": {
+    "delay_probability": "float between 0.0 and 1.0",
+    "risk_classification": "LOW, MEDIUM, or HIGH",
+    "model_version": "string",
+    "prediction_timestamp": "ISO 8601 UTC string",
+    "contributing_factors": "List of top positive and negative feature contributions"
+  }
+}
