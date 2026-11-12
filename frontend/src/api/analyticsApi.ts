@@ -7,9 +7,13 @@ import {
 } from '../types/analytics';
 
 export const analyticsApi = {
-  getPerformance: async (params?: AnalyticsFilterParams): Promise<AnalyticsPerformanceResponse> => {
+  getPerformance: async (
+    params?: AnalyticsFilterParams,
+    signal?: AbortSignal
+  ): Promise<AnalyticsPerformanceResponse> => {
     const res = await axiosClient.get<AnalyticsPerformanceResponse>('/api/v1/analytics/performance', {
       params,
+      ...(signal ? { signal } : {}),
     });
     return res.data;
   },

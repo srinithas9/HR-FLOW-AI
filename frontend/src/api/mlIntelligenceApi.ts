@@ -8,16 +8,24 @@ import {
 } from '../types/mlIntelligence';
 
 export const mlIntelligenceApi = {
-  getOverview: async (departmentId?: number): Promise<MLIntelligenceOverview> => {
+  getOverview: async (
+    departmentId?: number,
+    signal?: AbortSignal
+  ): Promise<MLIntelligenceOverview> => {
     const res = await axiosClient.get<MLIntelligenceOverview>('/api/v1/ml-intelligence/overview', {
       params: departmentId ? { department_id: departmentId } : undefined,
+      ...(signal ? { signal } : {}),
     });
     return res.data;
   },
 
-  listTasks: async (params?: MLTasksFilterParams): Promise<MLTasksListResponse> => {
+  listTasks: async (
+    params?: MLTasksFilterParams,
+    signal?: AbortSignal
+  ): Promise<MLTasksListResponse> => {
     const res = await axiosClient.get<MLTasksListResponse>('/api/v1/ml-intelligence/tasks', {
       params,
+      ...(signal ? { signal } : {}),
     });
     return res.data;
   },

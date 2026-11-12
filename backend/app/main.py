@@ -133,6 +133,10 @@ async def run_daily_sla_scheduler():
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
+    # Pre-warm ML predictor singleton so initial dashboard requests avoid cold-load latency
+    from app.services.ml_inference_service import get_predictor
+    await asyncio.to_thread(get_predictor)
+
     # Startup: spawn automated SLA scan
     sla_task = asyncio.create_task(run_daily_sla_scheduler())
     yield

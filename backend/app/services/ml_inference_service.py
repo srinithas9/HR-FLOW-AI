@@ -1,3 +1,4 @@
+import threading
 from datetime import datetime, date, timezone
 from typing import Optional, Dict, Any, List
 from sqlalchemy.orm import Session
@@ -19,11 +20,15 @@ if str(ROOT_DIR) not in sys.path:
 from ml.predictor import TaskDelayRiskPredictor
 
 _predictor_instance: Optional[TaskDelayRiskPredictor] = None
+_predictor_lock = threading.Lock()
+
 
 def get_predictor() -> TaskDelayRiskPredictor:
     global _predictor_instance
     if _predictor_instance is None:
-        _predictor_instance = TaskDelayRiskPredictor()
+        with _predictor_lock:
+            if _predictor_instance is None:
+                _predictor_instance = TaskDelayRiskPredictor()
     return _predictor_instance
 
 

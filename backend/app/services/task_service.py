@@ -51,13 +51,8 @@ class TaskService:
 
     @staticmethod
     def _get_ml_risk_level(prob: float) -> str:
-        if prob >= 0.75:
-            return "CRITICAL"
-        elif prob >= 0.50:
-            return "HIGH"
-        elif prob >= 0.25:
-            return "MEDIUM"
-        return "LOW"
+        from app.services.ml_inference_service import get_predictor
+        return get_predictor().classify_probability(prob)
 
     @staticmethod
     def _verify_task_access(db: Session, current_user: User, task: Task):

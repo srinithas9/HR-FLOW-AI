@@ -1,6 +1,6 @@
 from datetime import datetime, date, timezone
 from typing import Optional, List, Dict, Any, Tuple
-from collections import Counter
+from collections import Counter, defaultdict
 from sqlalchemy.orm import Session
 from sqlalchemy import select, func, and_, or_, desc, asc
 
@@ -24,6 +24,7 @@ from app.schemas.ml_intelligence import (
 from app.core.exceptions import ResourceNotFoundException, PermissionDeniedException
 from app.core.permissions import get_reporting_employee_ids
 from app.services.task_service import TaskService
+from app.services.ml_inference_service import get_predictor
 import sys
 from pathlib import Path
 
@@ -33,15 +34,6 @@ if str(ROOT_DIR) not in sys.path:
     sys.path.insert(0, str(ROOT_DIR))
 
 from ml.predictor import TaskDelayRiskPredictor
-
-_predictor_instance: Optional[TaskDelayRiskPredictor] = None
-
-
-def get_predictor() -> TaskDelayRiskPredictor:
-    global _predictor_instance
-    if _predictor_instance is None:
-        _predictor_instance = TaskDelayRiskPredictor()
-    return _predictor_instance
 
 
 class MLIntelligenceService:
@@ -94,7 +86,7 @@ class MLIntelligenceService:
         Batch-gathers workloads, historical delay rates, dependencies, follow-ups, and escalations.
         """
         if not task_rows:
-            return {}, {}, {}, {}, {}, {}, {}, {}
+            return {}, {}, {}, {}, {}, {}, {}, {}, {}
 
         task_ids = [t[0].id for t in task_rows]
         owner_ids = list({t[0].owner_id for t in task_rows})
@@ -108,21 +100,25 @@ class MLIntelligenceService:
         )
         workload_map = dict(wl_rows)
 
-        # 2. Owner historical delay rates
+        # 2. Owner historical delay rates (single O(N) pass)
         owner_past = (
             db.query(Task.owner_id, Task.due_date, Task.completed_at)
             .filter(Task.owner_id.in_(owner_ids), Task.completed_at.is_not(None))
             .all()
         )
-        owner_hist = {}
-        for oid in owner_ids:
-            past_records = [x for x in owner_past if x[0] == oid]
-            n = len(past_records)
-            if n > 0:
-                k = sum(1 for _, due, comp in past_records if comp.date() > due)
-                owner_hist[oid] = round((k + 2.0) / (n + 10.0), 4)
-            else:
-                owner_hist[oid] = 0.20
+        past_counts: Dict[int, List[int]] = defaultdict(lambda: [0, 0])
+        for oid, due, comp in owner_past:
+            stats = past_counts[oid]
+            stats[0] += 1
+            if comp.date() > due:
+                stats[1] += 1
+
+        owner_hist = {
+            oid: round((past_counts[oid][1] + 2.0) / (past_counts[oid][0] + 10.0), 4)
+            if past_counts[oid][0] > 0
+            else 0.20
+            for oid in owner_ids
+        }
 
         # 3. Dependencies
         dep_rows = (
@@ -236,6 +232,40 @@ class MLIntelligenceService:
 
         return workload_map, owner_hist, all_deps, unmet_deps, all_fus, open_fus, all_escs, open_escs, rem_map
 
+    @staticmethod
+    def _compute_attention_priority(
+        days_rem: int,
+        is_overdue: bool,
+        overdue_days: int,
+        unmet_count: int,
+        has_open_esc: bool,
+        has_open_fu: bool,
+        risk_tier: str,
+        delay_prob: float,
+        owner_wl: int,
+    ) -> Tuple[str, str]:
+        """Compute deterministic HR attention priority and explanation rule."""
+        has_unmet_deps = unmet_count > 0
+        if overdue_days >= 3:
+            return "CRITICAL", f"Task is overdue by {overdue_days} days."
+        if is_overdue and has_unmet_deps:
+            return "CRITICAL", f"Task is overdue by {overdue_days} days and blocked by {unmet_count} unfinished prerequisite task(s)."
+        if is_overdue and has_open_esc:
+            return "CRITICAL", "Task is overdue with an active open escalation."
+        if days_rem <= 2 and has_unmet_deps:
+            return "CRITICAL", f"Deadline is in {days_rem} day(s) but prerequisite task is still incomplete."
+        if is_overdue:
+            return "NEEDS_ATTENTION", f"Task is recently overdue by {overdue_days} day(s)."
+        if days_rem <= 5 and risk_tier == "HIGH":
+            return "NEEDS_ATTENTION", f"High predicted delay risk ({round(delay_prob*100, 1)}%) with only {days_rem} day(s) remaining."
+        if has_open_esc:
+            return "NEEDS_ATTENTION", "Task has an open escalation requiring management review."
+        if has_open_fu:
+            return "NEEDS_ATTENTION", "Awaiting follow-up response from assignee or participant."
+        if risk_tier == "HIGH" and owner_wl >= 15:
+            return "NEEDS_ATTENTION", f"High delay probability compounded by assignee workload backlog ({owner_wl} active tasks)."
+        return "MONITOR", "Operating within acceptable progress buffer; maintain routine monitoring."
+
     @classmethod
     def _evaluate_single_task(
         cls,
@@ -311,37 +341,17 @@ class MLIntelligenceService:
             bottlenecks.append("LIFECYCLE_MILESTONE")
 
         # 3. Transparent HR Attention Priority Rules
-        attention_rule = ""
-        if overdue_days >= 3:
-            priority = "CRITICAL"
-            attention_rule = f"Task is overdue by {overdue_days} days."
-        elif is_overdue and has_unmet_deps:
-            priority = "CRITICAL"
-            attention_rule = f"Task is overdue by {overdue_days} days and blocked by {len(unmet_list)} unfinished prerequisite task(s)."
-        elif is_overdue and has_open_esc:
-            priority = "CRITICAL"
-            attention_rule = f"Task is overdue with an active open escalation."
-        elif days_rem <= 2 and has_unmet_deps:
-            priority = "CRITICAL"
-            attention_rule = f"Deadline is in {days_rem} day(s) but prerequisite task is still incomplete."
-        elif is_overdue:
-            priority = "NEEDS_ATTENTION"
-            attention_rule = f"Task is recently overdue by {overdue_days} day(s)."
-        elif days_rem <= 5 and risk_tier == "HIGH":
-            priority = "NEEDS_ATTENTION"
-            attention_rule = f"High predicted delay risk ({round(delay_prob*100, 1)}%) with only {days_rem} day(s) remaining."
-        elif has_open_esc:
-            priority = "NEEDS_ATTENTION"
-            attention_rule = "Task has an open escalation requiring management review."
-        elif has_open_fu:
-            priority = "NEEDS_ATTENTION"
-            attention_rule = "Awaiting follow-up response from assignee or participant."
-        elif risk_tier == "HIGH" and owner_wl >= 15:
-            priority = "NEEDS_ATTENTION"
-            attention_rule = f"High delay probability compounded by assignee workload backlog ({owner_wl} active tasks)."
-        else:
-            priority = "MONITOR"
-            attention_rule = "Operating within acceptable progress buffer; maintain routine monitoring."
+        priority, attention_rule = cls._compute_attention_priority(
+            days_rem=days_rem,
+            is_overdue=is_overdue,
+            overdue_days=overdue_days,
+            unmet_count=len(unmet_list),
+            has_open_esc=has_open_esc,
+            has_open_fu=has_open_fu,
+            risk_tier=risk_tier,
+            delay_prob=delay_prob,
+            owner_wl=owner_wl,
+        )
 
         # 4. Concise Main Concern Description
         if is_overdue and has_unmet_deps:
@@ -457,27 +467,38 @@ class MLIntelligenceService:
                 "owner_current_workload": workload_map.get(task.owner_id, 1),
                 "dependency_status": dep_status
             })
-        batch_preds = predictor.predict_batch(feature_list)
+        batch_preds = predictor.predict_batch(feature_list, include_contributions=False)
 
-        for (task, emp, owner, dept), pred in zip(rows, batch_preds):
-            eval_res = cls._evaluate_single_task(
-                task, emp, owner, dept, today,
-                workload_map, owner_hist, all_deps, unmet_deps,
-                all_fus, open_fus, all_escs, open_escs, rem_map, predictor,
-                pred=pred
-            )
-            if eval_res["risk_level"] == "HIGH":
+        for (task, _emp, _owner, _dept), pred in zip(rows, batch_preds):
+            days_rem = (task.due_date - today).days
+            is_overdue = days_rem < 0
+            overdue_days = abs(days_rem) if is_overdue else 0
+            risk_tier = pred["risk_classification"]
+            delay_prob = pred["delay_probability"]
+
+            if risk_tier == "HIGH":
                 high_risk_count += 1
-            elif eval_res["risk_level"] == "MEDIUM":
+            elif risk_tier == "MEDIUM":
                 medium_risk_count += 1
-            elif eval_res["risk_level"] == "LOW":
+            elif risk_tier == "LOW":
                 low_risk_count += 1
 
-            if eval_res["hr_attention_priority"] in ["CRITICAL", "NEEDS_ATTENTION"]:
+            priority, _ = cls._compute_attention_priority(
+                days_rem=days_rem,
+                is_overdue=is_overdue,
+                overdue_days=overdue_days,
+                unmet_count=len(unmet_deps.get(task.id, [])),
+                has_open_esc=bool(open_escs.get(task.id)),
+                has_open_fu=bool(open_fus.get(task.id)),
+                risk_tier=risk_tier,
+                delay_prob=delay_prob,
+                owner_wl=workload_map.get(task.owner_id, 1),
+            )
+            if priority in ["CRITICAL", "NEEDS_ATTENTION"]:
                 needs_attention_count += 1
-            if eval_res["is_overdue"]:
+            if is_overdue:
                 overdue_count += 1
-            if not eval_res["is_overdue"] and 0 <= eval_res["days_remaining"] <= 7 and eval_res["risk_level"] in ["HIGH", "MEDIUM"]:
+            if not is_overdue and 0 <= days_rem <= 7 and risk_tier in ["HIGH", "MEDIUM"]:
                 upcoming_at_risk_count += 1
 
         return MLIntelligenceOverview(
@@ -525,17 +546,26 @@ class MLIntelligenceService:
                 "total_pages": 0
             }
 
-        meta = cls._gather_task_metadata(db, rows, today)
-        (workload_map, owner_hist, all_deps, unmet_deps, all_fus, open_fus, all_escs, open_escs, rem_map) = meta
-
-        # Pre-filter by owner and process if provided to minimize evaluation overhead
+        # Pre-filter by owner, process, overdue_only, and search before gathering metadata / running ML inference
+        search_term = search.lower().strip() if search else None
         filtered_rows = []
         for r in rows:
-            task = r[0]
+            task, emp, owner, _dept = r
             if owner_id and task.owner_id != owner_id:
                 continue
             if process and task.category != process:
                 continue
+            if overdue_only and (task.due_date - today).days >= 0:
+                continue
+            if search_term:
+                emp_name = f"{emp.first_name} {emp.last_name}".lower() if emp else ""
+                if not (
+                    search_term in task.task_code.lower()
+                    or search_term in task.title.lower()
+                    or search_term in emp_name
+                    or search_term in owner.full_name.lower()
+                ):
+                    continue
             filtered_rows.append(r)
 
         if not filtered_rows:
@@ -546,6 +576,9 @@ class MLIntelligenceService:
                 "size": size,
                 "total_pages": 0
             }
+
+        meta = cls._gather_task_metadata(db, filtered_rows, today)
+        (workload_map, owner_hist, all_deps, unmet_deps, all_fus, open_fus, all_escs, open_escs, rem_map) = meta
 
         # Vectorized batch prediction pass
         feature_list = []
@@ -564,7 +597,7 @@ class MLIntelligenceService:
                 "owner_current_workload": workload_map.get(task.owner_id, 1),
                 "dependency_status": dep_status
             })
-        batch_preds = predictor.predict_batch(feature_list)
+        batch_preds = predictor.predict_batch(feature_list, include_contributions=False)
 
         evaluated_tasks = []
         for (task, emp, owner, dept), pred in zip(filtered_rows, batch_preds):
@@ -877,7 +910,7 @@ class MLIntelligenceService:
                     "owner_current_workload": workload_map.get(task.owner_id, 1),
                     "dependency_status": dep_status
                 })
-            batch_preds = predictor.predict_batch(feature_list)
+            batch_preds = predictor.predict_batch(feature_list, include_contributions=False)
 
             for (task, emp, owner, dept), pred in zip(rows, batch_preds):
                 eval_res = cls._evaluate_single_task(

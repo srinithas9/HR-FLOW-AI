@@ -1,5 +1,6 @@
-import React, { useState, useEffect, useMemo, useCallback } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import {
   BarChart,
   Bar,
@@ -60,11 +61,16 @@ export const HROperationsInsightsPage: React.FC = () => {
 
   // Section 2: ML Intelligence Data State
   const [mlOverview, setMlOverview] = useState<MLIntelligenceOverview | null>(null);
-  const [highRiskTasks, setHighRiskTasks] = useState<MLIntelligenceTaskItem[]>([]);
-  const [mediumRiskTasks, setMediumRiskTasks] = useState<MLIntelligenceTaskItem[]>([]);
-  const [lowRiskTasks, setLowRiskTasks] = useState<MLIntelligenceTaskItem[]>([]);
-  const [isMlLoading, setIsMlLoading] = useState<boolean>(true);
+  const [tasksCache, setTasksCache] = useState<{
+    filterKey: string;
+    HIGH?: MLIntelligenceTaskItem[];
+    MEDIUM?: MLIntelligenceTaskItem[];
+    LOW?: MLIntelligenceTaskItem[];
+  }>({ filterKey: 'ALL::ALL' });
+  const [isOverviewLoading, setIsOverviewLoading] = useState<boolean>(true);
+  const [isTasksLoading, setIsTasksLoading] = useState<boolean>(true);
   const [mlError, setMlError] = useState<string | null>(null);
+  const [mlRetryNonce, setMlRetryNonce] = useState<number>(0);
 
   // Interactive Risk Indicator Tab: 'HIGH' | 'MEDIUM' | 'LOW' (High Risk selected by default)
   const [selectedRiskTab, setSelectedRiskTab] = useState<'HIGH' | 'MEDIUM' | 'LOW'>('HIGH');
@@ -100,78 +106,126 @@ export const HROperationsInsightsPage: React.FC = () => {
       .catch((err) => console.error('Failed to load departments', err));
   }, []);
 
-  // Fetch Operational Analytics
-  const fetchAnalytics = useCallback(async () => {
+  const mlFilterKey = `${selectedDepartment}::${selectedProcess}`;
+
+  // Fetch Operational Analytics (re-runs only when analytics filters change)
+  useEffect(() => {
+    const controller = new AbortController();
     setIsAnalyticsLoading(true);
     setAnalyticsError(null);
-    try {
-      const deptId = selectedDepartment !== 'ALL' ? Number(selectedDepartment) : undefined;
-      const proc = selectedProcess !== 'ALL' ? selectedProcess : undefined;
-      const data = await analyticsApi.getPerformance({
-        period: selectedPeriod,
-        department_id: deptId,
-        process: proc,
+
+    const deptId = selectedDepartment !== 'ALL' ? Number(selectedDepartment) : undefined;
+    const proc = selectedProcess !== 'ALL' ? selectedProcess : undefined;
+
+    analyticsApi
+      .getPerformance(
+        {
+          period: selectedPeriod,
+          department_id: deptId,
+          process: proc,
+        },
+        controller.signal
+      )
+      .then((data) => {
+        setAnalyticsData(data);
+      })
+      .catch((err: any) => {
+        if (axios.isCancel(err) || err?.code === 'ERR_CANCELED') return;
+        console.error('Failed to load operational analytics', err);
+        setAnalyticsError(
+          err.response?.data?.detail || 'Failed to retrieve operational performance metrics.'
+        );
+      })
+      .finally(() => {
+        if (!controller.signal.aborted) {
+          setIsAnalyticsLoading(false);
+        }
       });
-      setAnalyticsData(data);
-    } catch (err: any) {
-      console.error('Failed to load operational analytics', err);
-      setAnalyticsError(
-        err.response?.data?.detail || 'Failed to retrieve operational performance metrics.'
-      );
-    } finally {
-      setIsAnalyticsLoading(false);
-    }
+
+    return () => controller.abort();
   }, [selectedPeriod, selectedProcess, selectedDepartment]);
 
-  // Fetch ML Intelligence Tasks & Overview
-  const fetchMlData = useCallback(async () => {
-    setIsMlLoading(true);
-    setMlError(null);
-    try {
-      const deptId = selectedDepartment !== 'ALL' ? Number(selectedDepartment) : undefined;
-      const proc = selectedProcess !== 'ALL' ? selectedProcess : undefined;
-
-      const [overviewRes, highRes, medRes, lowRes] = await Promise.all([
-        mlIntelligenceApi.getOverview(deptId),
-        mlIntelligenceApi.listTasks({
-          risk_level: 'HIGH',
-          process: proc,
-          department_id: deptId,
-          size: 50,
-        }),
-        mlIntelligenceApi.listTasks({
-          risk_level: 'MEDIUM',
-          process: proc,
-          department_id: deptId,
-          size: 50,
-        }),
-        mlIntelligenceApi.listTasks({
-          risk_level: 'LOW',
-          process: proc,
-          department_id: deptId,
-          size: 50,
-        }),
-      ]);
-
-      setMlOverview(overviewRes);
-      setHighRiskTasks(highRes.items || []);
-      setMediumRiskTasks(medRes.items || []);
-      setLowRiskTasks(lowRes.items || []);
-    } catch (err: any) {
-      console.error('Failed to load ML intelligence data', err);
-      setMlError(
-        err.response?.data?.detail || 'Failed to load task delay risk predictions.'
-      );
-    } finally {
-      setIsMlLoading(false);
-    }
-  }, [selectedDepartment, selectedProcess]);
-
-  // Re-fetch when filters change
+  // Fetch ML Overview Counts (scoped by department; independent of period and stage)
   useEffect(() => {
-    fetchAnalytics();
-    fetchMlData();
-  }, [fetchAnalytics, fetchMlData]);
+    const controller = new AbortController();
+    setIsOverviewLoading(true);
+    setMlError(null);
+
+    const deptId = selectedDepartment !== 'ALL' ? Number(selectedDepartment) : undefined;
+
+    mlIntelligenceApi
+      .getOverview(deptId, controller.signal)
+      .then((overviewRes) => {
+        setMlOverview(overviewRes);
+      })
+      .catch((err: any) => {
+        if (axios.isCancel(err) || err?.code === 'ERR_CANCELED') return;
+        console.error('Failed to load ML intelligence data', err);
+        setMlError(
+          err.response?.data?.detail || 'Failed to load task delay risk predictions.'
+        );
+      })
+      .finally(() => {
+        if (!controller.signal.aborted) {
+          setIsOverviewLoading(false);
+        }
+      });
+
+    return () => controller.abort();
+  }, [selectedDepartment, mlRetryNonce]);
+
+  // Lazy-fetch only the currently selected Risk Tab and cache per (department, process) filter
+  useEffect(() => {
+    if (tasksCache.filterKey === mlFilterKey && tasksCache[selectedRiskTab] !== undefined) {
+      setIsTasksLoading(false);
+      return;
+    }
+
+    const controller = new AbortController();
+    setIsTasksLoading(true);
+    setMlError(null);
+
+    const deptId = selectedDepartment !== 'ALL' ? Number(selectedDepartment) : undefined;
+    const proc = selectedProcess !== 'ALL' ? selectedProcess : undefined;
+
+    mlIntelligenceApi
+      .listTasks(
+        {
+          risk_level: selectedRiskTab,
+          process: proc,
+          department_id: deptId,
+          size: 50,
+        },
+        controller.signal
+      )
+      .then((res) => {
+        const items = res.items || [];
+        setTasksCache((prev) =>
+          prev.filterKey === mlFilterKey
+            ? { ...prev, [selectedRiskTab]: items }
+            : { filterKey: mlFilterKey, [selectedRiskTab]: items }
+        );
+      })
+      .catch((err: any) => {
+        if (axios.isCancel(err) || err?.code === 'ERR_CANCELED') return;
+        console.error('Failed to load ML intelligence tasks', err);
+        setMlError(
+          err.response?.data?.detail || 'Failed to load task delay risk predictions.'
+        );
+      })
+      .finally(() => {
+        if (!controller.signal.aborted) {
+          setIsTasksLoading(false);
+        }
+      });
+
+    return () => controller.abort();
+  }, [mlFilterKey, selectedDepartment, selectedProcess, selectedRiskTab, mlRetryNonce, tasksCache]);
+
+  const handleRetryMl = () => {
+    setTasksCache({ filterKey: mlFilterKey });
+    setMlRetryNonce((n) => n + 1);
+  };
 
   // Open Task Assessment Drawer
   const handleOpenAssessment = async (taskId: number) => {
@@ -262,10 +316,9 @@ export const HROperationsInsightsPage: React.FC = () => {
 
   // Active risk task list according to selected risk indicator
   const activeTaskList = useMemo(() => {
-    if (selectedRiskTab === 'HIGH') return highRiskTasks;
-    if (selectedRiskTab === 'MEDIUM') return mediumRiskTasks;
-    return lowRiskTasks;
-  }, [selectedRiskTab, highRiskTasks, mediumRiskTasks, lowRiskTasks]);
+    if (tasksCache.filterKey !== mlFilterKey) return [];
+    return tasksCache[selectedRiskTab] ?? [];
+  }, [tasksCache, mlFilterKey, selectedRiskTab]);
 
   // Filter tasks by search term
   const filteredTasks = useMemo(() => {
@@ -915,9 +968,18 @@ export const HROperationsInsightsPage: React.FC = () => {
         </div>
 
         {mlError && (
-          <div className="p-4.5 rounded-xl border border-rose-200 bg-rose-50 text-rose-800 text-[14px] flex items-center gap-2">
-            <AlertCircle className="w-5 h-5 shrink-0" />
-            <span>{mlError}</span>
+          <div className="p-4.5 rounded-xl border border-rose-200 bg-rose-50 text-rose-800 text-[14px] flex items-center justify-between gap-3">
+            <div className="flex items-center gap-2">
+              <AlertCircle className="w-5 h-5 shrink-0" />
+              <span>{mlError}</span>
+            </div>
+            <button
+              type="button"
+              onClick={handleRetryMl}
+              className="px-3 py-1.5 rounded-lg bg-rose-600 hover:bg-rose-700 text-white text-xs font-semibold shrink-0 cursor-pointer"
+            >
+              Retry
+            </button>
           </div>
         )}
 
@@ -949,7 +1011,7 @@ export const HROperationsInsightsPage: React.FC = () => {
             </div>
             <div className="mt-3 flex items-baseline gap-2">
               <span className="text-3xl font-bold font-mono text-rose-700">
-                {isMlLoading ? '—' : mlOverview?.high_risk_tasks ?? highRiskTasks.length}
+                {isOverviewLoading ? '—' : mlOverview?.high_risk_tasks ?? (tasksCache.HIGH?.length ?? 0)}
               </span>
               <span className="text-xs font-medium text-[#625A70]">active tasks</span>
             </div>
@@ -984,7 +1046,7 @@ export const HROperationsInsightsPage: React.FC = () => {
             </div>
             <div className="mt-3 flex items-baseline gap-2">
               <span className="text-3xl font-bold font-mono text-amber-700">
-                {isMlLoading ? '—' : mlOverview?.medium_risk_tasks ?? mediumRiskTasks.length}
+                {isOverviewLoading ? '—' : mlOverview?.medium_risk_tasks ?? (tasksCache.MEDIUM?.length ?? 0)}
               </span>
               <span className="text-xs font-medium text-[#625A70]">active tasks</span>
             </div>
@@ -1019,7 +1081,7 @@ export const HROperationsInsightsPage: React.FC = () => {
             </div>
             <div className="mt-3 flex items-baseline gap-2">
               <span className="text-3xl font-bold font-mono text-emerald-700">
-                {isMlLoading ? '—' : mlOverview?.low_risk_tasks ?? lowRiskTasks.length}
+                {isOverviewLoading ? '—' : mlOverview?.low_risk_tasks ?? (tasksCache.LOW?.length ?? 0)}
               </span>
               <span className="text-xs font-medium text-[#625A70]">active tasks</span>
             </div>
@@ -1082,7 +1144,7 @@ export const HROperationsInsightsPage: React.FC = () => {
           {/* 10-Column Responsive Operational Table */}
           <RiskTaskTable
             tasks={filteredTasks}
-            isLoading={isMlLoading}
+            isLoading={isTasksLoading}
             onReview={handleOpenAssessment}
             selectedRiskTab={selectedRiskTab}
           />
@@ -1116,23 +1178,23 @@ export const HROperationsInsightsPage: React.FC = () => {
 
             <div className="space-y-3 text-xs leading-relaxed text-[#292238]">
               <div className="p-3.5 rounded-xl border border-rose-200 bg-rose-50/50 space-y-1">
-                <span className="font-bold text-rose-800">High Risk (Delay Probability ≥ 22.0%)</span>
+                <span className="font-bold text-rose-800">High Risk (Delay Probability ≥ 20.0%)</span>
                 <p className="text-rose-900">
-                  Tasks where calibrated delay probability is 22.0% or higher. Triggered by imminent deadlines (≤ 2 days), active prerequisite blockers, open escalations, or severe assignee workload backlog (≥ 15 active tasks).
+                  Tasks where calibrated delay probability is 20.0% or higher. Triggered by imminent deadlines (≤ 2 days), active prerequisite blockers, open escalations, or severe assignee workload backlog (≥ 15 active tasks).
                 </p>
               </div>
 
               <div className="p-3.5 rounded-xl border border-amber-200 bg-amber-50/50 space-y-1">
-                <span className="font-bold text-amber-800">Medium Risk (12.0% to 21.9%)</span>
+                <span className="font-bold text-amber-800">Medium Risk (10.0% to 19.9%)</span>
                 <p className="text-amber-900">
-                  Tasks with calibrated delay risk between 12.0% and 21.9%. Displays moderate operational warning signs, pending stakeholder responses, or tight upcoming milestone dates.
+                  Tasks with calibrated delay risk between 10.0% and 19.9%. Displays moderate operational warning signs, pending stakeholder responses, or tight upcoming milestone dates.
                 </p>
               </div>
 
               <div className="p-3.5 rounded-xl border border-emerald-200 bg-emerald-50/50 space-y-1">
-                <span className="font-bold text-emerald-800">Low Risk (Delay Probability &lt; 12.0%)</span>
+                <span className="font-bold text-emerald-800">Low Risk (Delay Probability &lt; 10.0%)</span>
                 <p className="text-emerald-900">
-                  Tasks with calibrated delay risk below 12.0%. Operating with adequate schedule buffers and verified prerequisites; routine monitoring recommended.
+                  Tasks with calibrated delay risk below 10.0%. Operating with adequate schedule buffers and verified prerequisites; routine monitoring recommended.
                 </p>
               </div>
 

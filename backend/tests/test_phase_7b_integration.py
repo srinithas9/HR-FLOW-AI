@@ -29,8 +29,8 @@ def test_model_artifact_loading():
     predictor = TaskDelayRiskPredictor()
     assert predictor is not None
     assert predictor.model_version == "v2.1.0-phase7a"
-    assert predictor.t_low == 0.12
-    assert predictor.t_high == 0.22
+    assert predictor.t_low == 0.10
+    assert predictor.t_high == 0.20
 
 
 def test_shadow_prediction_api_success():

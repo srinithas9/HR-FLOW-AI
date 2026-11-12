@@ -20,8 +20,8 @@ def predictor():
 def test_predictor_initialization(predictor):
     assert predictor is not None
     assert predictor.model_version == "v2.1.0-phase7a"
-    assert predictor.t_low == 0.12
-    assert predictor.t_high == 0.22
+    assert predictor.t_low == 0.10
+    assert predictor.t_high == 0.20
 
 
 def test_valid_prediction(predictor):
@@ -176,4 +176,17 @@ def test_forward_cohort_inference(predictor):
         pred = predictor.predict(raw_feat)
         assert 0.0 <= pred["delay_probability"] <= 1.0
         assert pred["risk_classification"] in ["LOW", "MEDIUM", "HIGH"]
+
+
+def test_risk_band_exact_boundaries(predictor):
+    # Verify exact operational risk bands: LOW (<10%), MEDIUM (10%-19.99%), HIGH (>=20%)
+    assert predictor.classify_probability(0.0999) == "LOW"
+    assert predictor.classify_probability(0.1000) == "MEDIUM"
+    assert predictor.classify_probability(0.1999) == "MEDIUM"
+    assert predictor.classify_probability(0.2000) == "HIGH"
+
+    assert TaskDelayRiskPredictor.classify_risk(0.0999) == "LOW"
+    assert TaskDelayRiskPredictor.classify_risk(0.1000) == "MEDIUM"
+    assert TaskDelayRiskPredictor.classify_risk(0.1999) == "MEDIUM"
+    assert TaskDelayRiskPredictor.classify_risk(0.2000) == "HIGH"
 

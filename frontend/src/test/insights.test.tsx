@@ -362,4 +362,61 @@ describe('HR Operations Insights Page Component', () => {
       expect(screen.getByText('Escalate to hiring manager to expedite candidate response.')).toBeInTheDocument();
     });
   });
+
+  it('displays updated 10% and 20% risk-band thresholds in classification modal', async () => {
+    render(
+      <MemoryRouter>
+        <HROperationsInsightsPage />
+      </MemoryRouter>
+    );
+
+    const infoBtn = await screen.findByRole('button', { name: /how risk is classified/i });
+    fireEvent.click(infoBtn);
+
+    await waitFor(() => {
+      expect(screen.getByText('High Risk (Delay Probability ≥ 20.0%)')).toBeInTheDocument();
+      expect(screen.getByText('Medium Risk (10.0% to 19.9%)')).toBeInTheDocument();
+      expect(screen.getByText('Low Risk (Delay Probability < 10.0%)')).toBeInTheDocument();
+    });
+  });
+
+  it('avoids duplicate ML calls on mount, period change, and cached tab switches', async () => {
+    render(
+      <MemoryRouter>
+        <HROperationsInsightsPage />
+      </MemoryRouter>
+    );
+
+    await waitFor(() => {
+      expect(screen.getByText('TSK-00101')).toBeInTheDocument();
+    });
+
+    // Initial load: only getOverview + HIGH risk listTasks
+    expect(mlIntelligenceApi.getOverview).toHaveBeenCalledTimes(1);
+    expect(mlIntelligenceApi.listTasks).toHaveBeenCalledTimes(1);
+    expect(analyticsApi.getPerformance).toHaveBeenCalledTimes(1);
+
+    // Changing reporting period re-fetches analytics only, not ML intelligence
+    fireEvent.change(screen.getByLabelText('Filter by reporting period'), {
+      target: { value: '90d' },
+    });
+    await waitFor(() => {
+      expect(analyticsApi.getPerformance).toHaveBeenCalledTimes(2);
+    });
+    expect(mlIntelligenceApi.getOverview).toHaveBeenCalledTimes(1);
+    expect(mlIntelligenceApi.listTasks).toHaveBeenCalledTimes(1);
+
+    // Switching to Medium Risk lazy-fetches MEDIUM once, then caches on revisit
+    fireEvent.click(screen.getByRole('button', { name: /Medium Risk/i }));
+    await waitFor(() => {
+      expect(screen.getByText('TSK-00102')).toBeInTheDocument();
+    });
+    expect(mlIntelligenceApi.listTasks).toHaveBeenCalledTimes(2);
+
+    fireEvent.click(screen.getByRole('button', { name: /High Risk/i }));
+    await waitFor(() => {
+      expect(screen.getByText('TSK-00101')).toBeInTheDocument();
+    });
+    expect(mlIntelligenceApi.listTasks).toHaveBeenCalledTimes(2);
+  });
 });

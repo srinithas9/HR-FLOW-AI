@@ -75,7 +75,7 @@ def test_duplicate_and_invalid_telemetry_detection():
             errors.append("INVALID_PROBABILITY")
         prob = rec.get("predicted_delay_probability", 0.0)
         tier = rec.get("risk_tier")
-        expected_tier = "LOW" if prob < 0.12 else ("MEDIUM" if prob < 0.22 else "HIGH")
+        expected_tier = "LOW" if prob < 0.10 else ("MEDIUM" if prob < 0.20 else "HIGH")
         if tier != expected_tier:
             errors.append("TIER_MISMATCH")
         if rec.get("model_version") != "v2.1.0-phase7a":

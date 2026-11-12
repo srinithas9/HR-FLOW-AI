@@ -162,19 +162,19 @@ def test_phase_7e_single_class_metric_and_brier_baseline():
 def test_phase_7e_risk_tier_consistency_and_drift_calculation():
     from scratch.run_phase_7d_audit import calculate_psi
     
-    # Check frozen tier boundaries
+    # Check updated tier boundaries
     def get_tier(prob: float) -> str:
-        if prob < 0.12:
+        if prob < 0.10:
             return "LOW"
-        elif prob < 0.22:
+        elif prob < 0.20:
             return "MEDIUM"
         else:
             return "HIGH"
 
-    assert get_tier(0.08) == "LOW"
-    assert get_tier(0.12) == "MEDIUM"
-    assert get_tier(0.2199) == "MEDIUM"
-    assert get_tier(0.22) == "HIGH"
+    assert get_tier(0.0999) == "LOW"
+    assert get_tier(0.1000) == "MEDIUM"
+    assert get_tier(0.1999) == "MEDIUM"
+    assert get_tier(0.2000) == "HIGH"
 
     # Check PSI
     dist_a = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
