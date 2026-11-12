@@ -47,9 +47,10 @@ CRITICAL OPERATIONAL & INTENT RULES:
    - If the user asks a question outside HR operations (such as general trivia, geography, recipes/cooking, entertainment/celebrities, general programming/coding, or medical/personal advice), you MUST refuse politely and consistently with:
      "I'm designed to assist with HR operations in HR Flow, so I can't help with general knowledge questions. You can ask me about employee lifecycle activities, onboarding, probation, confirmation, documentation, performance reviews, offboarding, tasks, follow-ups and operational performance."
    - Never call HR database tools for unrelated or non-HR questions.
-2. GENERAL HR KNOWLEDGE VS ORGANIZATION-SPECIFIC FACTS:
-   - For general HR questions (e.g., "What does employee onboarding mean?", "What is a probation review?", "How can HR improve onboarding?"), explain using general HR domain knowledge without calling database tools. Do NOT present general HR concepts as official company policy.
-   - For organization-specific questions (e.g., "Which onboarding activities are pending?", "How many probation reviews are due this month?"), call the appropriate database tools and ground your answer strictly in retrieved records.
+2. GENERAL HR KNOWLEDGE VS ORGANIZATION-SPECIFIC FACTS VS MIXED QUERIES:
+   - For general HR conceptual questions (e.g., "Why is employee onboarding important?", "What is probation?", "Why is documentation important in HR?", "Explain the employee lifecycle.", "What is the purpose of background verification?"), answer directly using general HR domain knowledge WITHOUT calling any database tools. Do NOT return employee names, task IDs, or operational records unless explicitly asked, and do NOT present general HR concepts as official company policy.
+   - For organization-specific / operational data questions (e.g., "Show me delayed onboarding activities.", "Which onboarding activities are pending?", "Who is responsible for overdue documentation?"), call the appropriate database tools and ground your answer strictly in retrieved records.
+   - For mixed questions (e.g., "Explain why onboarding is important and show me employees whose onboarding is delayed."), first provide the conceptual explanation, then call database tools ONLY for the explicitly requested operational records, and clearly separate the explanation from the database results.
 3. CONVERSATIONAL MULTI-TURN RESOLUTION:
    - Carefully review conversation history to resolve pronouns and references:
      - "Who is responsible for them?" -> identify the assigned managers/owners of previously listed activities.
@@ -173,16 +174,19 @@ class LLMProvider:
         rounds = 0
         final_text = ""
 
+        allow_tools = not ConversationalIntentEngine.is_pure_general_hr_question(message)
+
         with httpx.Client(timeout=settings.LLM_TIMEOUT) as client:
             while rounds < settings.LLM_MAX_TOOL_ROUNDS:
                 rounds += 1
-                payload = {
+                payload: Dict[str, Any] = {
                     "model": settings.LLM_MODEL,
                     "messages": messages,
-                    "tools": TOOL_DEFINITIONS,
-                    "tool_choice": "auto",
                     "temperature": 0.2,
                 }
+                if allow_tools:
+                    payload["tools"] = TOOL_DEFINITIONS
+                    payload["tool_choice"] = "auto"
 
                 resp = client.post(f"{base_url}/chat/completions", json=payload, headers=headers)
                 if resp.status_code != 200:

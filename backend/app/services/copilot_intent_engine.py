@@ -99,14 +99,78 @@ class ConversationalIntentEngine:
             )
 
         # -------------------------------------------------------------------
-        # 2. GENERAL HR KNOWLEDGE / CONCEPTUAL DEFINITIONS (No DB Tools Required)
+        # 2. GENERAL HR KNOWLEDGE / MIXED INTENT ROUTING
         # -------------------------------------------------------------------
-        gen_hr_response = cls._check_general_hr_knowledge(lower)
-        if gen_hr_response:
+        # Guard company policy inquiries before generic HR conceptual matching
+        # so questions like "What is our leave policy?" still hit the policy guard.
+        is_policy_inquiry = (
+            any(k in lower for k in ["policy", "leave policy", "maternity policy", "paternity policy", "handbook", "guideline"])
+            and not any(k in lower for k in ["task", "emp-", "overdue", "due", "status"])
+        )
+
+        if not is_policy_inquiry:
+            has_conceptual = cls._has_conceptual_intent(lower)
+            has_operational = cls._has_operational_intent(lower)
+
+            # 2A. Pure General HR Knowledge (never call database tools)
+            if has_conceptual and not has_operational:
+                gen_hr_response = cls._generate_general_hr_explanation(lower)
+                if gen_hr_response:
+                    elapsed = round(time.time() - start_time, 2)
+                    return CopilotChatResponse(
+                        conversation_id=conversation_id,
+                        assistant_message=gen_hr_response,
+                        response_status="SUCCESS",
+                        related_records=[],
+                        source_metadata=SourceMetadata(
+                            tools_called=[],
+                            data_as_of=time.strftime("%Y-%m-%d %H:%M:%S"),
+                            model_used="intent-engine-v1",
+                            is_ai_generated=False,
+                            response_status="SUCCESS",
+                            execution_time_seconds=elapsed,
+                        ),
+                        suggested_next_actions=[
+                            "Show active onboarding journeys",
+                            "View probation reviews due this week",
+                            "Check open tasks in Action Center",
+                        ],
+                        generated_at=time.strftime("%Y-%m-%d %H:%M:%S"),
+                    )
+
+            # 2B. Mixed Question (Conceptual explanation + explicit HR operational retrieval)
+            if has_conceptual and has_operational:
+                conceptual_clause, operational_clause = cls._split_mixed_query(text)
+                conceptual_part = cls._generate_general_hr_explanation(conceptual_clause.lower())
+                op_response = cls._process_operational_intents(
+                    text=operational_clause,
+                    lower=operational_clause.lower(),
+                    today=today,
+                    conversation_id=conversation_id,
+                    session_context=session_context,
+                    db=db,
+                    current_user=current_user,
+                    start_time=start_time,
+                )
+                if conceptual_part and op_response.source_metadata.tools_called:
+                    op_response.assistant_message = (
+                        f"{conceptual_part}\n\n---\n\n{op_response.assistant_message}"
+                    )
+                return op_response
+
+        # -------------------------------------------------------------------
+        # 3. COMPANY POLICY INQUIRIES (Anti-Hallucination Guard)
+        # -------------------------------------------------------------------
+        if is_policy_inquiry:
             elapsed = round(time.time() - start_time, 2)
             return CopilotChatResponse(
                 conversation_id=conversation_id,
-                assistant_message=gen_hr_response,
+                assistant_message=(
+                    "### Company Policy Information\n\n"
+                    "I cannot find specific internal policy documentation stored in the HR Flow operational database. "
+                    "HR Flow tracks operational tasks, deadlines, employee lifecycle stages, and SLA workflows.\n\n"
+                    "Please consult your official employee handbook or contact the HR Policy team for company policy questions."
+                ),
                 response_status="SUCCESS",
                 related_records=[],
                 source_metadata=SourceMetadata(
@@ -118,44 +182,36 @@ class ConversationalIntentEngine:
                     execution_time_seconds=elapsed,
                 ),
                 suggested_next_actions=[
-                    "Show active onboarding journeys",
-                    "View probation reviews due this week",
-                    "Check open tasks in Action Center",
+                    "View My Tasks",
+                    "Check Action Center",
+                    "Open Dashboard",
                 ],
                 generated_at=time.strftime("%Y-%m-%d %H:%M:%S"),
             )
 
-        # -------------------------------------------------------------------
-        # 3. COMPANY POLICY INQUIRIES (Anti-Hallucination Guard)
-        # -------------------------------------------------------------------
-        if any(k in lower for k in ["policy", "leave policy", "maternity policy", "paternity policy", "handbook", "guideline"]):
-            if not any(k in lower for k in ["task", "emp-", "overdue", "due", "status"]):
-                elapsed = round(time.time() - start_time, 2)
-                return CopilotChatResponse(
-                    conversation_id=conversation_id,
-                    assistant_message=(
-                        "### Company Policy Information\n\n"
-                        "I cannot find specific internal policy documentation stored in the HR Flow operational database. "
-                        "HR Flow tracks operational tasks, deadlines, employee lifecycle stages, and SLA workflows.\n\n"
-                        "Please consult your official employee handbook or contact the HR Policy team for company policy questions."
-                    ),
-                    response_status="SUCCESS",
-                    related_records=[],
-                    source_metadata=SourceMetadata(
-                        tools_called=[],
-                        data_as_of=time.strftime("%Y-%m-%d %H:%M:%S"),
-                        model_used="intent-engine-v1",
-                        is_ai_generated=False,
-                        response_status="SUCCESS",
-                        execution_time_seconds=elapsed,
-                    ),
-                    suggested_next_actions=[
-                        "View My Tasks",
-                        "Check Action Center",
-                        "Open Dashboard",
-                    ],
-                    generated_at=time.strftime("%Y-%m-%d %H:%M:%S"),
-                )
+        return cls._process_operational_intents(
+            text=text,
+            lower=lower,
+            today=today,
+            conversation_id=conversation_id,
+            session_context=session_context,
+            db=db,
+            current_user=current_user,
+            start_time=start_time,
+        )
+
+    @classmethod
+    def _process_operational_intents(
+        cls,
+        text: str,
+        lower: str,
+        today: date,
+        conversation_id: str,
+        session_context: Dict[str, Any],
+        db: Session,
+        current_user: User,
+        start_time: float,
+    ) -> CopilotChatResponse:
 
         # -------------------------------------------------------------------
         # 4. MULTI-TURN CONVERSATIONAL FOLLOW-UPS
@@ -488,21 +544,22 @@ class ConversationalIntentEngine:
                     generated_at=time.strftime("%Y-%m-%d %H:%M:%S"),
                 )
 
-        # 5C. Delayed Onboarding Activities ("Show me delayed onboarding activities", "Pending onboarding")
+        # 5C. Onboarding Activities ("Show me delayed onboarding activities", "Pending onboarding tasks")
         if "onboarding" in lower or "new hire" in lower or "joiner" in lower:
-            # Query delayed onboarding lifecycle activities
+            pending_only = "pending" in lower and not any(k in lower for k in ["overdue", "delayed", "late"])
+            # Query active onboarding lifecycle activities
             res_life = tool_get_lifecycle_activities(
                 db=db,
                 current_user=current_user,
                 process="ONBOARDING",
                 limit=10,
             )
-            # Query overdue onboarding tasks
+            # Query onboarding tasks (overdue by default, or all active non-completed when pending is asked)
             res_tasks = tool_search_hr_tasks(
                 db=db,
                 current_user=current_user,
                 lifecycle_category="ONBOARDING",
-                status="OVERDUE",
+                status=None if pending_only else "OVERDUE",
                 limit=10,
             )
             elapsed = round(time.time() - start_time, 2)
@@ -571,12 +628,13 @@ class ConversationalIntentEngine:
                 ]
                 for item in delayed_items[:8]:
                     emp = item["employee_name"]
+                    task_prefix = f"[{item['task_code']}] " if item.get("task_code") else ""
                     title = item["title"]
                     due = item["due_date"]
                     days = item["days_overdue"]
                     mgr = item["manager_name"]
                     delay_badge = f"**OVERDUE by {days} days**" if days > 0 else f"Target: {due}"
-                    lines.append(f"- **{emp}**: {title} ({delay_badge}, Manager / Owner: **{mgr}**)")
+                    lines.append(f"- **{emp}**: {task_prefix}{title} ({delay_badge}, Manager / Owner: **{mgr}**)")
 
                 lines.append("\n**Suggested Next Step:** Review these items with their respective managers or open the Onboarding workspace.")
                 msg = "\n".join(lines)
@@ -747,9 +805,10 @@ class ConversationalIntentEngine:
                 generated_at=time.strftime("%Y-%m-%d %H:%M:%S"),
             )
 
-        # 5F. Overdue Tasks ("Show overdue tasks", "Overdue operational tasks")
-        if "overdue" in lower and not any(k in lower for k in [
-            "probation", "onboarding", "lifecycle", "which process", "most overdue", "my task", "my overdue", "assigned to me"
+        # 5F. Overdue / Delayed Tasks ("Show overdue tasks", "Show delayed tasks", "Which tasks are overdue this week?")
+        if ("overdue" in lower or ("delayed" in lower and ("task" in lower or "tasks" in lower or "activities" in lower))) and not any(k in lower for k in [
+            "probation", "onboarding", "lifecycle", "which process", "most overdue", "my task", "my overdue", "assigned to me",
+            "confirmation", "document", "compliance", "performance", "appraisal", "offboard", "exit", "follow", "escalat"
         ]):
             res = tool_search_hr_tasks(db=db, current_user=current_user, status="OVERDUE", limit=8)
             elapsed = round(time.time() - start_time, 2)
@@ -875,15 +934,30 @@ class ConversationalIntentEngine:
         # 5I. Documentation & Compliance
         if "document" in lower or "compliance" in lower:
             res = tool_get_lifecycle_activities(db=db, current_user=current_user, process="DOCUMENTATION", limit=8)
-            elapsed = round(time.time() - start_time, 2)
+            tools_used = ["get_lifecycle_activities"]
             citations = [RecordCitation(**c) for c in res.get("citations", [])]
             acts = res.get("activities", [])
-            session_context["last_records"] = acts
+            doc_tasks = []
+            if not acts:
+                res_tasks = tool_search_hr_tasks(
+                    db=db,
+                    current_user=current_user,
+                    lifecycle_category="COMPLIANCE",
+                    status="OVERDUE" if "overdue" in lower else None,
+                    limit=8,
+                )
+                doc_tasks = res_tasks.get("tasks", [])
+                if doc_tasks or "overdue" in lower or "pending" in lower:
+                    tools_used.append("search_hr_tasks")
+                    citations = [RecordCitation(**c) for c in res_tasks.get("citations", [])]
+
+            elapsed = round(time.time() - start_time, 2)
+            session_context["last_records"] = acts if acts else doc_tasks
             session_context["last_topic"] = "documents"
 
             if acts:
                 items_str = "\n".join([
-                    f"- **{a['employee_name']}**: Document `{a.get('details', 'Compliance Document')}`, Status: `{a['status']}`"
+                    f"- **{a['employee_name']}**: Document `{a.get('details', 'Compliance Document')}`, Status: `{a['status']}`, Owner / Manager: **{a.get('manager_name', 'HR Operations Team')}**"
                     for a in acts
                 ])
                 msg = (
@@ -891,6 +965,17 @@ class ConversationalIntentEngine:
                     f"Found **{len(acts)}** statutory document verification items requiring HR attention:\n\n"
                     f"{items_str}\n\n"
                     f"**Suggested Next Step:** Verify submitted employee documents in the Documentation tab."
+                )
+            elif doc_tasks:
+                items_str = "\n".join([
+                    f"- **[{t['task_code']}]** {t['title']} (Employee: **{t['employee_name']}**, Status: `{t['status']}`, Due: **{t['due_date']}**, Owner: **{t.get('owner_name') or 'HR Operations Team'}**)"
+                    for t in doc_tasks
+                ])
+                msg = (
+                    f"### Documentation & Compliance Tasks ({len(doc_tasks)} active items)\n\n"
+                    f"Found **{len(doc_tasks)}** active compliance/documentation tasks requiring attention:\n\n"
+                    f"{items_str}\n\n"
+                    f"**Suggested Next Step:** Coordinate with the assigned owners or inspect the Documentation workspace."
                 )
             else:
                 msg = "All statutory compliance documents are currently up-to-date and verified."
@@ -901,7 +986,7 @@ class ConversationalIntentEngine:
                 response_status="SUCCESS",
                 related_records=citations,
                 source_metadata=SourceMetadata(
-                    tools_called=["get_lifecycle_activities"],
+                    tools_called=tools_used,
                     data_as_of=time.strftime("%Y-%m-%d %H:%M:%S"),
                     model_used="intent-engine-v1",
                     is_ai_generated=False,
@@ -1422,95 +1507,243 @@ class ConversationalIntentEngine:
             return True
         return False
 
-    @classmethod
-    def _check_general_hr_knowledge(cls, text: str) -> Optional[str]:
-        # Onboarding definition & best practices
-        if any(k in text for k in ["what does employee onboarding mean", "what is employee onboarding", "what is onboarding", "what is the onboarding process", "explain employee onboarding", "explain onboarding", "explain the onboarding process"]):
-            if not any(k in text for k in ["pending", "delayed", "our organisation", "our company", "in hr flow", "list"]):
-                return (
-                    "### What Is Employee Onboarding?\n\n"
-                    "**Employee Onboarding** is the structured human resources process of integrating a new hire into an organization. "
-                    "It spans from the moment an offer is accepted through the employee's initial 30 to 90 days of employment.\n\n"
-                    "**Key Objectives & Phases:**\n"
-                    "1. **Pre-boarding & Compliance:** Collecting statutory identity documents, signing employment contracts, and completing Background Verification (BGV).\n"
-                    "2. **Logistics & IT Provisioning:** Issuing laptop assets, corporate credentials, software licenses, and access badges before Day 1.\n"
-                    "3. **Orientation & Cultural Assimilation:** Introducing company culture, mission, core values, and assigning a mentor or Day-1 buddy.\n"
-                    "4. **Role Enablement:** Setting clear milestone expectations, 30-60-90 day performance goals, and conducting periodic check-ins.\n\n"
-                    "*Note: This is general HR operational guidance. To view current organization-specific records and pending activities in HR Flow, ask for pending onboarding activities or check the respective lifecycle workspace.*"
-                )
+    _HR_GUIDANCE_DISCLAIMER = (
+        "*Note: This is general HR guidance. If you want live database records from HR Flow, "
+        "ask me to show pending tasks or lifecycle activities for a specific stage.*"
+    )
 
-        if any(k in text for k in ["how can hr improve onboarding", "onboarding best practices", "improve new hire onboarding"]):
+    @classmethod
+    def is_pure_general_hr_question(cls, message: str) -> bool:
+        """
+        Returns True when the query asks a general conceptual HR question with no
+        explicit request for live database records, tasks, counts, or policies.
+        """
+        lower = message.strip().lower()
+        if cls._is_out_of_scope(lower):
+            return False
+        is_policy = (
+            any(k in lower for k in ["policy", "leave policy", "maternity policy", "paternity policy", "handbook", "guideline"])
+            and not any(k in lower for k in ["task", "emp-", "overdue", "due", "status"])
+        )
+        if is_policy:
+            return False
+        if not cls._has_conceptual_intent(lower) or cls._has_operational_intent(lower):
+            return False
+        return cls._generate_general_hr_explanation(lower) is not None
+
+    @classmethod
+    def _has_conceptual_intent(cls, text: str) -> bool:
+        """Detect questions asking for general HR definitions, importance, purpose, or benefits."""
+        # Specific record identifiers or explicit task/follow-up commands are never conceptual
+        if re.search(r"\btsk-\d+|\bemp-?\d+|\btask\s+(?:#\s*)?\d+\b", text):
+            return False
+        if any(k in text for k in ["why is task", "explain task", "what are my", "what needs my", "what is assigned to me"]):
+            return False
+
+        conceptual_patterns = (
+            r"^\s*(?:what\s+(?:is|are|does)|explain|describe|define|why\s+(?:is|are|do|should)|how\s+(?:do|does|can|to)|tell\s+me\s+about)\b",
+            r"\b(?:importance\s+of|why\s+.{1,60}?\s+(?:is|are)\s+important|what\s+is\s+the\s+purpose\s+of|purpose\s+of|benefits\s+of|advantages\s+of|best\s+practices\s+(?:for|in)|meaning\s+of|what\s+does\s+.+?\s+mean|overview\s+of)\b",
+        )
+        return any(re.search(pat, text) for pat in conceptual_patterns)
+
+    @classmethod
+    def _has_operational_intent(cls, text: str) -> bool:
+        """Detect explicit requests for live HR Flow database records, tasks, metrics, or drafts."""
+        operational_patterns = (
+            r"\btsk-\d+|\bemp-?\d+|\btask\s+(?:#\s*)?\d+\b",
+            r"\b(show|list|display|fetch|retrieve|find|get\s+me|give\s+me|search|lookup|look\s+up|check)\b",
+            r"\b(how\s+many|are\s+there\s+any)\b",
+            r"\bwho\s+(has|have|is\s+responsible|owns|handles|is\s+assigned|is\s+working|are\s+responsible)\b",
+            r"\bwhich\s+(employees|people|staff|tasks|activities|items|reviews|probations|onboarding|confirmations|process|processes|one)\b",
+            r"\bwhat\s+(needs\s+my|are\s+my|should\s+i|do\s+i\s+need)\b",
+            r"\b(overdue|delayed|pending|blocked|unverified|unresolved|approaching|missed|right\s+now|currently|this\s+week|this\s+month|today|due\s+date|due\s+this|due\s+today|due\s+tomorrow|due\s+next|due\s+within|end\s+date)\b",
+            r"\b(my\s+tasks?|my\s+queue|assigned\s+to\s+me|my\s+team|direct\s+reports|our\s+company|our\s+organization|our\s+organisation|in\s+hr\s+flow|database|daily\s+briefing|bottleneck|bottlenecks|at-risk|at\s+risk|high-risk|high\s+risk|delay\s+risk|delay\s+probability|completed\s+on\s+time)\b",
+            r"\b(draft\s+(?:a|an|the)?\s*(?:follow-?up|reminder|message|email)|waiting\s+for\s+(?:a\s+)?response)\b",
+        )
+        return any(re.search(pat, text) for pat in operational_patterns)
+
+    @classmethod
+    def _split_mixed_query(cls, text: str) -> Tuple[str, str]:
+        """
+        Splits a mixed conceptual + operational prompt into (conceptual_clause, operational_clause).
+        If the operational clause omits a lifecycle keyword mentioned in the conceptual clause and asks
+        generic "tasks" or "records", preserves context when safe; otherwise isolates the operational target.
+        """
+        parts = re.split(
+            r"\s+(?:and|also|plus|then)\s+(?=(?:show|list|display|fetch|retrieve|find|get|give|check|which|who|are\s+there|how\s+many)\b)",
+            text.strip(),
+            maxsplit=1,
+            flags=re.IGNORECASE,
+        )
+        if len(parts) == 2:
+            return parts[0].strip(), parts[1].strip()
+        return text, text
+
+    @classmethod
+    def _generate_general_hr_explanation(cls, text: str) -> Optional[str]:
+        # 1. Onboarding (importance, definition, best practices)
+        if any(k in text for k in ["onboarding", "new hire", "induction", "new joiner"]):
+            if any(k in text for k in ["improve", "best practice", "best practices"]):
+                return (
+                    "### Best Practices for Improving Employee Onboarding\n\n"
+                    "To strengthen new-hire integration and early retention, HR teams typically focus on:\n\n"
+                    "1. **Pre-Boarding & Compliance Readiness:** Collect statutory identity documents and complete background verification before Day 1 so joining day focuses on people and culture.\n"
+                    "2. **Structured Orientation & Buddy Support:** Introduce the organization's mission, values, and workplace norms while pairing new hires with a mentor or Day-1 buddy.\n"
+                    "3. **Clear 30-60-90 Day Expectations:** Define roles, responsibilities, and initial milestones early so employees settle into their responsibilities smoothly.\n"
+                    "4. **Proactive Training & Check-ins:** Provide role tools/training up front and run structured Day-7, Day-30, and Day-60 check-ins.\n\n"
+                    f"{cls._HR_GUIDANCE_DISCLAIMER}"
+                )
             return (
-                "### Best Practices for Improving Employee Onboarding\n\n"
-                "To enhance onboarding retention and reduce early attrition, HR teams should implement:\n\n"
-                "1. **Automated Pre-Boarding:** Collect compliance documentation digitally before Day 1 so the first day focuses on culture and introductions rather than paperwork.\n"
-                "2. **Structured Buddy Program:** Pair every new hire with an experienced peer to accelerate team integration and psychological safety.\n"
-                "3. **Clear 30-60-90 Day Milestones:** Establish measurable deliverable goals early so new hires know exactly what success looks like.\n"
-                "4. **Early Touchpoint Check-Ins:** Schedule automated HR follow-ups on Day 7, Day 30, and Day 60 to identify blockers and gather early feedback.\n\n"
-                "*Note: This is general HR operational guidance. To view current organization-specific records and pending activities in HR Flow, ask for pending onboarding activities or check the respective lifecycle workspace.*"
+                "### Why Employee Onboarding Is Important\n\n"
+                "**Employee Onboarding** is the structured process of welcoming and integrating a new hire from offer acceptance through their initial months in the organization.\n\n"
+                "**Key Reasons Onboarding Matters:**\n"
+                "- **Understanding the Company & Culture:** Helps new employees learn the organization's mission, values, policies, and workplace expectations.\n"
+                "- **Clarity on Roles & Responsibilities:** Establishes clear job expectations, reporting lines, and 30-60-90 day goals so employees know how they contribute.\n"
+                "- **Training, Tools & Resources:** Ensures timely IT provisioning, workspace setup, and role-specific training needed to perform effectively.\n"
+                "- **Documentation & Compliance:** Completes employment contracts, tax/statutory forms, and background verification accurately and on time.\n"
+                "- **Higher Engagement & Productivity:** Smooth onboarding accelerates ramp-up time, builds confidence, and improves long-term employee retention.\n"
+                "- **Helping Employees Settle In:** Connects new hires with teammates, managers, and mentors so they feel supported from Day 1.\n\n"
+                f"{cls._HR_GUIDANCE_DISCLAIMER}"
             )
 
-        # Probation definition
-        if any(k in text for k in ["what is a probation review", "what is probation", "what does probation mean", "explain probation"]):
-            if not any(k in text for k in ["overdue", "due", "this month", "this week", "count", "how many", "list", "show"]):
-                return (
-                    "### What Is a Probation Review?\n\n"
-                    "A **Probationary Period** is an initial trial phase (typically 3 to 6 months) during which an employer evaluates a new employee's job performance, cultural alignment, work habits, and capability to fulfill role duties.\n\n"
-                    "A **Probation Review** is the formal evaluation meeting held before the probation end date where:\n"
-                    "- The reporting manager reviews performance against initial milestone expectations.\n"
-                    "- The employee provides feedback on their onboarding and support.\n"
-                    "- An official decision is recorded: **Confirmation**, **Extension** (if additional evaluation time is required), or **Separation**.\n\n"
-                    "*Note: This is general HR operational guidance. To view current organization-specific records and pending activities in HR Flow, ask for pending onboarding activities or check the respective lifecycle workspace.*"
-                )
+        # 2. Employee Lifecycle
+        if "lifecycle" in text or "life cycle" in text:
+            return (
+                "### Overview of the Employee Lifecycle\n\n"
+                "The **Employee Lifecycle** represents every major stage of an employee's journey within an organization:\n\n"
+                "1. **Onboarding:** Welcoming new hires, setting up access and training, and integrating them into their teams.\n"
+                "2. **Documentation & Compliance:** Verifying identity, tax, statutory, and policy acknowledgements.\n"
+                "3. **Probation:** Evaluating early job performance, role fit, and manager feedback during the initial trial period.\n"
+                "4. **Confirmation:** Formally transitioning successful probationary employees to permanent employment.\n"
+                "5. **Performance Reviews:** Running periodic appraisals to set goals, give constructive feedback, and guide career development.\n"
+                "6. **Offboarding:** Managing departures smoothly through knowledge transfer, asset recovery, access revocation, and exit interviews.\n\n"
+                f"{cls._HR_GUIDANCE_DISCLAIMER}"
+            )
 
-        # Confirmation definition
-        if any(k in text for k in ["what is employee confirmation", "what is confirmation in hr", "explain confirmation"]):
-            if not any(k in text for k in ["pending", "show", "who", "decision"]):
-                return (
-                    "### What Is Employee Confirmation?\n\n"
-                    "**Employee Confirmation** is the formal transition of an employee from probationary status to permanent employment status. "
-                    "It signifies that the employee has successfully met the performance and behavioral standards expected during their probation.\n\n"
-                    "**Standard Workflow:**\n"
-                    "1. Manager submits evaluation and recommendation.\n"
-                    "2. HR verifies statutory document completeness and performance sign-offs.\n"
-                    "3. Formal Confirmation Letter is issued.\n\n"
-                    "*Note: This is general HR operational guidance. To view current organization-specific records and pending activities in HR Flow, ask for pending onboarding activities or check the respective lifecycle workspace.*"
-                )
+        # 3. Background Verification (BGV)
+        if any(k in text for k in ["background verification", "background check", "bgv"]):
+            return (
+                "### Purpose of Background Verification (BGV)\n\n"
+                "**Background Verification (BGV)** is the structured HR compliance process of validating a candidate's or new hire's credentials before or during onboarding.\n\n"
+                "**Why Organizations Conduct BGV:**\n"
+                "- **Identity & Credential Accuracy:** Confirms government identity, academic qualifications, and prior employment history.\n"
+                "- **Risk Mitigation & Workplace Safety:** Reduces hiring risk and protects employees, customers, and company data.\n"
+                "- **Regulatory & Client Compliance:** Meets statutory, industry, and audit requirements for verified workforce records.\n"
+                "- **Informed Hiring Decisions:** Builds trust and consistency across the recruitment and onboarding process.\n\n"
+                f"{cls._HR_GUIDANCE_DISCLAIMER}"
+            )
 
-        # Performance Review definition
-        if any(k in text for k in ["what is a performance review", "what are performance reviews", "why are performance reviews important"]):
-            if not any(k in text for k in ["pending", "overdue", "list", "show", "our"]):
-                return (
-                    "### What Is a Performance Review?\n\n"
-                    "A **Performance Review** (or appraisal) is a periodic formal assessment where an employee's work performance, goals, strengths, and areas for development are evaluated and discussed with their manager.\n\n"
-                    "**Core Value for Organizations:**\n"
-                    "- Aligns individual contributions with company objectives.\n"
-                    "- Provides transparent feedback and identifies growth opportunities.\n"
-                    "- Informs compensation decisions, promotions, and succession planning.\n\n"
-                    "*Note: This is general HR operational guidance. To view current organization-specific records and pending activities in HR Flow, ask for pending onboarding activities or check the respective lifecycle workspace.*"
-                )
+        # 4. Documentation & Compliance in HR
+        if any(k in text for k in ["documentation", "document", "compliance", "hr records"]):
+            return (
+                "### Why Documentation Is Important in HR\n\n"
+                "Accurate **HR Documentation** creates a reliable, auditable record across an employee's entire tenure.\n\n"
+                "**Key Benefits:**\n"
+                "- **Legal & Statutory Compliance:** Ensures contracts, identity records, tax declarations, and mandatory acknowledgements meet regulatory standards.\n"
+                "- **Consistency & Fairness:** Supports transparent decisions for probation, confirmations, promotions, and disciplinary actions.\n"
+                "- **Audit & Dispute Readiness:** Protects both the organization and employees by preserving verified timelines and approvals.\n"
+                "- **Smooth Lifecycle Transitions:** Keeps onboarding, appraisals, and offboarding clearances coordinated without missing prerequisites.\n\n"
+                f"{cls._HR_GUIDANCE_DISCLAIMER}"
+            )
 
-        # Offboarding definition
-        if any(k in text for k in ["what is offboarding", "what is employee offboarding", "explain offboarding"]):
-            if not any(k in text for k in ["pending", "list", "show", "clearance", "who"]):
-                return (
-                    "### What Is Employee Offboarding?\n\n"
-                    "**Employee Offboarding** (or exit management) encompasses all processes required when an employee departs an organization—whether through resignation, retirement, or termination.\n\n"
-                    "**Essential Components:**\n"
-                    "1. **Knowledge Transfer (KT):** Documenting handover notes and transitioning duties to colleagues.\n"
-                    "2. **Asset Recovery:** Collecting corporate hardware (laptops, phones) and access badges.\n"
-                    "3. **Security Deprovisioning:** Revoking email, cloud, and building access credentials.\n"
-                    "4. **Exit Interview & Clearances:** Gathering candid feedback and completing Finance, Admin, and HR sign-offs for final settlement.\n\n"
-                    "*Note: This is general HR operational guidance. To view current organization-specific records and pending activities in HR Flow, ask for pending onboarding activities or check the respective lifecycle workspace.*"
-                )
+        # 5. Employee Engagement
+        if "engagement" in text:
+            return (
+                "### Benefits of Employee Engagement\n\n"
+                "**Employee Engagement** reflects how committed, motivated, and connected employees feel toward their work, team, and organization.\n\n"
+                "**Core Benefits for Organizations:**\n"
+                "- **Higher Productivity & Quality:** Engaged employees take greater ownership and consistently deliver stronger outcomes.\n"
+                "- **Improved Retention:** Strong connection and recognition reduce voluntary attrition and hiring costs.\n"
+                "- **Better Collaboration & Morale:** Fosters trust, open communication, and healthier team dynamics.\n"
+                "- **Clearer Growth & Alignment:** Regular feedback and development support help employees see a long-term future in the company.\n\n"
+                f"{cls._HR_GUIDANCE_DISCLAIMER}"
+            )
+
+        # 6. Probation
+        if "probation" in text:
+            return (
+                "### What Is Employee Probation?\n\n"
+                "**Employee Probation** is an initial evaluation period (typically 3 to 6 months) at the start of employment during which both the organization and the new hire assess role fit, performance, and alignment.\n\n"
+                "**How Probation Reviews Work:**\n"
+                "- **Structured Evaluation:** Reporting managers assess progress against clear role expectations and deliverables.\n"
+                "- **Two-Way Feedback:** Employees receive constructive coaching and share feedback on training or support needs.\n"
+                "- **Formal Outcome:** Before probation ends, HR and management record **Confirmation**, **Extension** (if more evaluation time is needed), or **Separation**.\n\n"
+                f"{cls._HR_GUIDANCE_DISCLAIMER}"
+            )
+
+        # 7. Confirmation
+        if re.search(r"\bconfirmation\b", text):
+            return (
+                "### What Is Employee Confirmation?\n\n"
+                "**Employee Confirmation** is the formal transition of an employee from probationary status to permanent employment after successfully meeting initial performance and behavioral standards.\n\n"
+                "**Standard Workflow:**\n"
+                "1. Manager submits a probation evaluation and confirmation recommendation.\n"
+                "2. HR verifies compliance documents and required approvals.\n"
+                "3. A formal Confirmation Letter is issued, confirming permanent status.\n\n"
+                f"{cls._HR_GUIDANCE_DISCLAIMER}"
+            )
+
+        # 8. Performance Reviews / Appraisals
+        if any(k in text for k in ["performance review", "performance reviews", "appraisal", "performance management"]):
+            return (
+                "### Importance & Benefits of Performance Reviews\n\n"
+                "A **Performance Review** (or appraisal) is a structured, periodic evaluation of an employee's achievements, strengths, and development opportunities.\n\n"
+                "**Key Benefits:**\n"
+                "- **Goal Alignment:** Connects day-to-day responsibilities with team and organizational priorities.\n"
+                "- **Constructive Feedback & Coaching:** Gives employees actionable insights on what they are doing well and where to grow.\n"
+                "- **Career Development & Training:** Identifies skill gaps, mentoring needs, and readiness for new responsibilities.\n"
+                "- **Fair Decisions:** Provides documented input for recognition, promotions, compensation reviews, and succession planning.\n\n"
+                f"{cls._HR_GUIDANCE_DISCLAIMER}"
+            )
+
+        # 9. Offboarding & Exit Management
+        if any(k in text for k in ["offboarding", "exit management", "exit interview"]):
+            return (
+                "### What Is Employee Offboarding?\n\n"
+                "**Employee Offboarding** is the structured process followed when an employee leaves an organization (through resignation, retirement, or separation).\n\n"
+                "**Essential Components:**\n"
+                "- **Knowledge Transfer (KT):** Documenting workflows and transitioning responsibilities smoothly to teammates.\n"
+                "- **IT Asset Recovery:** Collecting corporate laptops, hardware, ID cards, and access badges.\n"
+                "- **Security Deprovisioning:** Revoking email, system, and physical access credentials on time.\n"
+                "- **Clearances & Exit Interview:** Completing Finance/Admin/HR sign-offs, final settlement, and gathering candid feedback for continuous improvement.\n\n"
+                f"{cls._HR_GUIDANCE_DISCLAIMER}"
+            )
+
+        # 10. General HR domain fallback for other conceptual HR questions (avoids misrouting to DB tools)
+        general_hr_terms = (
+            "hr", "human resources", "employee", "employees", "workforce", "staff", "manager",
+            "retention", "attrition", "turnover", "feedback", "culture", "training", "sla",
+            "compliance", "task management", "follow-up", "escalation", "talent", "orientation",
+            "workplace", "productivity", "morale", "appraisal", "leave", "benefits",
+        )
+        if any(re.search(rf"\b{re.escape(term)}\b", text) for term in general_hr_terms):
+            return (
+                "### HR Operations Guidance\n\n"
+                "Your question relates to general **Human Resources** practices rather than live HR Flow operational records.\n\n"
+                "In HR operations, structured workflows, clear role expectations, timely documentation, and regular manager feedback "
+                "help keep employee experiences consistent, compliant, and productive across onboarding, probation, performance reviews, and offboarding.\n\n"
+                "If you'd like specific details on a topic such as onboarding, probation, documentation, background verification, performance reviews, engagement, or offboarding, "
+                "feel free to ask.\n\n"
+                f"{cls._HR_GUIDANCE_DISCLAIMER}"
+            )
 
         return None
 
     @classmethod
+    def _check_general_hr_knowledge(cls, text: str) -> Optional[str]:
+        if cls._has_conceptual_intent(text) and not cls._has_operational_intent(text):
+            return cls._generate_general_hr_explanation(text)
+        return None
+
+    @classmethod
     def _is_follow_up_responsibility_query(cls, text: str) -> bool:
+        clean = text.strip().rstrip("?.!")
+        if clean in {"who is responsible", "who owns it", "who handles it"}:
+            return True
         return any(k in text for k in [
-            "who is responsible for them", "who is responsible", "who is assigned to them",
-            "who owns them", "who handles them", "who is in charge of them", "who is responsible for these",
+            "who is responsible for them", "who is responsible for these", "who is responsible for those",
+            "who is responsible for it", "who is assigned to them",
+            "who owns them", "who handles them", "who is in charge of them",
             "who owns these", "who are their managers"
         ])
 
